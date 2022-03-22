@@ -1,4 +1,4 @@
-from main import screen
+from Constants import screen
 class Character:
     def __init__(self,Location,Color,Img):
         self.Location = Location
@@ -10,3 +10,10 @@ class Character:
     def display_character(self):
         if self.alive:
             screen.blit(self.images[self.direction], self.Location)
+        self.direction = 0
+    def move_right(self):
+        self.direction = 1
+        self.Location = (self.Location[0]+1, self.Location[1])
+    def move_left(self):
+        self.direction = 2
+        self.Location = (self.Location[0]-1, self.Location[1])

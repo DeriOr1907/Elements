@@ -1,8 +1,7 @@
 import pygame
-from Classes.Character import *
-pygame.init()
-screen_size = (1000,530)
-screen = pygame.display.set_mode(screen_size)
+from Constants import screen,screen_size
+from Classes.Character import Character
+
 pygame.display.set_caption('Elements')
 clock = pygame.time.Clock()
 
@@ -13,12 +12,22 @@ def create_images_list(imgpath1,imgpath2,imgpath3):
 
 
 bluegirl_images = create_images_list("Images/Bluegirl.png", "Images/BlueGRun.PNG", "Images/BlueGRunLeft.PNG")
-bluegirl = Character((300,200),"Blue",bluegirl_images)
+bluegirl = Character((300, 200), "Blue", bluegirl_images)
 background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
-while True: # Caharater1 is alive and Caracter2 is alive:
+Bool = True
+while Bool: # Caharater1 is alive and Caracter2 is alive and Bool:
     screen.blit(background, (0, 0))
     bluegirl.display_character()
     pygame.display.update()
     clock.tick(60)
-pygame.quit()
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                bluegirl.move_right()
+            if event.key == pygame.K_LEFT:
+                bluegirl.move_left()
+        if event.type == pygame.QUIT:
+            Bool = False
+            pygame.quit()
+
 quit()
