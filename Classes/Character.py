@@ -15,6 +15,7 @@ class Character:
         if not self.jumping:
             self.jumpV = 0
         if self.jumping:
+            if self.jumpV >= -10:
                 self.jumpV = self.jumpV-0.5
         if self.moving_right:
             self.direction = 1
