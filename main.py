@@ -26,6 +26,8 @@ while Bool: # Caharater1 is alive and Caracter2 is alive and Bool:
                 bluegirl.move_right()
             if event.key == pygame.K_LEFT:
                 bluegirl.move_left()
+            elif event.type == pygame.KEYUP:
+                pass
         if event.type == pygame.QUIT:
             Bool = False
             pygame.quit()
