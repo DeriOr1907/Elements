@@ -23,14 +23,15 @@ class Character:
         if self.moving_left:
             self.direction = 2
             self.Location = (self.Location[0] - 2, self.Location[1])
-        self.Location = (self.Location[0],self.Location[1]+gravity-self.jumpV)
         if self.alive:
+            self.Location = (self.Location[0], self.Location[1] + gravity - self.jumpV)
             screen.blit(self.images[self.direction], self.Location)
         self.direction = 0
 
     def start_jump(self):
-        self.jumpV = 14
-        self.jumping = True
+        if not self.jumping:
+            self.jumpV = 14
+            self.jumping = True
 
 
     def move_right(self):
@@ -44,3 +45,10 @@ class Character:
 
     def move_left(self):
         self.moving_left = True
+
+    def able_to_move_right(self):
+        pass
+
+
+
+
