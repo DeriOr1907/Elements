@@ -12,7 +12,7 @@ class Character:
         self.jumping = False
         self.jumpV = 0
 
-    def display_character(self):
+    def display_character(self,objects):
         if not self.jumping:
             self.jumpV = 0
         if self.jumping:
@@ -20,11 +20,11 @@ class Character:
                 self.jumpV = self.jumpV-0.5
         if self.moving_right:
             self.direction = 1
-            if self.able_to_move_right():
+            if self.able_to_move_right(objects):
                 self.Location = (self.Location[0] + 2, self.Location[1])
         if self.moving_left:
             self.direction = 2
-            if self.able_to_move_left():
+            if self.able_to_move_left(objects):
                 self.Location = (self.Location[0] - 2, self.Location[1])
         if self.alive:
             self.Location = (self.Location[0], self.Location[1] + gravity - self.jumpV)

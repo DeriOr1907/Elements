@@ -29,8 +29,8 @@ girl = bluegirl
 run = True
 while boy.alive and girl.alive and run: # Caharater1 is alive and Caracter2 is alive and Bool:
     screen.blit(background, (0, 0))
-    bluegirl.display_character()
-    redboy.display_character()
+    girl.display_character(objects)
+    boy.display_character(objects)
     pygame.display.update()
     for obstacle in objects:
         obstacle.display_obstacle()
