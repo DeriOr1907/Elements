@@ -23,7 +23,8 @@ obj1 = Object(1050, 30, 0, 500, objects_color)
 obj2 = Object(20, 530, 0, 0, objects_color)
 obj3 = Object(20, 530, 980, 0, objects_color)
 obj4 = Object(1050, 25, 0, 0, objects_color)
-objects = [obj1,obj2,obj3,obj4]
+obj5 = Object(500, 300, 350, 370, objects_color)
+objects = [obj1, obj2, obj3, obj4, obj5]
 boy = redboy
 girl = bluegirl
 run = True
@@ -34,9 +35,11 @@ while boy.alive and girl.alive and run: # Caharater1 is alive and Caracter2 is a
     pygame.display.update()
     for obstacle in objects:
         obstacle.display_obstacle()
-    pygame.display.flip()
     clock.tick(60)
+    pygame.display.flip()
     for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_pos = event.pos
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
                 boy.move_right()
