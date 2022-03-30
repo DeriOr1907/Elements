@@ -15,6 +15,8 @@ class Character:
         self.gravity = 1
 
     def display_character(self, objects):
+        if self.gravity != 0:
+            self.jumping = True
         if self.gravity <= 15:
             self.gravity = self.gravity+0.5
         if self.moving_right:
