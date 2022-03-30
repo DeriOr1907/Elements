@@ -2,14 +2,15 @@ import pygame
 from Constants import screen, screen_size
 from Classes.Character import *
 from Classes.Object import *
+
 pygame.display.set_caption('Elements')
 clock = pygame.time.Clock()
 
 
 def create_images_list(imgpath1, imgpath2, imgpath3):
     imags = [pygame.transform.scale(pygame.image.load(imgpath1), (45, 45)),
-             pygame.transform.scale(pygame.image.load(imgpath2), (40,45)),
-             pygame.transform.scale(pygame.image.load(imgpath3), (40,45))]
+             pygame.transform.scale(pygame.image.load(imgpath2), (40, 45)),
+             pygame.transform.scale(pygame.image.load(imgpath3), (40, 45))]
     return imags
 
 
@@ -24,19 +25,22 @@ obj2 = Object(20, 530, 0, 0, objects_color)
 obj3 = Object(20, 530, 980, 0, objects_color)
 obj4 = Object(1050, 25, 0, 0, objects_color)
 obj5 = Object(500, 300, 350, 370, objects_color)
-objects = [obj1, obj2, obj3, obj4, obj5]
+obj6 = Object(500, 50, 150, 270, objects_color)
+obj7 = Object(300, 100, 0, 370, objects_color)
+objects = [obj1, obj2, obj3, obj4, obj5,obj6,obj7]
 boy = redboy
 girl = bluegirl
 run = True
-while boy.alive and girl.alive and run: # Caharater1 is alive and Caracter2 is alive and Bool:
+while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
     screen.blit(background, (0, 0))
-    girl.display_character(objects)
-    boy.display_character(objects)
-    pygame.display.update()
     for obstacle in objects:
         obstacle.display_obstacle()
-    clock.tick(60)
+    girl.display_character(objects)
+    boy.display_character(objects)
+    # refreshing screen:
     pygame.display.flip()
+    pygame.display.update()
+    clock.tick(60)
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = event.pos
