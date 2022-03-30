@@ -39,7 +39,7 @@ class Character:
     def start_jump(self):
         self.Location = (self.Location[0],self.Location[1]-5)
         if not self.jumping:
-            self.gravity = -12
+            self.gravity = -11
             self.jumping = True
 
 
