@@ -2,6 +2,7 @@ from Constants import screen
 from Classes.Object import *
 gravity = 2.5
 
+
 class Character:
     def __init__(self,Location, Color, Img):
         self.Location = Location
@@ -39,7 +40,7 @@ class Character:
     def start_jump(self):
         self.Location = (self.Location[0],self.Location[1]-5)
         if not self.jumping:
-            self.gravity = -11
+            self.gravity = -11.5
             self.jumping = True
 
 
