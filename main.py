@@ -28,7 +28,7 @@ while Bool: # Caharater1 is alive and Caracter2 is alive and Bool:
 
     pygame.display.update()
 
-    object_group.draw(screen)
+
 
     clock.tick(60)
     for event in pygame.event.get():
