@@ -2,6 +2,7 @@ import pygame
 from Constants import screen, screen_size
 from Classes.Character import *
 from Classes.Object import *
+from Button import *
 
 pygame.display.set_caption('Elements')
 clock = pygame.time.Clock()
@@ -14,6 +15,7 @@ def create_images_list(imgpath1, imgpath2, imgpath3):
     return imags
 
 
+start_pic = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
 bluegirl_images = create_images_list("Images/Bluegirl.png", "Images/BlueGRun.PNG", "Images/BlueGRunLeft.PNG")
 bluegirl = Character((300, 200), "Blue", bluegirl_images)
 redboy_images = create_images_list("Images/Redboy.png", "Images/RedBRun.PNG", "Images/RedBRunLeft.PNG")
@@ -33,6 +35,18 @@ objects = [obj1, obj2, obj3, obj4, obj5,obj6,obj7,obj8,obj9]
 boy = redboy
 girl = bluegirl
 run = True
+
+# while run == True:
+#     screen.blit(start_pic, (0, 0))
+    # for event in pygame.event.get():
+    #     if event.type == pygame.MOUSEBUTTONDOWN:
+    #         if mouse_in_button(Play_BUTTON, event.pos):
+    #             screen.blit(background, (0, 0))
+    #         if event.type == pygame.QUIT:
+    #             run = False
+    #             pygame.quit()
+
+
 while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
     screen.blit(background, (0, 0))
     for obstacle in objects:
