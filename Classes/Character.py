@@ -34,7 +34,10 @@ class Character:
                 self.Location = (self.Location[0], self.Location[1] + self.gravity)
             if not self.able_to_move_down(objects):
                 self.gravity = 0
-            screen.blit(self.images[self.direction], self.Location)
+            if self.direction == 0:
+                screen.blit(self.images[self.direction], (self.Location[0],self.Location[1]-5))
+            else:
+                screen.blit(self.images[self.direction], self.Location)
         self.direction = 0
 
     def start_jump(self):

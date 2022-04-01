@@ -9,19 +9,22 @@ clock = pygame.time.Clock()
 
 
 def create_images_list(imgpath1, imgpath2, imgpath3):
-    imags = [pygame.transform.scale(pygame.image.load(imgpath1), (32, 48)),
-             pygame.transform.scale(pygame.image.load(imgpath2), (40, 45)),
-             pygame.transform.scale(pygame.image.load(imgpath3), (40, 45))]
+    imags = [pygame.transform.scale(pygame.image.load(imgpath1), (36, 55)),
+             pygame.transform.scale(pygame.image.load(imgpath2), (41, 45)),
+             pygame.transform.scale(pygame.image.load(imgpath3), (41, 45))]
     return imags
 
-Play_BUTTON = pygame.transform.scale(pygame.image.load("Images/PlayButton!!!.png"), (200,200))
-Play_BUTTON = Button(Play_BUTTON,(200,200),80,80)
-start_pic = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
+
+start_background = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
+Play_BUTTON = pygame.transform.scale(pygame.image.load("Images/PlayButton!!!.png"), (90,90))
+Play_BUTTON = Button(Play_BUTTON, (450, 200), 85, 85)
+start_pic = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
 bluegirl_images = create_images_list("Images/Bluegirl.png", "Images/BlueGRun.PNG", "Images/BlueGRunLeft.PNG")
 bluegirl = Character((300, 200), "Blue", bluegirl_images)
 redboy_images = create_images_list("Images/Redboy.png", "Images/RedBRun.PNG", "Images/RedBRunLeft.PNG")
 background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
 redboy = Character((300, 200), "Red", redboy_images)
+
 objects_color = (95, 80, 45)
 obj1 = Object(1050, 30, 0, 500, objects_color)
 obj2 = Object(20, 530, 0, 0, objects_color)
@@ -37,16 +40,23 @@ boy = redboy
 girl = bluegirl
 run = True
 start_run = True
-#
-# while start_run:
-#     screen.blit(start_pic, (0, 0))
-#     for event in pygame.event.get():
-#         if event.type == pygame.MOUSEBUTTONDOWN:
-#             if mouse_in_button(Play_BUTTON, event.pos):
-#                 screen.blit(background, (0, 0))
-#             if event.type == pygame.QUIT:
-#                 run = False
-#                 pygame.quit()
+big_boy = pygame.transform.scale(pygame.image.load("Images/Redboy.png"), (200, 320))
+big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (200, 320))
+while start_run:
+    screen.blit(start_background, (0, 0))
+    screen.blit(big_girl, (40, 200))
+    screen.blit(big_boy, (690, 200))
+    Play_BUTTON.display_button()
+    pygame.display.flip()
+    pygame.display.update()
+
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if mouse_in_button(Play_BUTTON, event.pos):
+                start_run = False
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            quit()
 
 
 while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
@@ -90,5 +100,5 @@ while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is 
         if event.type == pygame.QUIT:
             run = False
             pygame.quit()
-
+            quit()
 quit()
