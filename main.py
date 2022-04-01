@@ -18,6 +18,25 @@ def create_images_list(imgpath1, imgpath2, imgpath3):
 start_background = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
 Play_BUTTON = pygame.transform.scale(pygame.image.load("Images/PlayButton!!!.png"), (90,90))
 Play_BUTTON = Button(Play_BUTTON, (450, 200), 85, 85)
+oneButton = pygame.transform.scale(pygame.image.load("Images/1button.png"), (70,70))
+oneButton = Button(oneButton,(50 - 10, 150),70,70)
+twoButton = pygame.transform.scale(pygame.image.load("Images/2button.png"), (70,70))
+twoButton = Button(twoButton,(130 - 10, 150),70,70)
+threeButton = pygame.transform.scale(pygame.image.load("Images/3button.png"), (70,70))
+threeButton = Button(threeButton,(210 - 10, 150),70,70)
+fourButton = pygame.transform.scale(pygame.image.load("Images/4button.png"), (70,70))
+fourButton = Button(fourButton,(290 - 10, 150),70,70)
+
+one_Button = pygame.transform.scale(pygame.image.load("Images/1button.png"), (70,70))
+one_Button = Button(one_Button,(720-70, 150),70,70)
+two_Button = pygame.transform.scale(pygame.image.load("Images/2button.png"), (70,70))
+two_Button = Button(two_Button,(800-70, 150),70,70)
+three_Button = pygame.transform.scale(pygame.image.load("Images/3button.png"), (70,70))
+three_Button = Button(three_Button,(880-70, 150),70,70)
+four_Button = pygame.transform.scale(pygame.image.load("Images/4button.png"), (70,70))
+four_Button = Button(four_Button,(960-70, 150),70,70)
+
+
 start_pic = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
 bluegirl_images = create_images_list("Images/Bluegirl.png", "Images/BlueGRun.PNG", "Images/BlueGRunLeft.PNG")
 bluegirl = Character((300, 200), "Blue", bluegirl_images)
@@ -40,13 +59,16 @@ boy = redboy
 girl = bluegirl
 run = True
 start_run = True
-big_boy = pygame.transform.scale(pygame.image.load("Images/Redboy.png"), (200, 320))
-big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (200, 320))
+
+big_boy = pygame.transform.scale(pygame.image.load("Images/Redboy.png"), (170, 285))
+big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (180, 285))
+
 while start_run:
     screen.blit(start_background, (0, 0))
-    screen.blit(big_girl, (40, 200))
-    screen.blit(big_boy, (690, 200))
-    Play_BUTTON.display_button()
+    screen.blit(big_girl, (105, 230))
+    screen.blit(big_boy, (730, 220))
+    oneButton.display_button(), twoButton.display_button(), threeButton.display_button(), fourButton.display_button(), Play_BUTTON.display_button(), one_Button.display_button(), two_Button.display_button(), three_Button.display_button() ,four_Button.display_button()
+
     pygame.display.flip()
     pygame.display.update()
 
@@ -54,6 +76,23 @@ while start_run:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if mouse_in_button(Play_BUTTON, event.pos):
                 start_run = False
+            if mouse_in_button(oneButton,event.pos):
+                big_girl = pygame.transform.scale(pygame.image.load("Images/Redgirl.png"), (170, 285))
+            if mouse_in_button(twoButton,event.pos):
+                big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170, 285))
+            if mouse_in_button(threeButton,event.pos):
+                big_girl = pygame.transform.scale(pygame.image.load("Images/Pinkgirl.png"), (170, 285))
+            if mouse_in_button(fourButton,event.pos):
+                big_girl = pygame.transform.scale(pygame.image.load("Images/Purplegirl.png"), (170, 285))
+
+            if mouse_in_button(four_Button,event.pos):
+                big_boy = pygame.transform.scale(pygame.image.load("Images/Purpleboy.png"), (170, 285))
+            if mouse_in_button(three_Button,event.pos):
+                big_boy = pygame.transform.scale(pygame.image.load("Images/Pinkboy.png"), (170, 285))
+            if mouse_in_button(two_Button,event.pos):
+                big_boy = pygame.transform.scale(pygame.image.load("Images/Blueboy.png"), (170, 285))
+            if mouse_in_button(one_Button,event.pos):
+                big_boy = pygame.transform.scale(pygame.image.load("Images/Redboy.png"), (170, 285))
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
