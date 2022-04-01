@@ -2,9 +2,8 @@ import pygame
 from Constants import screen, screen_size
 from Classes.Character import *
 from Classes.Object import *
-from Button import *
+from Classes.Button import *
 from helpers import *
-
 pygame.display.set_caption('Elements')
 clock = pygame.time.Clock()
 
@@ -15,7 +14,8 @@ def create_images_list(imgpath1, imgpath2, imgpath3):
              pygame.transform.scale(pygame.image.load(imgpath3), (40, 45))]
     return imags
 
-playButton = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
+Play_BUTTON = pygame.transform.scale(pygame.image.load("Images/PlayButton!!!.png"), (200,200))
+Play_BUTTON = Button(Play_BUTTON,(200,200),80,80)
 start_pic = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
 bluegirl_images = create_images_list("Images/Bluegirl.png", "Images/BlueGRun.PNG", "Images/BlueGRunLeft.PNG")
 bluegirl = Character((300, 200), "Blue", bluegirl_images)
