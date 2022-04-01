@@ -3,18 +3,19 @@ from Constants import screen, screen_size
 from Classes.Character import *
 from Classes.Object import *
 from Button import *
+from helpers import *
 
 pygame.display.set_caption('Elements')
 clock = pygame.time.Clock()
 
 
 def create_images_list(imgpath1, imgpath2, imgpath3):
-    imags = [pygame.transform.scale(pygame.image.load(imgpath1), (45, 45)),
+    imags = [pygame.transform.scale(pygame.image.load(imgpath1), (32, 48)),
              pygame.transform.scale(pygame.image.load(imgpath2), (40, 45)),
              pygame.transform.scale(pygame.image.load(imgpath3), (40, 45))]
     return imags
 
-
+playButton = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
 start_pic = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
 bluegirl_images = create_images_list("Images/Bluegirl.png", "Images/BlueGRun.PNG", "Images/BlueGRunLeft.PNG")
 bluegirl = Character((300, 200), "Blue", bluegirl_images)
@@ -35,16 +36,17 @@ objects = [obj1, obj2, obj3, obj4, obj5,obj6,obj7,obj8,obj9]
 boy = redboy
 girl = bluegirl
 run = True
-
-# while run == True:
+start_run = True
+#
+# while start_run:
 #     screen.blit(start_pic, (0, 0))
-    # for event in pygame.event.get():
-    #     if event.type == pygame.MOUSEBUTTONDOWN:
-    #         if mouse_in_button(Play_BUTTON, event.pos):
-    #             screen.blit(background, (0, 0))
-    #         if event.type == pygame.QUIT:
-    #             run = False
-    #             pygame.quit()
+#     for event in pygame.event.get():
+#         if event.type == pygame.MOUSEBUTTONDOWN:
+#             if mouse_in_button(Play_BUTTON, event.pos):
+#                 screen.blit(background, (0, 0))
+#             if event.type == pygame.QUIT:
+#                 run = False
+#                 pygame.quit()
 
 
 while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
