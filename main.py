@@ -1,4 +1,6 @@
 import pygame
+from pygame.locals import *
+from pygame import mixer
 from Constants import screen, screen_size
 from Classes.Character import *
 from Classes.Object import *
@@ -6,6 +8,30 @@ from Classes.Button import *
 from helpers import *
 pygame.display.set_caption('Elements')
 clock = pygame.time.Clock()
+
+
+def play_music(str):
+    mixer.init()
+    mixer.music.load(str)
+    mixer.music.play()
+
+
+mixer.set_num_channels(2)
+
+
+def win_sound():
+    sound = pygame.mixer.Sound("Sounds/death sound.mp3")
+    pygame.mixer.Sound.play(sound)
+
+
+def win_sound():
+    sound = pygame.mixer.Sound("Sounds/win sound.mp3")
+    pygame.mixer.Sound.play(sound)
+
+
+def button_click():
+    sound = pygame.mixer.Sound("Sounds/Wooden Button Click Sound Effect.mp3")
+    pygame.mixer.Sound.play(sound)
 
 
 def create_images_list(imgpath1, imgpath2, imgpath3):
@@ -70,6 +96,7 @@ big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170
 
 start_pic = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
 
+play_music("Sounds/startSoundTrack.mp3")
 
 while start_run:
     screen.blit(start_background, (0, 0))
@@ -94,6 +121,7 @@ while start_run:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if mouse_in_button(Play_BUTTON, event.pos):
                 start_run = False
+                button_click()
             if RED:
                 if mouse_in_button(oneButton,event.pos):
                     big_girl = pygame.transform.scale(pygame.image.load("Images/Redgirl.png"), (170, 280))
@@ -101,6 +129,7 @@ while start_run:
                     blue = True
                     pink = True
                     purple = True
+                    button_click()
             if BLUE:
                 if mouse_in_button(twoButton,event.pos):
                     big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170, 280))
@@ -108,6 +137,7 @@ while start_run:
                     blue = False
                     pink = True
                     purple = True
+                    button_click()
             if PINK:
                 if mouse_in_button(threeButton,event.pos):
                     big_girl = pygame.transform.scale(pygame.image.load("Images/Pinkgirl.png"), (170, 280))
@@ -115,6 +145,7 @@ while start_run:
                     blue = True
                     pink = False
                     purple = True
+                    button_click()
             if PURPLE:
                 if mouse_in_button(fourButton,event.pos):
                     big_girl = pygame.transform.scale(pygame.image.load("Images/Purplegirl.png"), (170, 280))
@@ -122,6 +153,7 @@ while start_run:
                     blue = True
                     pink = True
                     purple = False
+                    button_click()
 
             if red:
                 if mouse_in_button(one_Button,event.pos):
@@ -130,6 +162,7 @@ while start_run:
                     BLUE = True
                     PINK = True
                     PURPLE = True
+                    button_click()
             if blue:
                 if mouse_in_button(two_Button,event.pos):
                     big_boy = pygame.transform.scale(pygame.image.load("Images/Blueboy.png"), (170, 285))
@@ -137,6 +170,7 @@ while start_run:
                     BLUE = False
                     PINK = True
                     PURPLE = True
+                    button_click()
             if pink:
                 if mouse_in_button(three_Button,event.pos):
                     big_boy = pygame.transform.scale(pygame.image.load("Images/Pinkboy.png"), (170, 285))
@@ -144,6 +178,7 @@ while start_run:
                     BLUE = True
                     PINK = False
                     PURPLE = True
+                    button_click()
             if purple:
                 if mouse_in_button(four_Button,event.pos):
                     big_boy = pygame.transform.scale(pygame.image.load("Images/Purpleboy.png"), (170, 285))
@@ -151,6 +186,7 @@ while start_run:
                     BLUE = True
                     PINK = True
                     PURPLE = False
+                    button_click()
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
@@ -181,6 +217,7 @@ if not PURPLE:
     boy = create_images_list("Images/Purpleboy.png","Images/PurpleBRun.PNG","Images/PurpleBRunLeft.PNG")
     boy = Character((300, 200), "purple", boy)
 
+play_music("Sounds/backgroundSoundtrack.mp3")
 
 while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
     screen.blit(background, (0, 0))
