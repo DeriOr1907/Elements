@@ -6,6 +6,7 @@ from Classes.Character import *
 from Classes.Object import *
 from Classes.Button import *
 from helpers import *
+from Classes.Lava import *
 pygame.display.set_caption('Elements')
 clock = pygame.time.Clock()
 
@@ -194,28 +195,40 @@ while start_run:
 if not red:
     girl = create_images_list("Images/Redgirl.png", "Images/RedGRun.PNG", "Images/RedGRunLeft.PNG")
     girl = Character((300, 200), "red", girl)
+    girl_lava1 = Lava("Images/red lava.PNG", "red", (100,480))
 if not blue:
     girl = create_images_list("Images/Bluegirl.png", "Images/BlueGRun.PNG", "Images/BlueGRunLeft.PNG")
     girl = Character((300, 200), "blue", girl)
+    girl_lava1 = Lava("Images/blue lava.PNG", "blue", (100,480))
 if not pink:
     girl = create_images_list("Images/Pinkgirl.png","Images/PinkGRun.PNG","Images/PinkGRunLeft.PNG")
     girl = Character((300, 200), "pink", girl)
+    girl_lava1 = Lava("Images/pink lava.PNG", "pink", (100,480))
 if not purple:
     girl = create_images_list("Images/Purplegirl.png","Images/PurpleGRun.PNG","Images/PurpleGRunLeft.PNG")
     girl = Character((300, 200), "purple", girl)
+    girl_lava1 = Lava("Images/purple lava.PNG", "purple", (100,480))
 
 if not RED:
     boy = create_images_list("Images/Redboy.png", "Images/RedBRun.PNG", "Images/RedBRunLeft.PNG")
     boy = Character((300, 200), "red", boy)
+    boy_lava1 = Lava("Images/red lava.PNG", "red", (600, 480))
 if not BLUE:
     boy = create_images_list("Images/Blueboy.png","Images/BlueBRun.PNG","Images/BlueBRunLeft.PNG")
     boy = Character((300, 200), "blue", boy)
+    boy_lava1 = Lava("Images/blue lava.PNG", "blue", (600, 480))
 if not PINK:
     boy = create_images_list("Images/Pinkboy.png","Images/PinkBRun.PNG","Images/PinkBRunLeft.PNG")
     boy = Character((300, 200), "pink", boy)
+    boy_lava1 = Lava("Images/pink lava.PNG", "pink", (600, 480))
 if not PURPLE:
     boy = create_images_list("Images/Purpleboy.png","Images/PurpleBRun.PNG","Images/PurpleBRunLeft.PNG")
     boy = Character((300, 200), "purple", boy)
+    boy_lava1 = Lava("Images/purple lava.PNG", "purple", (600, 480))
+
+green_lava1 = Lava("Images/green lava.PNG", "green", (300, 250))
+
+lavas = [boy_lava1,girl_lava1,green_lava1]
 
 play_music("Sounds/backgroundSoundtrack.mp3")
 
@@ -225,6 +238,8 @@ while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is 
         obstacle.display_obstacle()
     girl.display_character(objects)
     boy.display_character(objects)
+    for lava in lavas:
+        lava.display_lava()
     # refreshing screen:
     pygame.display.flip()
     pygame.display.update()

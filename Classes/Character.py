@@ -35,7 +35,7 @@ class Character:
             if not self.able_to_move_down(objects):
                 self.gravity = 0
             if self.direction == 0:
-                screen.blit(self.images[self.direction], (self.Location[0],self.Location[1]-5))
+                screen.blit(self.images[self.direction], (self.Location[0],self.Location[1]-8))
             else:
                 screen.blit(self.images[self.direction], self.Location)
         self.direction = 0
