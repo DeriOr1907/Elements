@@ -18,6 +18,7 @@ def create_images_list(imgpath1, imgpath2, imgpath3):
 start_background = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
 Play_BUTTON = pygame.transform.scale(pygame.image.load("Images/PlayButton!!!.png"), (90,90))
 Play_BUTTON = Button(Play_BUTTON, (450, 200), 85, 85)
+
 oneButton = pygame.transform.scale(pygame.image.load("Images/1button.png"), (70,70))
 oneButton = Button(oneButton,(50 - 10, 150),70,70)
 twoButton = pygame.transform.scale(pygame.image.load("Images/2button.png"), (70,70))
@@ -64,7 +65,7 @@ PURPLE = True
 background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
 
 big_boy = pygame.transform.scale(pygame.image.load("Images/Redboy.png"), (170, 280))
-big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (180, 285))
+big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170, 285))
 
 
 start_pic = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
@@ -95,29 +96,28 @@ while start_run:
                 start_run = False
             if RED:
                 if mouse_in_button(oneButton,event.pos):
-                    big_girl = pygame.transform.scale(pygame.image.load("Images/Redgirl.png"), (170, 285))
+                    big_girl = pygame.transform.scale(pygame.image.load("Images/Redgirl.png"), (170, 280))
                     red = False
                     blue = True
                     pink = True
                     purple = True
-
             if BLUE:
                 if mouse_in_button(twoButton,event.pos):
-                    big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170, 285))
+                    big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170, 280))
                     red = True
                     blue = False
                     pink = True
                     purple = True
             if PINK:
                 if mouse_in_button(threeButton,event.pos):
-                    big_girl = pygame.transform.scale(pygame.image.load("Images/Pinkgirl.png"), (170, 285))
+                    big_girl = pygame.transform.scale(pygame.image.load("Images/Pinkgirl.png"), (170, 280))
                     red = True
                     blue = True
                     pink = False
                     purple = True
             if PURPLE:
                 if mouse_in_button(fourButton,event.pos):
-                    big_girl = pygame.transform.scale(pygame.image.load("Images/Purplegirl.png"), (170, 285))
+                    big_girl = pygame.transform.scale(pygame.image.load("Images/Purplegirl.png"), (170, 280))
                     red = True
                     blue = True
                     pink = True
