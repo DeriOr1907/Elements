@@ -1,7 +1,7 @@
 from Constants import screen
 from Classes.Object import *
 gravity = 2.5
-
+from Classes.Lava import *
 
 class Character:
     def __init__(self,Location, Color, Img):
@@ -15,7 +15,8 @@ class Character:
         self.jumping = False
         self.gravity = 1
 
-    def display_character(self, objects):
+    def display_character(self, objects,lavas):
+        if self.alive: self.lava(lavas)
         if self.gravity != 0:
             self.jumping = True
         if self.gravity <= 15:
@@ -46,6 +47,8 @@ class Character:
             self.gravity = -11.5
             self.jumping = True
 
+    def set_location(self,loc):
+        self.Location = loc
 
     def move_right(self):
         self.moving_right = True
@@ -58,6 +61,20 @@ class Character:
 
     def move_left(self):
         self.moving_left = True
+
+    def lava(self, lavas):
+        downlocleft = (self.Location[0], self.Location[1]+42)
+        downlocright = (self.Location[0]+40, self.Location[1]+42)
+        for l in lavas:
+            if l.top_right()[1] <= downlocleft[1] <= l.right_bottom()[1]:
+                if l.top_right()[0] >= downlocleft[0] >= l.right_bottom()[0]:
+                    if l.color != self.color:
+                        self.alive = False
+            if l.top_right()[1] <= downlocright[1] <= l.right_bottom()[1]:
+                if l.top_right()[0] >= downlocright[0] >= l.right_bottom()[0]:
+                    if l.color != self.color:
+                        self.alive = False
+
 
     def able_to_move_left(self, objects):
         uploc = (self.Location[0], self.Location[1])

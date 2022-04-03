@@ -12,16 +12,13 @@ clock = pygame.time.Clock()
 
 
 def play_music(str):
-    mixer.init()
-    mixer.music.load(str)
-    mixer.music.play()
+    sound = pygame.mixer.Sound(str)
+    pygame.mixer.Sound.play(sound)
 
 
-mixer.set_num_channels(2)
 
-
-def win_sound():
-    sound = pygame.mixer.Sound("Sounds/death sound.mp3")
+def lose_sound():
+    sound = pygame.mixer.Sound("Sounds/loser.ogg")
     pygame.mixer.Sound.play(sound)
 
 
@@ -43,7 +40,7 @@ def create_images_list(imgpath1, imgpath2, imgpath3):
 
 
 start_background = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
-Play_BUTTON = pygame.transform.scale(pygame.image.load("Images/PlayButton!!!.png"), (90,90))
+Play_BUTTON = pygame.transform.scale(pygame.image.load("Images/PlayButton!!!.png"), (90, 90))
 Play_BUTTON = Button(Play_BUTTON, (450, 200), 85, 85)
 
 oneButton = pygame.transform.scale(pygame.image.load("Images/1button.png"), (70,70))
@@ -97,7 +94,7 @@ big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170
 
 start_pic = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
 
-play_music("Sounds/startSoundTrack.mp3")
+#play_music("Sounds/startSoundTrack.mp3")
 
 while start_run:
     screen.blit(start_background, (0, 0))
@@ -193,85 +190,119 @@ while start_run:
             quit()
 
 if not red:
-    girl = create_images_list("Images/Redgirl.png", "Images/RedGRun.PNG", "Images/RedGRunLeft.PNG")
-    girl = Character((300, 200), "red", girl)
+    y = create_images_list("Images/Redgirl.png", "Images/RedGRun.PNG", "Images/RedGRunLeft.PNG")
+    girl = Character((300, 200), "red", y)
     girl_lava1 = Lava("Images/red lava.PNG", "red", (100,480))
+    backupgirl = Character((300, 200), "red", y)
 if not blue:
-    girl = create_images_list("Images/Bluegirl.png", "Images/BlueGRun.PNG", "Images/BlueGRunLeft.PNG")
-    girl = Character((300, 200), "blue", girl)
+    y = create_images_list("Images/Bluegirl.png", "Images/BlueGRun.PNG", "Images/BlueGRunLeft.PNG")
+    girl = Character((300, 200), "blue", y)
     girl_lava1 = Lava("Images/blue lava.PNG", "blue", (100,480))
+    backupgirl = Character((300, 200), "blue", y)
 if not pink:
-    girl = create_images_list("Images/Pinkgirl.png","Images/PinkGRun.PNG","Images/PinkGRunLeft.PNG")
-    girl = Character((300, 200), "pink", girl)
+    y = create_images_list("Images/Pinkgirl.png","Images/PinkGRun.PNG","Images/PinkGRunLeft.PNG")
+    girl = Character((300, 200), "pink", y)
     girl_lava1 = Lava("Images/pink lava.PNG", "pink", (100,480))
+    backupgirl = Character((300, 200), "pink", y)
 if not purple:
-    girl = create_images_list("Images/Purplegirl.png","Images/PurpleGRun.PNG","Images/PurpleGRunLeft.PNG")
-    girl = Character((300, 200), "purple", girl)
+    y = create_images_list("Images/Purplegirl.png","Images/PurpleGRun.PNG","Images/PurpleGRunLeft.PNG")
+    girl = Character((300, 200), "purple", y)
     girl_lava1 = Lava("Images/purple lava.PNG", "purple", (100,480))
+    backupgirl = Character((300, 200), "purple", y)
 
 if not RED:
-    boy = create_images_list("Images/Redboy.png", "Images/RedBRun.PNG", "Images/RedBRunLeft.PNG")
-    boy = Character((300, 200), "red", boy)
+    x = create_images_list("Images/Redboy.png", "Images/RedBRun.PNG", "Images/RedBRunLeft.PNG")
+    boy = Character((300, 200), "red", x)
     boy_lava1 = Lava("Images/red lava.PNG", "red", (600, 480))
+    backupboy = Character((300, 200), "red", x)
 if not BLUE:
-    boy = create_images_list("Images/Blueboy.png","Images/BlueBRun.PNG","Images/BlueBRunLeft.PNG")
-    boy = Character((300, 200), "blue", boy)
+    x = create_images_list("Images/Blueboy.png","Images/BlueBRun.PNG","Images/BlueBRunLeft.PNG")
+    boy = Character((300, 200), "blue", x)
     boy_lava1 = Lava("Images/blue lava.PNG", "blue", (600, 480))
+    backupboy = Character((300, 200), "blue", x)
 if not PINK:
-    boy = create_images_list("Images/Pinkboy.png","Images/PinkBRun.PNG","Images/PinkBRunLeft.PNG")
-    boy = Character((300, 200), "pink", boy)
+    x = create_images_list("Images/Pinkboy.png","Images/PinkBRun.PNG","Images/PinkBRunLeft.PNG")
+    boy = Character((300, 200), "pink", x)
     boy_lava1 = Lava("Images/pink lava.PNG", "pink", (600, 480))
+    backupboy = Character((300, 200), "pink", x)
 if not PURPLE:
-    boy = create_images_list("Images/Purpleboy.png","Images/PurpleBRun.PNG","Images/PurpleBRunLeft.PNG")
-    boy = Character((300, 200), "purple", boy)
+    x = create_images_list("Images/Purpleboy.png","Images/PurpleBRun.PNG","Images/PurpleBRunLeft.PNG")
+    boy = Character((300, 200), "purple", x)
     boy_lava1 = Lava("Images/purple lava.PNG", "purple", (600, 480))
+    backupboy = Character((300, 200), "purple", x)
 
-green_lava1 = Lava("Images/green lava.PNG", "green", (300, 250))
+retry = False
+B = False
+
+green_lava1 = Lava("Images/green lava.PNG", "green", (400, 250))
 
 lavas = [boy_lava1,girl_lava1,green_lava1]
 
-play_music("Sounds/backgroundSoundtrack.mp3")
+#play_music("Sounds/backgroundSoundtrack2.ogg")
+while run:
+    if retry:
+        boy = backupboy
+        girl = backupgirl
+    while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
+        screen.blit(background, (0, 0))
+        for obstacle in objects:
+            obstacle.display_obstacle()
+        girl.display_character(objects, lavas)
+        boy.display_character(objects, lavas)
+        for lava in lavas:
+            lava.display_lava()
+        # refreshing screen:
+        pygame.display.flip()
+        pygame.display.update()
+        clock.tick(60)
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = event.pos
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    boy.move_right()
+                if event.key == pygame.K_LEFT:
+                    boy.move_left()
+                if event.key == pygame.K_UP:
+                    boy.start_jump()
 
-while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
+                if event.key == pygame.K_d:
+                    girl.move_right()
+                if event.key == pygame.K_a:
+                    girl.move_left()
+                if event.key == pygame.K_w:
+                    girl.start_jump()
+
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT:
+                    boy.stop_moving_right()
+                if event.key == pygame.K_LEFT:
+                    boy.stop_moving_left()
+
+                if event.key == pygame.K_d:
+                    girl.stop_moving_right()
+                if event.key == pygame.K_a:
+                    girl.stop_moving_left()
+            if event.type == pygame.QUIT:
+                run = False
+                pygame.quit()
+                quit()
+        B = True
+
+    retry_button = pygame.transform.scale(pygame.image.load("Images/retry-icon-9.jpg"), (100, 100))
+    retry_button = Button(retry_button,(450,200),100,100)
     screen.blit(background, (0, 0))
-    for obstacle in objects:
-        obstacle.display_obstacle()
-    girl.display_character(objects)
-    boy.display_character(objects)
-    for lava in lavas:
-        lava.display_lava()
-    # refreshing screen:
+    retry_button.display_button()
     pygame.display.flip()
     pygame.display.update()
-    clock.tick(60)
+    if B:
+        lose_sound()
+        B = False
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = event.pos
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RIGHT:
-                boy.move_right()
-            if event.key == pygame.K_LEFT:
-                boy.move_left()
-            if event.key == pygame.K_UP:
-                boy.start_jump()
-
-            if event.key == pygame.K_d:
-                girl.move_right()
-            if event.key == pygame.K_a:
-                girl.move_left()
-            if event.key == pygame.K_w:
-                girl.start_jump()
-
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_RIGHT:
-                boy.stop_moving_right()
-            if event.key == pygame.K_LEFT:
-                boy.stop_moving_left()
-
-            if event.key == pygame.K_d:
-                girl.stop_moving_right()
-            if event.key == pygame.K_a:
-                girl.stop_moving_left()
+            if mouse_in_button(retry_button,mouse_pos):
+                retry = True
         if event.type == pygame.QUIT:
             run = False
             pygame.quit()
