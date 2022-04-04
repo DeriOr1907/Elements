@@ -7,7 +7,7 @@ class Lava:
         self.location = location
         self.color = color
         self.height = 20
-        self.width = 100
+        self.width = 85
         self.image = pygame.transform.scale(pygame.image.load(root), (self.width, self.height))
 
     def top_left(self):
