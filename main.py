@@ -62,16 +62,37 @@ four_Button = pygame.transform.scale(pygame.image.load("Images/4button.png"), (7
 four_Button = Button(four_Button,(960-70, 150),70,70)
 
 objects_color = (95, 80, 45)
-obj1 = Object(1050, 30, 0, 500, objects_color)
-obj2 = Object(20, 530, 0, 0, objects_color)
-obj3 = Object(20, 530, 980, 0, objects_color)
-obj4 = Object(1050, 25, 0, 0, objects_color)
-obj5 = Object(500, 50, 350, 370, objects_color)
-obj6 = Object(500, 50, 150, 270, objects_color)
-obj7 = Object(50, 400, 0, 370, objects_color)
-obj8 = Object(550, 800, 900, 470, objects_color)
-obj9 = Object(50, 70, 30, 400, objects_color)
-objects = [obj1, obj2, obj3, obj4, obj5,obj6,obj7,obj8,obj9]
+obj1 = Object(1050, 15, 0, 520, objects_color)
+obj2 = Object(9, 530, 0, 0, objects_color)
+obj3 = Object(9, 530, 991, 0, objects_color)
+obj4 = Object(1050, 10, 0, 0, objects_color)
+obj5 = Object(100, 55, 181, 480, objects_color)
+obj6 = Object(70, 110, 221, 440, objects_color)
+obj7 = Object(47, 170, 261, 400, objects_color)
+obj8 = Object(181, 15, 0, 330, objects_color)
+obj9 = Object(55, 40, 0, 300, objects_color)
+obj10 = Object(115, 15, 100, 230, objects_color)
+obj11 = Object(200, 15, 0, 90, objects_color)
+obj12 = Object(200, 15, 270, 130, objects_color)
+obj13 = Object(15, 140, 200, 90, objects_color)
+obj14 = Object(30, 10, 350, 440, objects_color)
+obj15 = Object(100, 55, 721, 480, objects_color)
+obj16 = Object(70, 110, 710, 440, objects_color)
+obj17 = Object(47, 170, 690, 400, objects_color)
+
+obj18 = Object(47, 170, 261, 400, objects_color)
+
+obj19 = Object(181, 15, 0, 330, objects_color)
+obj20 = Object(55, 40, 0, 300, objects_color)
+obj21 = Object(115, 15, 100, 230, objects_color)
+obj22 = Object(200, 15, 0, 90, objects_color)
+obj23 = Object(200, 15, 270, 130, objects_color)
+obj24 = Object(15, 140, 200, 90, objects_color)
+obj25 = Object(30, 10, 350, 440, objects_color)
+obj26 = Object(100, 55, 721, 480, objects_color)
+obj27 = Object(70, 110, 710, 440, objects_color)
+
+objects = [obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15, obj16, obj17]
 
 run = True
 start_run = True
