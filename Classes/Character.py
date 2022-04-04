@@ -67,7 +67,7 @@ class Character:
         downlocright = (self.Location[0]+40, self.Location[1]+42)
         for l in lavas:
             if l.top_right()[1] <= downlocleft[1] <= l.right_bottom()[1]:
-                if l.top_right()[0] >= downlocleft[0] >= l.right_bottom()[0]:
+                if l.top_right()[0] >= downlocleft[0] >= l.left_bottom()[0]:
                     if l.color != self.color:
                         self.alive = False
             if l.top_right()[1] <= downlocright[1] <= l.right_bottom()[1]:
