@@ -97,6 +97,7 @@ big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170
 start_pic = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
 
 play_music("Sounds/startSoundTrack.mp3")
+# sending the results to whatsapp
 
 while start_run:
     screen.blit(start_background, (0, 0))
@@ -190,7 +191,7 @@ while start_run:
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
-
+pygame.mixer.stop()
 
 retry = True
 B = False
@@ -199,6 +200,10 @@ green_lava1 = Lava("Images/green lava.PNG", "green", (400, 250))
 
 play_music("Sounds/backgroundSoundtrack2.ogg")
 
+girl_lava1 = None
+boy_lava1 = None
+girl = None
+boy = None
 
 while run:
     if retry:
@@ -250,7 +255,7 @@ while run:
         # refreshing screen:
         pygame.display.flip()
         pygame.display.update()
-        clock.tick(120)
+        clock.tick(70)
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = event.pos
