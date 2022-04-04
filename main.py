@@ -290,7 +290,7 @@ while run:
         B = True
 
     retry_button = pygame.transform.scale(pygame.image.load("Images/retry-icon-9.jpg"), (100, 100))
-    retry_button = Button(retry_button,(450,200),100,100)
+    retry_button = Button(retry_button, (450, 200), 100, 100)
     screen.blit(background, (0, 0))
     retry_button.display_button()
     pygame.display.flip()
@@ -301,7 +301,7 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = event.pos
-            if mouse_in_button(retry_button,mouse_pos):
+            if mouse_in_button(retry_button, mouse_pos):
                 retry = True
         if event.type == pygame.QUIT:
             run = False
