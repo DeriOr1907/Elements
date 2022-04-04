@@ -204,7 +204,9 @@ girl_lava1 = None
 boy_lava1 = None
 girl = None
 boy = None
+lavas = None
 
+# set clock
 while run:
     if retry:
         if not red:
@@ -252,10 +254,12 @@ while run:
         boy.display_character(objects, lavas)
         for lava in lavas:
             lava.display_lava()
+        v = Lava("Images/DoorBoy.jpg", "purple", (400, 480))
+        v.display_lava()
         # refreshing screen:
         pygame.display.flip()
         pygame.display.update()
-        clock.tick(70)
+        clock.tick(65)
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = event.pos
