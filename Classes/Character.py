@@ -71,7 +71,7 @@ class Character:
                     if l.color != self.color:
                         self.alive = False
             if l.top_right()[1] <= downlocright[1] <= l.right_bottom()[1]:
-                if l.top_right()[0] >= downlocright[0] >= l.right_bottom()[0]:
+                if l.top_right()[0] >= downlocright[0] >= l.left_bottom()[0]:
                     if l.color != self.color:
                         self.alive = False
 

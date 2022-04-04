@@ -94,7 +94,7 @@ big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170
 
 start_pic = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
 
-#play_music("Sounds/startSoundTrack.mp3")
+play_music("Sounds/startSoundTrack.mp3")
 
 while start_run:
     screen.blit(start_background, (0, 0))
@@ -236,9 +236,9 @@ B = False
 
 green_lava1 = Lava("Images/green lava.PNG", "green", (400, 250))
 
-lavas = [boy_lava1,girl_lava1,green_lava1]
+lavas = [boy_lava1, girl_lava1,green_lava1]
 
-#play_music("Sounds/backgroundSoundtrack2.ogg")
+play_music("Sounds/backgroundSoundtrack2.ogg")
 while run:
     if retry:
         boy = backupboy
