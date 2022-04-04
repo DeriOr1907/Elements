@@ -250,7 +250,7 @@ while run:
         # refreshing screen:
         pygame.display.flip()
         pygame.display.update()
-        clock.tick(60)
+        clock.tick(120)
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = event.pos
