@@ -199,7 +199,7 @@ B = False
 
 green_lava1 = Lava("Images/green lava.PNG", "green", (400, 250))
 
-play_music("Sounds/backgroundSoundtrack2.ogg")
+
 
 girl_lava1 = None
 boy_lava1 = None
@@ -212,6 +212,7 @@ girl_door = None
 # set clock
 while run:
     if retry:
+        play_music("Sounds/backgroundSoundtrack2.ogg")
         if not red:
             y = create_images_list("Images/Redgirl.png", "Images/RedGRun.PNG", "Images/RedGRunLeft.PNG")
             girl = Character((300, 200), "red", y)
@@ -314,6 +315,7 @@ while run:
         pygame.display.flip()
         pygame.display.update()
         if B:
+            pygame.mixer.stop()
             loser()
             lose_sound()
             B = False
