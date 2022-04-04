@@ -6,7 +6,7 @@ class Door:
         self.location = location
         self.color = color
         self.height = 60
-        self.width = 50
+        self.width = 55
         self.image = pygame.transform.scale(pygame.image.load(root), (self.width, self.height))
 
     def top_left(self):
