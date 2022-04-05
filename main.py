@@ -76,129 +76,6 @@ obj9 = Object(50, 70, 30, 400, objects_color)
 obj10 = Object(100, 50, 370, 170, objects_color)
 objects = [obj1, obj2, obj3, obj4,obj5,obj6,obj7,obj8,obj9,obj10]
 
-run = True
-
-
-start_pic = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
-
-play_music("Sounds/startSoundTrack.mp3")
-
-
-# sending the results to whatsapp
-def home():
-    start_run = True
-
-    blue = False
-    red = True
-    pink = True
-    purple = True
-
-    BLUE = True
-    RED = False
-    PINK = True
-    PURPLE = True
-
-    background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
-
-    big_boy = pygame.transform.scale(pygame.image.load("Images/Redboy.png"), (170, 280))
-    big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170, 285))
-
-    while start_run:
-        screen.blit(start_background, (0, 0))
-        screen.blit(big_girl, (105, 225))
-        screen.blit(big_boy, (730, 230))
-        Play_BUTTON.display_button()
-
-        if red: one_Button.display_button()
-        if blue: two_Button.display_button()
-        if pink: three_Button.display_button()
-        if purple: four_Button.display_button()
-
-        if RED: oneButton.display_button()
-        if BLUE: twoButton.display_button()
-        if PINK: threeButton.display_button()
-        if PURPLE: fourButton.display_button()
-
-        pygame.display.flip()
-        pygame.display.update()
-
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if mouse_in_button(Play_BUTTON, event.pos):
-                    button_click()
-                    start_run = False
-                if RED:
-                    if mouse_in_button(oneButton,event.pos):
-                        big_girl = pygame.transform.scale(pygame.image.load("Images/Redgirl.png"), (170, 280))
-                        red = False
-                        blue = True
-                        pink = True
-                        purple = True
-                        button_click()
-                if BLUE:
-                    if mouse_in_button(twoButton,event.pos):
-                        big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170, 280))
-                        red = True
-                        blue = False
-                        pink = True
-                        purple = True
-                        button_click()
-                if PINK:
-                    if mouse_in_button(threeButton,event.pos):
-                        big_girl = pygame.transform.scale(pygame.image.load("Images/Pinkgirl.png"), (170, 280))
-                        red = True
-                        blue = True
-                        pink = False
-                        purple = True
-                        button_click()
-                if PURPLE:
-                    if mouse_in_button(fourButton,event.pos):
-                        big_girl = pygame.transform.scale(pygame.image.load("Images/Purplegirl.png"), (170, 280))
-                        red = True
-                        blue = True
-                        pink = True
-                        purple = False
-                        button_click()
-
-                if red:
-                    if mouse_in_button(one_Button,event.pos):
-                        big_boy = pygame.transform.scale(pygame.image.load("Images/Redboy.png"), (170, 285))
-                        RED = False
-                        BLUE = True
-                        PINK = True
-                        PURPLE = True
-                        button_click()
-                if blue:
-                    if mouse_in_button(two_Button,event.pos):
-                        big_boy = pygame.transform.scale(pygame.image.load("Images/Blueboy.png"), (170, 285))
-                        RED = True
-                        BLUE = False
-                        PINK = True
-                        PURPLE = True
-                        button_click()
-                if pink:
-                    if mouse_in_button(three_Button,event.pos):
-                        big_boy = pygame.transform.scale(pygame.image.load("Images/Pinkboy.png"), (170, 285))
-                        RED = True
-                        BLUE = True
-                        PINK = False
-                        PURPLE = True
-                        button_click()
-                if purple:
-                    if mouse_in_button(four_Button,event.pos):
-                        big_boy = pygame.transform.scale(pygame.image.load("Images/Purpleboy.png"), (170, 285))
-                        RED = True
-                        BLUE = True
-                        PINK = True
-                        PURPLE = False
-                        button_click()
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
-    pygame.mixer.stop()
-    level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
-
-home()
 
 # set clock
 def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
@@ -340,5 +217,123 @@ def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                     quit()
     pygame.mixer.stop()
     win_sound()
+
+
+# sending the results to whatsapp
+def home():
+    start_run = True
+    play_music("Sounds/startSoundTrack.mp3")
+    blue = False
+    red = True
+    pink = True
+    purple = True
+
+    BLUE = True
+    RED = False
+    PINK = True
+    PURPLE = True
+    start_pic = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
+    background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
+
+    big_boy = pygame.transform.scale(pygame.image.load("Images/Redboy.png"), (170, 280))
+    big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170, 285))
+
+    while start_run:
+        screen.blit(start_background, (0, 0))
+        screen.blit(big_girl, (105, 225))
+        screen.blit(big_boy, (730, 230))
+        Play_BUTTON.display_button()
+
+        if red: one_Button.display_button()
+        if blue: two_Button.display_button()
+        if pink: three_Button.display_button()
+        if purple: four_Button.display_button()
+
+        if RED: oneButton.display_button()
+        if BLUE: twoButton.display_button()
+        if PINK: threeButton.display_button()
+        if PURPLE: fourButton.display_button()
+
+        pygame.display.flip()
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if mouse_in_button(Play_BUTTON, event.pos):
+                    button_click()
+                    start_run = False
+                if RED:
+                    if mouse_in_button(oneButton,event.pos):
+                        big_girl = pygame.transform.scale(pygame.image.load("Images/Redgirl.png"), (170, 280))
+                        red = False
+                        blue = True
+                        pink = True
+                        purple = True
+                        button_click()
+                if BLUE:
+                    if mouse_in_button(twoButton,event.pos):
+                        big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170, 280))
+                        red = True
+                        blue = False
+                        pink = True
+                        purple = True
+                        button_click()
+                if PINK:
+                    if mouse_in_button(threeButton,event.pos):
+                        big_girl = pygame.transform.scale(pygame.image.load("Images/Pinkgirl.png"), (170, 280))
+                        red = True
+                        blue = True
+                        pink = False
+                        purple = True
+                        button_click()
+                if PURPLE:
+                    if mouse_in_button(fourButton,event.pos):
+                        big_girl = pygame.transform.scale(pygame.image.load("Images/Purplegirl.png"), (170, 280))
+                        red = True
+                        blue = True
+                        pink = True
+                        purple = False
+                        button_click()
+
+                if red:
+                    if mouse_in_button(one_Button,event.pos):
+                        big_boy = pygame.transform.scale(pygame.image.load("Images/Redboy.png"), (170, 285))
+                        RED = False
+                        BLUE = True
+                        PINK = True
+                        PURPLE = True
+                        button_click()
+                if blue:
+                    if mouse_in_button(two_Button,event.pos):
+                        big_boy = pygame.transform.scale(pygame.image.load("Images/Blueboy.png"), (170, 285))
+                        RED = True
+                        BLUE = False
+                        PINK = True
+                        PURPLE = True
+                        button_click()
+                if pink:
+                    if mouse_in_button(three_Button,event.pos):
+                        big_boy = pygame.transform.scale(pygame.image.load("Images/Pinkboy.png"), (170, 285))
+                        RED = True
+                        BLUE = True
+                        PINK = False
+                        PURPLE = True
+                        button_click()
+                if purple:
+                    if mouse_in_button(four_Button,event.pos):
+                        big_boy = pygame.transform.scale(pygame.image.load("Images/Purpleboy.png"), (170, 285))
+                        RED = True
+                        BLUE = True
+                        PINK = True
+                        PURPLE = False
+                        button_click()
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+    pygame.mixer.stop()
+    level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
+
+home()
+
 print("gever retzah ata")
-# quit()
+quit()
