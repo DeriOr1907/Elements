@@ -1,13 +1,12 @@
 import pygame
-from Constants import screen
+from Constants import *
 
-
-class Door:
+class Diamond:
     def __init__(self, root, color, location):
         self.location = location
         self.color = color
-        self.height = 60
-        self.width = 55
+        self.height = 30
+        self.width = 30
         self.image = pygame.transform.scale(pygame.image.load(root), (self.width, self.height))
 
     def top_left(self):
@@ -25,5 +24,5 @@ class Door:
         x = (self.location[0], self.location[1] + self.height)
         return x
 
-    def display_door(self):
+    def display_diamond(self):
         screen.blit(self.image, self.location)
