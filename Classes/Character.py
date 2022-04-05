@@ -16,19 +16,19 @@ class Character:
         self.gravity = 1
 
     def display_character(self, objects,lavas):
-        if self.alive: self.lava(lavas)
+        self.lava(lavas)
         if self.gravity != 0:
             self.jumping = True
         if self.gravity <= 15:
-            self.gravity = self.gravity+0.5
+            self.gravity = self.gravity+0.45
         if self.moving_right:
             self.direction = 1
             if self.able_to_move_right(objects):
-                self.Location = (self.Location[0] + 2.5, self.Location[1])
+                self.Location = (self.Location[0] + 2, self.Location[1])
         if self.moving_left:
             self.direction = 2
             if self.able_to_move_left(objects):
-                self.Location = (self.Location[0] - 2.5, self.Location[1])
+                self.Location = (self.Location[0] - 2, self.Location[1])
         if self.alive:
             self.able_to_move_up(objects)
             if self.able_to_move_down(objects):
@@ -61,6 +61,15 @@ class Character:
 
     def move_left(self):
         self.moving_left = True
+
+    def door(self, doors):
+        loc = (self.Location[0]+20, self.Location[1]+20)
+        for d in doors:
+            if d.top_right()[1] <= loc[1] <= d.right_bottom()[1]:
+                if d.top_right()[0] >= loc[0] >= d.left_bottom()[0]:
+                    if d.color == self.color:
+                        return True
+
 
     def lava(self, lavas):
         downlocleft = (self.Location[0], self.Location[1]+42)
