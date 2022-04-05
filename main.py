@@ -1,6 +1,8 @@
 import pygame
 from pygame.locals import *
 from pygame import mixer
+
+from Classes.Diamond import Diamond
 from Constants import screen, screen_size
 from Classes.Character import *
 from Classes.Object import *
@@ -64,17 +66,41 @@ four_Button = pygame.transform.scale(pygame.image.load("Images/4button.png"), (7
 four_Button = Button(four_Button,(960-70, 150),70,70)
 
 objects_color = (95, 80, 45)
-obj1 = Object(1050, 30, 0, 500, objects_color)
-obj2 = Object(20, 530, 0, 0, objects_color)
-obj3 = Object(20, 530, 980, 0, objects_color)
-obj4 = Object(1050, 25, 0, 0, objects_color)
-obj5 = Object(500, 50, 350, 370, objects_color)
-obj6 = Object(500, 50, 150, 270, objects_color)
-obj7 = Object(50, 400, 0, 370, objects_color)
-obj8 = Object(550, 800, 900, 470, objects_color)
-obj9 = Object(50, 70, 30, 400, objects_color)
-obj10 = Object(100, 50, 370, 170, objects_color)
-objects = [obj1, obj2, obj3, obj4,obj5,obj6,obj7,obj8,obj9,obj10]
+obj1 = Object(1050, 50, 0, 515, objects_color)
+obj2 = Object(25, 530, 0, 0, objects_color)
+obj3 = Object(30, 530, 975, 0, objects_color)
+obj4 = Object(1050, 15, 0, 0, objects_color)
+obj5 = Object(128, 50, 180, 475, objects_color)
+obj6 = Object(90, 200, 218, 435, objects_color)
+obj7 = Object(48, 50, 260, 395, objects_color)
+obj8 = Object(181, 15, 0, 330, objects_color)
+obj9 = Object(70, 50, 25, 293, objects_color)
+obj10 = Object(115, 15, 100, 230, objects_color)
+obj11 = Object(200, 15, 0, 90, objects_color)
+obj12 = Object(150, 15, 250, 130, objects_color)
+obj13 = Object(15, 155, 195, 90, objects_color)
+obj14 = Object(40, 15, 350, 440, objects_color)
+
+obj15 = Object(130, 100, 672, 475, objects_color)
+obj16 = Object(90, 100, 672, 435, objects_color)
+obj17 = Object(48, 100, 672, 395, objects_color)
+
+obj18 = Object(40, 15, 590, 440, objects_color)
+obj19 = Object(40, 15, 460, 350, objects_color)
+obj20 = Object(600, 15, 580, 280, objects_color)
+obj21 = Object(250, 15, 840, 200, objects_color)
+obj22 = Object(300, 15, 595, 90, objects_color)
+obj23 = Object(40, 15, 440, 200, objects_color)
+obj24 = Object(40, 15, 515, 150, objects_color)
+obj25 = Object(15, 55, 308, 500, objects_color)
+obj26 = Object(15, 55, 658, 500, objects_color)
+obj27 = Object(15, 55, 885, 500, objects_color)
+obj28 = Object(15, 55, 80, 500, objects_color)
+obj29 = Object(50, 50, 925, 160, objects_color)
+obj30 = Object(15, 15, 725, 265, objects_color)
+obj31 = Object(15, 15, 625, 265, objects_color)
+
+objects = [obj1, obj2, obj3, obj4, obj5,  obj6, obj7,  obj8, obj9, obj10, obj11, obj12, obj14, obj15, obj16, obj17, obj18, obj19, obj20, obj21, obj22, obj23, obj24, obj25, obj26, obj27, obj28, obj29, obj30, obj31 ]
 
 
 # set clock
@@ -92,54 +118,110 @@ def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
     green_lava1 = Lava("Images/green lava.PNG", "green", (400, 250))
     B = False
     retry = True
+
+    green_lava1 = Lava("Images/green lava.PNG", "green", (573, 500))
+    green_lava2 = Lava("Images/green lava.PNG", "green", (490, 500))
+    green_lava3 = Lava("Images/green lava.PNG", "green", (407, 500))
+    green_lava4 = Lava("Images/green lava.PNG", "green", (324, 500))
+    green_lava5 = Lava("Images/green lava.PNG", "green", (640, 265))
+
     while run:
         if retry:
             play_music("Sounds/backgroundSoundtrack2.ogg")
             if not red:
                 y = create_images_list("Images/Redgirl.png", "Images/RedGRun.PNG", "Images/RedGRunLeft.PNG")
-                girl = Character((300, 200), "red", y)
-                girl_lava1 = Lava("Images/red lava.PNG", "red", (100, 480))
-                girl_door = Door("Images/DoorGirlRed.png", "red",(740,310))
+                girl = Character((35, 450), "red", y)
+                girl_lava1 = Lava("Images/red lava.PNG", "red", (95, 500))
+                girl_door = Door("Images/DoorGirlRed.png", "red", (30, 30))
+
+                girl_diamond1 = Diamond("Images/DRed!.png", "red", (725, 405))
+                girl_diamond2 = Diamond("Images/DRed!.png", "red", (930, 250))
+                girl_diamond3 = Diamond("Images/DRed!.png", "red", (125, 200))
+                girl_diamond4 = Diamond("Images/DRed!.png", "red", (445, 170))
+                girl_diamond5 = Diamond("Images/DRed!.png", "red", (650, 60))
             if not blue:
                 y = create_images_list("Images/Bluegirl.png", "Images/BlueGRun.PNG", "Images/BlueGRunLeft.PNG")
-                girl = Character((300, 200), "blue", y)
-                girl_lava1 = Lava("Images/blue lava.PNG", "blue", (100, 480))
-                girl_door = Door("Images/DoorGirlBlue.png", "blue",(740,310))
+                girl = Character((35, 450), "blue", y)
+                girl_lava1 = Lava("Images/blue lava.PNG", "blue", (95, 500))
+                girl_door = Door("Images/DoorGirlBlue.png", "blue", (30, 30))
+
+                girl_diamond1 = Diamond("Images/DBlue.png", "blue", (725, 405))
+                girl_diamond2 = Diamond("Images/DBlue.png", "blue", (930, 250))
+                girl_diamond3 = Diamond("Images/DBlue.png", "blue", (125, 200))
+                girl_diamond4 = Diamond("Images/DBlue.png", "blue", (445, 170))
+                girl_diamond5 = Diamond("Images/DBlue.png", "blue", (650, 60))
             if not pink:
                 y = create_images_list("Images/Pinkgirl.png", "Images/PinkGRun.PNG", "Images/PinkGRunLeft.PNG")
-                girl = Character((300, 200), "pink", y)
-                girl_lava1 = Lava("Images/pink lava.PNG", "pink", (100, 480))
-                girl_door = Door("Images/DoorGirlPink.png", "pink",(740,310))
+                girl = Character((35, 450), "pink", y)
+                girl_lava1 = Lava("Images/pink lava.PNG", "pink", (95, 500))
+                girl_door = Door("Images/DoorGirlPink.png", "pink", (30, 30))
+
+                girl_diamond1 = Diamond("Images/DPink.png", "pink", (725, 405))
+                girl_diamond2 = Diamond("Images/DPink.png", "pink", (930, 250))
+                girl_diamond3 = Diamond("Images/DPink.png", "pink", (125, 200))
+                girl_diamond4 = Diamond("Images/DPink.png", "pink", (445, 170))
+                girl_diamond5 = Diamond("Images/DPink.png", "pink", (650, 60))
             if not purple:
                 y = create_images_list("Images/Purplegirl.png", "Images/PurpleGRun.PNG", "Images/PurpleGRunLeft.PNG")
-                girl = Character((300, 200), "purple", y)
-                girl_lava1 = Lava("Images/purple lava.PNG", "purple", (100, 480))
-                girl_door = Door("Images/DoorGirlPurple.png", "purple",(740,310))
+                girl = Character((35, 450), "purple", y)
+                girl_lava1 = Lava("Images/purple lava.PNG", "purple", (95, 500))
+                girl_door = Door("Images/DoorGirlPurple.png", "purple", (30, 30))
 
+                girl_diamond1 = Diamond("Images/DPurple.png", "purple", (725, 405))
+                girl_diamond2 = Diamond("Images/DPurple.png", "purple", (930, 250))
+                girl_diamond3 = Diamond("Images/DPurple.png", "purple", (125, 200))
+                girl_diamond4 = Diamond("Images/DPurple.png", "purple", (445, 170))
+                girl_diamond5 = Diamond("Images/DPurple.png", "purple", (650, 60))
             if not RED:
                 x = create_images_list("Images/Redboy.png", "Images/RedBRun.PNG", "Images/RedBRunLeft.PNG")
-                boy = Character((300, 200), "red", x)
-                boy_lava1 = Lava("Images/red lava.PNG", "red", (600, 480))
-                boy_door = Door("Images/DoorBoyRed.png","red",(800,310))
+                boy = Character((915, 450), "red", x)
+                boy_lava1 = Lava("Images/red lava.PNG", "red", (800, 500))
+                boy_door = Door("Images/DoorBoyRed.png", "red", (800, 30))
+
+                boy_diamond1 = Diamond("Images/DRed!.png", "red", (225, 405))
+                boy_diamond2 = Diamond("Images/DRed!.png", "red", (465, 320))
+                boy_diamond3 = Diamond("Images/DRed!.png", "red", (160, 200))
+                boy_diamond4 = Diamond("Images/DRed!.png", "red", (895, 250))
+                boy_diamond5 = Diamond("Images/DRed!.png", "red", (150, 60))
             if not BLUE:
                 x = create_images_list("Images/Blueboy.png", "Images/BlueBRun.PNG", "Images/BlueBRunLeft.PNG")
-                boy = Character((300, 200), "blue", x)
-                boy_lava1 = Lava("Images/blue lava.PNG", "blue", (600, 480))
-                boy_door = Door("Images/DoorBoyBlue.png", "blue", (800,310))
+                boy = Character((915, 450), "blue", x)
+                boy_lava1 = Lava("Images/blue lava.PNG", "blue", (800, 500))
+                boy_door = Door("Images/DoorBoyBlue.png", "blue", (800, 30))
+
+                boy_diamond1 = Diamond("Images/DBlue.png", "blue", (225, 405))
+                boy_diamond2 = Diamond("Images/DBlue.png", "blue", (465, 320))
+                boy_diamond3 = Diamond("Images/DBlue.png", "blue", (160, 200))
+                boy_diamond4 = Diamond("Images/DBlue.png", "blue", (895, 250))
+                boy_diamond5 = Diamond("Images/DBlue.png", "blue", (150, 60))
             if not PINK:
                 x = create_images_list("Images/Pinkboy.png", "Images/PinkBRun.PNG", "Images/PinkBRunLeft.PNG")
-                boy = Character((300, 200), "pink", x)
-                boy_lava1 = Lava("Images/pink lava.PNG", "pink", (600, 480))
-                boy_door = Door("Images/DoorBoyPink.png", "pink", (800,310))
+                boy = Character((915, 450), "pink", x)
+                boy_lava1 = Lava("Images/pink lava.PNG", "pink", (800, 500))
+                boy_door = Door("Images/DoorBoyPink.png", "pink", (800, 30))
+
+                boy_diamond1 = Diamond("Images/DPink.png", "pink", (225, 405))
+                boy_diamond2 = Diamond("Images/DPink.png", "pink", (465, 320))
+                boy_diamond3 = Diamond("Images/DPink.png", "pink", (160, 200))
+                boy_diamond4 = Diamond("Images/DPink.png", "pink", (895, 250))
+                boy_diamond5 = Diamond("Images/DPink.png", "pink", (150, 60))
             if not PURPLE:
                 x = create_images_list("Images/Purpleboy.png", "Images/PurpleBRun.PNG", "Images/PurpleBRunLeft.PNG")
-                boy = Character((300, 200), "purple", x)
-                boy_lava1 = Lava("Images/purple lava.PNG", "purple", (600, 480))
-                boy_door = Door("Images/DoorBoyPurple.png", "purple", (800,310))
+                boy = Character((915, 450), "purple", x)
+                boy_lava1 = Lava("Images/purple lava.PNG", "purple", (800, 500))
+                boy_door = Door("Images/DoorBoyPurple.png", "purple", (800, 30))
+
+                boy_diamond1 = Diamond("Images/DPurple.png", "purple", (225, 405))
+                boy_diamond2 = Diamond("Images/DPurple.png", "purple", (465, 320))
+                boy_diamond3 = Diamond("Images/DPurple.png", "purple", (160, 200))
+                boy_diamond4 = Diamond("Images/DPurple.png", "purple", (895, 250))
+                boy_diamond5 = Diamond("Images/DPurple.png", "purple", (150, 60))
 
         doors = [boy_door, girl_door]
-        lavas = [boy_lava1, girl_lava1, green_lava1]
-
+        lavas = [green_lava1, green_lava2, green_lava3, green_lava4, green_lava5, boy_lava1, girl_lava1]
+        diamonds = [girl_diamond1, girl_diamond2, girl_diamond3, girl_diamond4, girl_diamond5, boy_diamond1,
+                    boy_diamond2,
+                    boy_diamond3, boy_diamond4, boy_diamond5]
         while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
             retry = False
             screen.blit(background, (0, 0))
@@ -147,8 +229,11 @@ def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                 obstacle.display_obstacle()
             for door in doors:
                 door.display_door()
+            for diamond in diamonds:
+                diamond.display_diamond()
             girl.display_character(objects, lavas)
             boy.display_character(objects, lavas)
+
             if boy.door(doors) and girl.door(doors):
                 run = False
             for lava in lavas:
@@ -263,7 +348,7 @@ def home():
                     button_click()
                     start_run = False
                 if RED:
-                    if mouse_in_button(oneButton,event.pos):
+                    if mouse_in_button(oneButton, event.pos):
                         big_girl = pygame.transform.scale(pygame.image.load("Images/Redgirl.png"), (170, 280))
                         red = False
                         blue = True
@@ -271,7 +356,7 @@ def home():
                         purple = True
                         button_click()
                 if BLUE:
-                    if mouse_in_button(twoButton,event.pos):
+                    if mouse_in_button(twoButton, event.pos):
                         big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170, 280))
                         red = True
                         blue = False
@@ -279,7 +364,7 @@ def home():
                         purple = True
                         button_click()
                 if PINK:
-                    if mouse_in_button(threeButton,event.pos):
+                    if mouse_in_button(threeButton, event.pos):
                         big_girl = pygame.transform.scale(pygame.image.load("Images/Pinkgirl.png"), (170, 280))
                         red = True
                         blue = True
@@ -287,7 +372,7 @@ def home():
                         purple = True
                         button_click()
                 if PURPLE:
-                    if mouse_in_button(fourButton,event.pos):
+                    if mouse_in_button(fourButton, event.pos):
                         big_girl = pygame.transform.scale(pygame.image.load("Images/Purplegirl.png"), (170, 280))
                         red = True
                         blue = True
@@ -296,7 +381,7 @@ def home():
                         button_click()
 
                 if red:
-                    if mouse_in_button(one_Button,event.pos):
+                    if mouse_in_button(one_Button, event.pos):
                         big_boy = pygame.transform.scale(pygame.image.load("Images/Redboy.png"), (170, 285))
                         RED = False
                         BLUE = True
@@ -304,7 +389,7 @@ def home():
                         PURPLE = True
                         button_click()
                 if blue:
-                    if mouse_in_button(two_Button,event.pos):
+                    if mouse_in_button(two_Button, event.pos):
                         big_boy = pygame.transform.scale(pygame.image.load("Images/Blueboy.png"), (170, 285))
                         RED = True
                         BLUE = False
@@ -312,7 +397,7 @@ def home():
                         PURPLE = True
                         button_click()
                 if pink:
-                    if mouse_in_button(three_Button,event.pos):
+                    if mouse_in_button(three_Button, event.pos):
                         big_boy = pygame.transform.scale(pygame.image.load("Images/Pinkboy.png"), (170, 285))
                         RED = True
                         BLUE = True
@@ -320,7 +405,7 @@ def home():
                         PURPLE = True
                         button_click()
                 if purple:
-                    if mouse_in_button(four_Button,event.pos):
+                    if mouse_in_button(four_Button, event.pos):
                         big_boy = pygame.transform.scale(pygame.image.load("Images/Purpleboy.png"), (170, 285))
                         RED = True
                         BLUE = True
