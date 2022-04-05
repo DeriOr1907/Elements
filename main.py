@@ -389,7 +389,7 @@ while run:
         B = True
     if run:
         retry_button = pygame.transform.scale(pygame.image.load("Images/retry-icon-9.jpg"), (100, 100))
-        retry_button = Button(retry_button,(450,200),100,100)
+        retry_button = Button(retry_button, (450, 200), 100, 100)
         screen.blit(background, (0, 0))
         retry_button.display_button()
         pygame.display.flip()
