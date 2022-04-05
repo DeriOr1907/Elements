@@ -15,10 +15,12 @@ def play_music(str):
     sound = pygame.mixer.Sound(str)
     pygame.mixer.Sound.play(sound)
 
-
+def loser():
+    sound = pygame.mixer.Sound("Sounds/loser.ogg")
+    pygame.mixer.Sound.play(sound)
 
 def lose_sound():
-    sound = pygame.mixer.Sound("Sounds/loser.ogg")
+    sound = pygame.mixer.Sound("Sounds/death sound.mp3")
     pygame.mixer.Sound.play(sound)
 
 
@@ -81,16 +83,16 @@ obj16 = Object(70, 110, 710, 440, objects_color)
 obj17 = Object(47, 170, 690, 400, objects_color)
 
 obj18 = Object(47, 170, 261, 400, objects_color)
-
-obj19 = Object(181, 15, 0, 330, objects_color)
-obj20 = Object(55, 40, 0, 300, objects_color)
-obj21 = Object(115, 15, 100, 230, objects_color)
-obj22 = Object(200, 15, 0, 90, objects_color)
-obj23 = Object(200, 15, 270, 130, objects_color)
-obj24 = Object(15, 140, 200, 90, objects_color)
-obj25 = Object(30, 10, 350, 440, objects_color)
-obj26 = Object(100, 55, 721, 480, objects_color)
-obj27 = Object(70, 110, 710, 440, objects_color)
+#
+# obj19 = Object(181, 15, 0, 330, objects_color)
+# obj20 = Object(55, 40, 0, 300, objects_color)
+# obj21 = Object(115, 15, 100, 230, objects_color)
+# obj22 = Object(200, 15, 0, 90, objects_color)
+# obj23 = Object(200, 15, 270, 130, objects_color)
+# obj24 = Object(15, 140, 200, 90, objects_color)
+# obj25 = Object(30, 10, 350, 440, objects_color)
+# obj26 = Object(100, 55, 721, 480, objects_color)
+# obj27 = Object(70, 110, 710, 440, objects_color)
 
 objects = [obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15, obj16, obj17]
 
@@ -116,6 +118,7 @@ big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170
 start_pic = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
 
 play_music("Sounds/startSoundTrack.mp3")
+# sending the results to whatsapp
 
 while start_run:
     screen.blit(start_background, (0, 0))
@@ -209,62 +212,60 @@ while start_run:
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
+pygame.mixer.stop()
 
-if not red:
-    y = create_images_list("Images/Redgirl.png", "Images/RedGRun.PNG", "Images/RedGRunLeft.PNG")
-    girl = Character((300, 200), "red", y)
-    girl_lava1 = Lava("Images/red lava.PNG", "red", (100,480))
-    backupgirl = Character((300, 200), "red", y)
-if not blue:
-    y = create_images_list("Images/Bluegirl.png", "Images/BlueGRun.PNG", "Images/BlueGRunLeft.PNG")
-    girl = Character((300, 200), "blue", y)
-    girl_lava1 = Lava("Images/blue lava.PNG", "blue", (100,480))
-    backupgirl = Character((300, 200), "blue", y)
-if not pink:
-    y = create_images_list("Images/Pinkgirl.png","Images/PinkGRun.PNG","Images/PinkGRunLeft.PNG")
-    girl = Character((300, 200), "pink", y)
-    girl_lava1 = Lava("Images/pink lava.PNG", "pink", (100,480))
-    backupgirl = Character((300, 200), "pink", y)
-if not purple:
-    y = create_images_list("Images/Purplegirl.png","Images/PurpleGRun.PNG","Images/PurpleGRunLeft.PNG")
-    girl = Character((300, 200), "purple", y)
-    girl_lava1 = Lava("Images/purple lava.PNG", "purple", (100,480))
-    backupgirl = Character((300, 200), "purple", y)
-
-if not RED:
-    x = create_images_list("Images/Redboy.png", "Images/RedBRun.PNG", "Images/RedBRunLeft.PNG")
-    boy = Character((300, 200), "red", x)
-    boy_lava1 = Lava("Images/red lava.PNG", "red", (600, 480))
-    backupboy = Character((300, 200), "red", x)
-if not BLUE:
-    x = create_images_list("Images/Blueboy.png","Images/BlueBRun.PNG","Images/BlueBRunLeft.PNG")
-    boy = Character((300, 200), "blue", x)
-    boy_lava1 = Lava("Images/blue lava.PNG", "blue", (600, 480))
-    backupboy = Character((300, 200), "blue", x)
-if not PINK:
-    x = create_images_list("Images/Pinkboy.png","Images/PinkBRun.PNG","Images/PinkBRunLeft.PNG")
-    boy = Character((300, 200), "pink", x)
-    boy_lava1 = Lava("Images/pink lava.PNG", "pink", (600, 480))
-    backupboy = Character((300, 200), "pink", x)
-if not PURPLE:
-    x = create_images_list("Images/Purpleboy.png","Images/PurpleBRun.PNG","Images/PurpleBRunLeft.PNG")
-    boy = Character((300, 200), "purple", x)
-    boy_lava1 = Lava("Images/purple lava.PNG", "purple", (600, 480))
-    backupboy = Character((300, 200), "purple", x)
-
-retry = False
+retry = True
 B = False
 
 green_lava1 = Lava("Images/green lava.PNG", "green", (400, 250))
 
-lavas = [boy_lava1, girl_lava1,green_lava1]
-
 play_music("Sounds/backgroundSoundtrack2.ogg")
+
+girl_lava1 = None
+boy_lava1 = None
+girl = None
+boy = None
+
 while run:
     if retry:
-        boy = backupboy
-        girl = backupgirl
+        if not red:
+            y = create_images_list("Images/Redgirl.png", "Images/RedGRun.PNG", "Images/RedGRunLeft.PNG")
+            girl = Character((300, 200), "red", y)
+            girl_lava1 = Lava("Images/red lava.PNG", "red", (100, 480))
+        if not blue:
+            y = create_images_list("Images/Bluegirl.png", "Images/BlueGRun.PNG", "Images/BlueGRunLeft.PNG")
+            girl = Character((300, 200), "blue", y)
+            girl_lava1 = Lava("Images/blue lava.PNG", "blue", (100, 480))
+        if not pink:
+            y = create_images_list("Images/Pinkgirl.png", "Images/PinkGRun.PNG", "Images/PinkGRunLeft.PNG")
+            girl = Character((300, 200), "pink", y)
+            girl_lava1 = Lava("Images/pink lava.PNG", "pink", (100, 480))
+        if not purple:
+            y = create_images_list("Images/Purplegirl.png", "Images/PurpleGRun.PNG", "Images/PurpleGRunLeft.PNG")
+            girl = Character((300, 200), "purple", y)
+            girl_lava1 = Lava("Images/purple lava.PNG", "purple", (100, 480))
+
+        if not RED:
+            x = create_images_list("Images/Redboy.png", "Images/RedBRun.PNG", "Images/RedBRunLeft.PNG")
+            boy = Character((300, 200), "red", x)
+            boy_lava1 = Lava("Images/red lava.PNG", "red", (600, 480))
+        if not BLUE:
+            x = create_images_list("Images/Blueboy.png", "Images/BlueBRun.PNG", "Images/BlueBRunLeft.PNG")
+            boy = Character((300, 200), "blue", x)
+            boy_lava1 = Lava("Images/blue lava.PNG", "blue", (600, 480))
+        if not PINK:
+            x = create_images_list("Images/Pinkboy.png", "Images/PinkBRun.PNG", "Images/PinkBRunLeft.PNG")
+            boy = Character((300, 200), "pink", x)
+            boy_lava1 = Lava("Images/pink lava.PNG", "pink", (600, 480))
+        if not PURPLE:
+            x = create_images_list("Images/Purpleboy.png", "Images/PurpleBRun.PNG", "Images/PurpleBRunLeft.PNG")
+            boy = Character((300, 200), "purple", x)
+            boy_lava1 = Lava("Images/purple lava.PNG", "purple", (600, 480))
+
+        lavas = [boy_lava1, girl_lava1, green_lava1]
+
     while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
+        retry = False
         screen.blit(background, (0, 0))
         for obstacle in objects:
             obstacle.display_obstacle()
@@ -275,7 +276,7 @@ while run:
         # refreshing screen:
         pygame.display.flip()
         pygame.display.update()
-        clock.tick(60)
+        clock.tick(70)
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = event.pos
@@ -309,14 +310,14 @@ while run:
                 pygame.quit()
                 quit()
         B = True
-
     retry_button = pygame.transform.scale(pygame.image.load("Images/retry-icon-9.jpg"), (100, 100))
-    retry_button = Button(retry_button, (450, 200), 100, 100)
+    retry_button = Button(retry_button,(450,200),100,100)
     screen.blit(background, (0, 0))
     retry_button.display_button()
     pygame.display.flip()
     pygame.display.update()
     if B:
+        loser()
         lose_sound()
         B = False
     for event in pygame.event.get():
