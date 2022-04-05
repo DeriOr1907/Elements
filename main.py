@@ -198,10 +198,12 @@ def home():
     pygame.mixer.stop()
     level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
 
+
 home()
 
 # set clock
 def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
+
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
