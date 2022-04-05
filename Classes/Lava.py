@@ -1,6 +1,7 @@
 import pygame
 from Constants import screen
 
+
 class Lava:
     def __init__(self, root, color, location):
 
@@ -26,4 +27,4 @@ class Lava:
         return x
 
     def display_lava(self):
-        screen.blit(self.image,self.location)
+        screen.blit(self.image, self.location)
