@@ -10,6 +10,8 @@ from Classes.Lava import *
 pygame.display.set_caption('Elements')
 clock = pygame.time.Clock()
 from Classes.Door import *
+import time
+
 
 def play_music(str):
     sound = pygame.mixer.Sound(str)
@@ -288,7 +290,7 @@ def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
 
         doors = [boy_door, girl_door]
         lavas = [boy_lava1, girl_lava1, green_lava1]
-
+        t0 = time.time()
         while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
             retry = False
             screen.blit(background, (0, 0))
@@ -367,6 +369,7 @@ def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                     quit()
     pygame.mixer.stop()
     win_sound()
+    print(time.time() - t0)
     return 1
 
 
