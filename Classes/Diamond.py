@@ -1,7 +1,9 @@
 import pygame
 from Constants import *
 
+
 class Diamond:
+
     def __init__(self, root, color, location):
         self.location = location
         self.color = color

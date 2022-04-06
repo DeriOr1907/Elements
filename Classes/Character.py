@@ -1,10 +1,13 @@
 from Constants import screen
 from Classes.Object import *
-gravity = 2.5
 from Classes.Lava import *
+from Classes.Diamond import *
+
+gravity = 2.5
+
 
 class Character:
-    def __init__(self,Location, Color, Img):
+    def __init__(self, Location, Color, Img):
         self.Location = Location
         self.color = Color
         self.direction = 0 # 0 is forward, 1 is right and 2 is left
@@ -15,7 +18,8 @@ class Character:
         self.jumping = False
         self.gravity = 1
 
-    def display_character(self, objects,lavas):
+    def display_character(self, objects, lavas):
+
         self.lava(lavas)
         if self.gravity != 0:
             self.jumping = True
