@@ -1,4 +1,3 @@
-
 from Classes.Character import *
 from Classes.Object import *
 from Classes.Button import *
@@ -63,6 +62,10 @@ four_Button = pygame.transform.scale(pygame.image.load("Images/4button.png"), (7
 four_Button = Button(four_Button,(960-70, 150),70,70)
 
 objects_color = (95, 80, 45)
+o1 = Object(1050, 30, 0, 500, objects_color)
+o2 = Object(20, 530, 0, 0, objects_color)
+o3 = Object(20, 530, 980, 0, objects_color)
+o4 = Object(1050, 25, 0, 0, objects_color)
 obj1 = Object(1050, 50, 0, 515, objects_color)
 obj2 = Object(25, 530, 0, 0, objects_color)
 obj3 = Object(30, 530, 975, 0, objects_color)
@@ -95,13 +98,15 @@ obj29 = Object(50, 50, 925, 160, objects_color)
 obj30 = Object(15, 15, 725, 265, objects_color)
 obj31 = Object(15, 15, 625, 265, objects_color)
 
-objects1 = [obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj14, obj15, obj16, obj17, obj18, obj19, obj20, obj21, obj22, obj23, obj24, obj25, obj26, obj27, obj28, obj29, obj30, obj31]
+objects2 = [obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj14, obj15, obj16, obj17, obj18, obj19, obj20, obj21, obj22, obj23, obj24, obj25, obj26, obj27, obj28, obj29, obj30, obj31]
 
-o5 = Object(130, 60, 181, 475, objects_color)
-o6 = Object(90, 50, 221, 435, objects_color)
-o7 = Object(50, 50, 261, 395, objects_color)
-o8 = Object(50, 30, 600, 440, objects_color)
-objects2 = [obj1, obj2, obj3, obj4, o5, o6, o7, o8]
+o5 = Object(500, 50, 350, 370, objects_color)
+o6 = Object(500, 50, 150, 270, objects_color)
+o7 = Object(50, 400, 0, 370, objects_color)
+o8 = Object(550, 800, 900, 470, objects_color)
+o9 = Object(50, 70, 30, 400, objects_color)
+o10 = Object(100, 50, 370, 170, objects_color)
+objects1 = [o1, o2, o3, o4,o5,o6,o7,o8,o9,o10]
 
 level = 1
 
