@@ -74,8 +74,157 @@ obj7 = Object(50, 400, 0, 370, objects_color)
 obj8 = Object(550, 800, 900, 470, objects_color)
 obj9 = Object(50, 70, 30, 400, objects_color)
 obj10 = Object(100, 50, 370, 170, objects_color)
-objects = [obj1, obj2, obj3, obj4,obj5,obj6,obj7,obj8,obj9,obj10]
+objects1 = [obj1, obj2, obj3, obj4,obj5,obj6,obj7,obj8,obj9,obj10]
 
+o5 = Object(130, 60, 181, 475, objects_color)
+o6 = Object(90, 50, 221, 435, objects_color)
+o7 = Object(50, 50, 261, 395, objects_color)
+o8 = Object(50,30,600,440,objects_color)
+objects2 = [obj1,obj2,obj3,obj4,o5,o6,o7,o8]
+
+level = 1
+
+def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
+    background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
+    run = True
+    girl_lava1 = None
+    boy_lava1 = None
+    girl = None
+    boy = None
+    lavas = None
+    boy_door = None
+    girl_door = None
+    home_button = None
+    green_lava1 = Lava("Images/green lava.PNG", "green", (400, 250))
+    B = False
+    retry = True
+    while run:
+        if retry:
+            play_music("Sounds/backgroundSoundtrack2.ogg")
+            if not red:
+                y = create_images_list("Images/Redgirl.png", "Images/RedGRun.PNG", "Images/RedGRunLeft.PNG")
+                girl = Character((300, 200), "red", y)
+                girl_lava1 = Lava("Images/red lava.PNG", "red", (100, 480))
+                girl_door = Door("Images/DoorGirlRed.png", "red",(740,310))
+            if not blue:
+                y = create_images_list("Images/Bluegirl.png", "Images/BlueGRun.PNG", "Images/BlueGRunLeft.PNG")
+                girl = Character((300, 200), "blue", y)
+                girl_lava1 = Lava("Images/blue lava.PNG", "blue", (100, 480))
+                girl_door = Door("Images/DoorGirlBlue.png", "blue",(740,310))
+            if not pink:
+                y = create_images_list("Images/Pinkgirl.png", "Images/PinkGRun.PNG", "Images/PinkGRunLeft.PNG")
+                girl = Character((300, 200), "pink", y)
+                girl_lava1 = Lava("Images/pink lava.PNG", "pink", (100, 480))
+                girl_door = Door("Images/DoorGirlPink.png", "pink",(740,310))
+            if not purple:
+                y = create_images_list("Images/Purplegirl.png", "Images/PurpleGRun.PNG", "Images/PurpleGRunLeft.PNG")
+                girl = Character((300, 200), "purple", y)
+                girl_lava1 = Lava("Images/purple lava.PNG", "purple", (100, 480))
+                girl_door = Door("Images/DoorGirlPurple.png", "purple",(740,310))
+
+            if not RED:
+                x = create_images_list("Images/Redboy.png", "Images/RedBRun.PNG", "Images/RedBRunLeft.PNG")
+                boy = Character((300, 200), "red", x)
+                boy_lava1 = Lava("Images/red lava.PNG", "red", (600, 480))
+                boy_door = Door("Images/DoorBoyRed.png","red",(800,310))
+            if not BLUE:
+                x = create_images_list("Images/Blueboy.png", "Images/BlueBRun.PNG", "Images/BlueBRunLeft.PNG")
+                boy = Character((300, 200), "blue", x)
+                boy_lava1 = Lava("Images/blue lava.PNG", "blue", (600, 480))
+                boy_door = Door("Images/DoorBoyBlue.png", "blue", (800,310))
+            if not PINK:
+                x = create_images_list("Images/Pinkboy.png", "Images/PinkBRun.PNG", "Images/PinkBRunLeft.PNG")
+                boy = Character((300, 200), "pink", x)
+                boy_lava1 = Lava("Images/pink lava.PNG", "pink", (600, 480))
+                boy_door = Door("Images/DoorBoyPink.png", "pink", (800,310))
+            if not PURPLE:
+                x = create_images_list("Images/Purpleboy.png", "Images/PurpleBRun.PNG", "Images/PurpleBRunLeft.PNG")
+                boy = Character((300, 200), "purple", x)
+                boy_lava1 = Lava("Images/purple lava.PNG", "purple", (600, 480))
+                boy_door = Door("Images/DoorBoyPurple.png", "purple", (800,310))
+
+        doors = [boy_door, girl_door]
+        lavas = [boy_lava1, girl_lava1, green_lava1]
+
+        while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
+            retry = False
+            screen.blit(background, (0, 0))
+            for obstacle in objects2:
+                obstacle.display_obstacle()
+            for door in doors:
+                door.display_door()
+            girl.display_character(objects2, lavas)
+            boy.display_character(objects2, lavas)
+            if boy.door(doors) and girl.door(doors):
+                run = False
+            for lava in lavas:
+                lava.display_lava()
+            # refreshing screen:
+            pygame.display.flip()
+            pygame.display.update()
+            clock.tick(65)
+            for event in pygame.event.get():
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_pos = event.pos
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RIGHT:
+                        boy.move_right()
+                    if event.key == pygame.K_LEFT:
+                        boy.move_left()
+                    if event.key == pygame.K_UP:
+                        boy.start_jump()
+
+                    if event.key == pygame.K_d:
+                        girl.move_right()
+                    if event.key == pygame.K_a:
+                        girl.move_left()
+                    if event.key == pygame.K_w:
+                        girl.start_jump()
+
+                if event.type == pygame.KEYUP:
+                    if event.key == pygame.K_RIGHT:
+                        boy.stop_moving_right()
+                    if event.key == pygame.K_LEFT:
+                        boy.stop_moving_left()
+
+                    if event.key == pygame.K_d:
+                        girl.stop_moving_right()
+                    if event.key == pygame.K_a:
+                        girl.stop_moving_left()
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+            B = True
+        if run:
+            retry_button = pygame.transform.scale(pygame.image.load("Images/retry-icon-9.jpg"), (100, 100))
+            retry_button = Button(retry_button,(450,200),100,100)
+            home_button = pygame.transform.scale(pygame.image.load("Images/home.png"),(65,65))
+            home_button = Button(home_button,(468,310),65,65)
+            screen.blit(background, (0, 0))
+            retry_button.display_button()
+            home_button.display_button()
+            pygame.display.flip()
+            pygame.display.update()
+            if B:
+                pygame.mixer.stop()
+                loser()
+                lose_sound()
+                B = False
+            for event in pygame.event.get():
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_pos = event.pos
+                    if mouse_in_button(retry_button, mouse_pos):
+                        retry = True
+                    if mouse_in_button(home_button,mouse_pos):
+                        run = False
+                        home(2)
+                if event.type == pygame.QUIT:
+                    run = False
+                    pygame.quit()
+                    quit()
+    pygame.mixer.stop()
+    win_sound()
+    return 1
 
 # set clock
 def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
@@ -143,12 +292,12 @@ def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
         while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
             retry = False
             screen.blit(background, (0, 0))
-            for obstacle in objects:
+            for obstacle in objects1:
                 obstacle.display_obstacle()
             for door in doors:
                 door.display_door()
-            girl.display_character(objects, lavas)
-            boy.display_character(objects, lavas)
+            girl.display_character(objects1, lavas)
+            boy.display_character(objects1, lavas)
             if boy.door(doors) and girl.door(doors):
                 run = False
             for lava in lavas:
@@ -210,17 +359,20 @@ def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                     if mouse_in_button(retry_button, mouse_pos):
                         retry = True
                     if mouse_in_button(home_button,mouse_pos):
-                        home()
+                        run = False
+                        home(1)
                 if event.type == pygame.QUIT:
                     run = False
                     pygame.quit()
                     quit()
     pygame.mixer.stop()
     win_sound()
+    return 1
+
 
 
 # sending the results to whatsapp
-def home():
+def home(level):
     start_run = True
     play_music("Sounds/startSoundTrack.mp3")
     blue = False
@@ -331,9 +483,12 @@ def home():
                 pygame.quit()
                 quit()
     pygame.mixer.stop()
-    level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
+    if level == 1:
+        level = level + level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
+    if level == 2:
+        level = level + level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
 
-home()
+home(level)
 
 print("gever retzah ata")
 quit()
