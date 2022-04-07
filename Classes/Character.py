@@ -18,7 +18,7 @@ class Character:
         self.jumping = False
         self.gravity = 1
 
-    def display_character(self, objects, lavas):
+    def display_character(self, objects, lavas, walls):
         self.lava(lavas)
         if self.gravity != 0:
             self.jumping = True
@@ -26,17 +26,18 @@ class Character:
             self.gravity = self.gravity+0.1
         if self.moving_right:
             self.direction = 1
-            if self.able_to_move_right(objects):
+            if self.able_to_move_right(objects) and self.able_to_move_right(walls):
                 self.Location = (self.Location[0] + 1, self.Location[1])
         if self.moving_left:
             self.direction = 2
-            if self.able_to_move_left(objects):
+            if self.able_to_move_left(objects) and self.able_to_move_left(walls):
                 self.Location = (self.Location[0] - 1, self.Location[1])
         if self.alive:
             self.able_to_move_up(objects)
-            if self.able_to_move_down(objects):
+            self.able_to_move_up(walls)
+            if self.able_to_move_down(objects) and self.able_to_move_down(walls):
                 self.Location = (self.Location[0], self.Location[1] + self.gravity)
-            if not self.able_to_move_down(objects):
+            if not self.able_to_move_down(objects) and not self.able_to_move_down(walls):
                 self.gravity = 0
             if self.direction == 0:
                 screen.blit(self.images[self.direction], (self.Location[0],self.Location[1]-8))

@@ -2,6 +2,8 @@ from Classes.Character import *
 from Classes.Object import *
 from Classes.Button import *
 from Classes.Lava import *
+from Classes.Wall import *
+from Classes.Magic_Button import *
 pygame.display.set_caption('Elements')
 clock = pygame.time.Clock()
 from Classes.Door import *
@@ -115,7 +117,8 @@ o9 = Object(50, 70, 30, 400, objects_color)
 o10 = Object(100, 50, 370, 170, objects_color)
 objects1 = [o1, o2, o3, o4,o5,o6,o7,o8,o9,o10]
 
-level = 1
+level = 2
+
 
 def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
@@ -228,10 +231,17 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                 boy_diamond4 = Diamond("Images/DPurple.png", "purple", (895, 250))
                 boy_diamond5 = Diamond("Images/DPurple.png", "purple", (150, 60))
 
+        b1 = Magic_Button("Images/BBlue.PNG","blue",(26,240))
+        b2 = Magic_Button("Images/‏‏BGreenOP.PNG","green", (953, 225))
+        magic_buttons = [b1, b2]
+        w1 = Wall("Images/WBlue.PNG", "blue", 100, 20, (695, 295))
+        w2 = Wall("Images/WGreen.PNG", "green", 66, 20, (100, 24))
+        walls = [w1, w2]
         doors = [boy_door, girl_door]
         lavas = [green_lava1, green_lava2, green_lava3, green_lava4, green_lava5, boy_lava1, girl_lava1, green_lava1]
         diamonds = [girl_diamond1, girl_diamond2, girl_diamond3, girl_diamond4, girl_diamond5, boy_diamond1, boy_diamond2, boy_diamond3, boy_diamond4, boy_diamond5]
         t0 = time.time()
+        savewall = None
         while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
             retry = False
             screen.blit(background, (0, 0))
@@ -239,15 +249,31 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                 obstacle.display_obstacle()
             for door in doors:
                 door.display_door()
+            for wall in walls:
+                wall.display_wall()
+            for b in magic_buttons:
+                b.display_magic_button()
+                if not b.pressed:
+                    if b.press(boy) or b.press(girl):
+                        for w in walls:
+                            if w.color == b.color:
+                                savewall = w
+                                walls.remove(w)
+                else:
+                    if not b.press(boy) and not b.press(girl):
+                        if savewall:
+                            walls.append(savewall)
+                            b.pressed = False
+                        savewall = None
+
             for diamond in diamonds:
                 gem = diamond.collect(boy) and diamond.collect(girl)
                 if gem:
                     diamond.display_diamond()
                 else:
                     diamonds.remove(diamond)
-
-            girl.display_character(objects2, lavas)
-            boy.display_character(objects2, lavas)
+            girl.display_character(objects2, lavas,walls)
+            boy.display_character(objects2, lavas,walls)
             if boy.door(doors) and girl.door(doors):
                 run = False
             for lava in lavas:
@@ -322,6 +348,7 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
 
 # set clock
 def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
+    walls = []
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -390,8 +417,8 @@ def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                 obstacle.display_obstacle()
             for door in doors:
                 door.display_door()
-            girl.display_character(objects1, lavas)
-            boy.display_character(objects1, lavas)
+            girl.display_character(objects1, lavas,walls)
+            boy.display_character(objects1, lavas,walls)
             if boy.door(doors) and girl.door(doors):
                 run = False
             for lava in lavas:
@@ -507,7 +534,6 @@ def home(level):
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if mouse_in_button(Play_BUTTON, event.pos):
-                    button_click()
                     start_run = False
                 if RED:
                     if mouse_in_button(oneButton,event.pos):
