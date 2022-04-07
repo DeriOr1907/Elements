@@ -1,5 +1,11 @@
 import pygame
 from Constants import *
+from Classes.Character import *
+
+
+def gem():
+    sound = pygame.mixer.Sound("Sounds/Gem Sound.mp3")
+    pygame.mixer.Sound.play(sound)
 
 
 class Diamond:
@@ -28,3 +34,12 @@ class Diamond:
 
     def display_diamond(self):
         screen.blit(self.image, self.location)
+
+    def collect(self, ch):
+        loc = (self.location[0]+15, self.location[1]+15)
+        if ch.top_right()[1] <= loc[1] <= ch.right_bottom()[1]:
+            if ch.top_right()[0] >= loc[0] >= ch.left_bottom()[0]:
+                if ch.color == self.color:
+                    gem()
+                    return False
+        return True

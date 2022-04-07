@@ -19,20 +19,19 @@ class Character:
         self.gravity = 1
 
     def display_character(self, objects, lavas):
-
         self.lava(lavas)
         if self.gravity != 0:
             self.jumping = True
         if self.gravity <= 15:
-            self.gravity = self.gravity+0.45
+            self.gravity = self.gravity+0.1
         if self.moving_right:
             self.direction = 1
             if self.able_to_move_right(objects):
-                self.Location = (self.Location[0] + 2, self.Location[1])
+                self.Location = (self.Location[0] + 1, self.Location[1])
         if self.moving_left:
             self.direction = 2
             if self.able_to_move_left(objects):
-                self.Location = (self.Location[0] - 2, self.Location[1])
+                self.Location = (self.Location[0] - 1, self.Location[1])
         if self.alive:
             self.able_to_move_up(objects)
             if self.able_to_move_down(objects):
@@ -48,7 +47,7 @@ class Character:
     def start_jump(self):
         self.Location = (self.Location[0],self.Location[1]-5)
         if not self.jumping:
-            self.gravity = -11.5
+            self.gravity = -5
             self.jumping = True
 
     def set_location(self,loc):
@@ -66,6 +65,21 @@ class Character:
     def move_left(self):
         self.moving_left = True
 
+    def top_left(self):
+        return self.Location
+
+    def top_right(self):
+        x = (self.Location[0] + 40, self.Location[1])
+        return x
+
+    def right_bottom(self):
+        x = (self.Location[0] + 40, self.Location[1] + 45)
+        return x
+
+    def left_bottom(self):
+        x = (self.Location[0], self.Location[1] + 45)
+        return x
+
     def door(self, doors):
         loc = (self.Location[0]+20, self.Location[1]+20)
         for d in doors:
@@ -74,6 +88,7 @@ class Character:
                     if d.color == self.color:
                         return True
 
+#def Gem():
 
     def lava(self, lavas):
         downlocleft = (self.Location[0], self.Location[1]+42)
@@ -88,10 +103,10 @@ class Character:
                     if l.color != self.color:
                         self.alive = False
 
-
     def able_to_move_left(self, objects):
         uploc = (self.Location[0], self.Location[1])
-        downloc = (self.Location[0], self.Location[1]+45)
+        downloc = (self.Location[0], self.Location[1]+40)
+        rightloc = self.Location[0]+40
         for obj in objects:
             if obj.top_right()[1] <= uploc[1] <= obj.right_bottom()[1]:
                 if obj.top_right()[0] >= uploc[0] >= obj.right_bottom()[0]:
@@ -99,11 +114,16 @@ class Character:
             if obj.top_right()[1] <= downloc[1] <= obj.right_bottom()[1]:
                 if obj.top_right()[0] >= downloc[0] >= obj.right_bottom()[0]:
                     return False
+            if downloc[1] <= obj.top_right()[1] <= uploc[1]:
+                if uploc[0] <= obj.top_right()[0] <= rightloc:
+                    return False
+
         return True
 
     def able_to_move_right(self, objects):
         uploc = (self.Location[0]+40, self.Location[1])
         downloc = (self.Location[0]+40, self.Location[1]+45)
+        leftloc = self.Location[0]
         for obj in objects:
             if obj.top_left()[1] <= uploc[1] <= obj.left_bottom()[1]:
                 if obj.top_left()[0] >= uploc[0] >= obj.left_bottom()[0]:
@@ -111,10 +131,13 @@ class Character:
             if obj.top_left()[1] <= downloc[1] <= obj.left_bottom()[1]:
                 if obj.top_left()[0] >= downloc[0] >= obj.left_bottom()[0]:
                     return False
+            if downloc[1] <= obj.top_left()[1] <= uploc[1]:
+                if leftloc <= obj.top_left()[0] <= uploc[0]:
+                    return False
         return True
 
     def able_to_move_up(self,objects):
-        loc = (self.Location[0]+2,self.Location[1])
+        loc = (self.Location[0]+1,self.Location[1])
         for obj in objects:
             if obj.top_left()[1] <= loc[1] <= obj.left_bottom()[1]:
                 if obj.top_left()[0] <= loc[0] <= obj.top_right()[0]:

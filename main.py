@@ -1,16 +1,23 @@
 from Classes.Character import *
 from Classes.Object import *
 from Classes.Button import *
-from helpers import *
 from Classes.Lava import *
 pygame.display.set_caption('Elements')
 clock = pygame.time.Clock()
 from Classes.Door import *
 import time
 
+def mouse_in_button(button, mouse_pos):
+    if button.Location[0] + button.width > mouse_pos[0] > button.Location[0] and button.Location[1] < mouse_pos[1] < button.Location[1] + button.height:
+        return True
+
 
 def play_music(str):
     sound = pygame.mixer.Sound(str)
+    pygame.mixer.Sound.play(sound)
+
+def gem():
+    sound = pygame.mixer.Sound("Sounds/loser.ogg")
     pygame.mixer.Sound.play(sound)
 
 def loser():
@@ -63,8 +70,8 @@ four_Button = Button(four_Button,(960-70, 150),70,70)
 
 objects_color = (95, 80, 45)
 o1 = Object(1050, 30, 0, 500, objects_color)
-o2 = Object(20, 530, 0, 0, objects_color)
-o3 = Object(20, 530, 980, 0, objects_color)
+o2 = Object(30, 530, -10, 0, objects_color)
+o3 = Object(30, 530, 980, 0, objects_color)
 o4 = Object(1050, 25, 0, 0, objects_color)
 obj1 = Object(1050, 50, 0, 515, objects_color)
 obj2 = Object(25, 530, 0, 0, objects_color)
@@ -84,7 +91,7 @@ obj15 = Object(130, 60, 689, 475, objects_color)
 obj16 = Object(90, 50, 689, 435, objects_color)
 obj17 = Object(50, 50, 689, 395, objects_color)
 obj18 = Object(40, 15, 610, 440, objects_color)
-obj19 = Object(40, 15, 480, 350, objects_color)
+obj19 = Object(80, 15, 480, 350, objects_color)
 obj20 = Object(600, 15, 600, 280, objects_color)
 obj21 = Object(250, 15, 840, 200, objects_color)
 obj22 = Object(300, 15, 595, 90, objects_color)
@@ -98,7 +105,7 @@ obj29 = Object(50, 50, 925, 160, objects_color)
 obj30 = Object(15, 15, 725, 265, objects_color)
 obj31 = Object(15, 15, 625, 265, objects_color)
 
-objects2 = [obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj14, obj15, obj16, obj17, obj18, obj19, obj20, obj21, obj22, obj23, obj24, obj25, obj26, obj27, obj28, obj29, obj30, obj31]
+objects2 = [obj1, obj2, obj3, o4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj14, obj15, obj16, obj17, obj18, obj19, obj20, obj21, obj22, obj23, obj24, obj25, obj26, obj27, obj28, obj29, obj30, obj31]
 
 o5 = Object(500, 50, 350, 370, objects_color)
 o6 = Object(500, 50, 150, 270, objects_color)
@@ -175,9 +182,10 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                 girl_diamond3 = Diamond("Images/DPurple.png", "purple", (125, 200))
                 girl_diamond4 = Diamond("Images/DPurple.png", "purple", (445, 170))
                 girl_diamond5 = Diamond("Images/DPurple.png", "purple", (650, 60))
+
             if not RED:
                 x = create_images_list("Images/Redboy.png", "Images/RedBRun.PNG", "Images/RedBRunLeft.PNG")
-                boy = Character((915, 450), "red", x)
+                boy = Character((920, 450), "red", x)
                 boy_lava1 = Lava("Images/red lava.PNG", "red", (819, 500))
                 boy_door = Door("Images/DoorBoyRed.png", "red", (800, 30))
 
@@ -188,7 +196,7 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                 boy_diamond5 = Diamond("Images/DRed!.png", "red", (150, 60))
             if not BLUE:
                 x = create_images_list("Images/Blueboy.png", "Images/BlueBRun.PNG", "Images/BlueBRunLeft.PNG")
-                boy = Character((915, 450), "blue", x)
+                boy = Character((920, 450), "blue", x)
                 boy_lava1 = Lava("Images/blue lava.PNG", "blue", (819, 500))
                 boy_door = Door("Images/DoorBoyBlue.png", "blue", (800, 30))
 
@@ -199,7 +207,7 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                 boy_diamond5 = Diamond("Images/DBlue.png", "blue", (150, 60))
             if not PINK:
                 x = create_images_list("Images/Pinkboy.png", "Images/PinkBRun.PNG", "Images/PinkBRunLeft.PNG")
-                boy = Character((915, 450), "pink", x)
+                boy = Character((920, 450), "pink", x)
                 boy_lava1 = Lava("Images/pink lava.PNG", "pink", (819, 500))
                 boy_door = Door("Images/DoorBoyPink.png", "pink", (800, 30))
 
@@ -210,7 +218,7 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                 boy_diamond5 = Diamond("Images/DPink.png", "pink", (150, 60))
             if not PURPLE:
                 x = create_images_list("Images/Purpleboy.png", "Images/PurpleBRun.PNG", "Images/PurpleBRunLeft.PNG")
-                boy = Character((915, 450), "purple", x)
+                boy = Character((920, 450), "purple", x)
                 boy_lava1 = Lava("Images/purple lava.PNG", "purple", (819, 500))
                 boy_door = Door("Images/DoorBoyPurple.png", "purple", (800, 30))
 
@@ -223,7 +231,7 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
         doors = [boy_door, girl_door]
         lavas = [green_lava1, green_lava2, green_lava3, green_lava4, green_lava5, boy_lava1, girl_lava1, green_lava1]
         diamonds = [girl_diamond1, girl_diamond2, girl_diamond3, girl_diamond4, girl_diamond5, boy_diamond1, boy_diamond2, boy_diamond3, boy_diamond4, boy_diamond5]
-
+        t0 = time.time()
         while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
             retry = False
             screen.blit(background, (0, 0))
@@ -232,7 +240,12 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
             for door in doors:
                 door.display_door()
             for diamond in diamonds:
-                diamond.display_diamond()
+                gem = diamond.collect(boy) and diamond.collect(girl)
+                if gem:
+                    diamond.display_diamond()
+                else:
+                    diamonds.remove(diamond)
+
             girl.display_character(objects2, lavas)
             boy.display_character(objects2, lavas)
             if boy.door(doors) and girl.door(doors):
@@ -242,7 +255,7 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
             # refreshing screen:
             pygame.display.flip()
             pygame.display.update()
-            clock.tick(65)
+            clock.tick(150)
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
@@ -304,6 +317,7 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                     quit()
     pygame.mixer.stop()
     win_sound()
+    print(time.time() - t0)
     return 1
 
 # set clock
@@ -385,7 +399,7 @@ def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
             # refreshing screen:
             pygame.display.flip()
             pygame.display.update()
-            clock.tick(65)
+            clock.tick(150)
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
