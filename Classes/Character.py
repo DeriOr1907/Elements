@@ -16,7 +16,7 @@ class Character:
         self.moving_right = False
         self.moving_left = False
         self.jumping = False
-        self.gravity = 1
+        self.gravity = 0
 
     def display_character(self, objects, lavas, walls):
         self.lava(lavas)

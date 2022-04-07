@@ -26,3 +26,14 @@ class Wall:
 
     def display_wall(self):
         screen.blit(self.image, self.location)
+
+    def able_to_display(self,boy,girl):
+        characters = [boy, girl]
+        for ch in characters:
+            if ch.top_left()[0] <= self.location[0] + self.width <= ch.top_right()[0]:
+                if self.location[1] <= ch.top_left()[1] + 15 <= self.location[1] + self.height:
+                    return False
+            if ch.top_left()[0] <= self.location[0] <= ch.top_right()[0]:
+                if self.location[1] <= ch.top_left()[1] + 15 <= self.location[1] + self.height:
+                    return False
+        return True

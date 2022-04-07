@@ -92,12 +92,12 @@ obj14 = Object(40, 15, 350, 440, objects_color)
 obj15 = Object(130, 60, 689, 475, objects_color)
 obj16 = Object(90, 50, 689, 435, objects_color)
 obj17 = Object(50, 50, 689, 395, objects_color)
-obj18 = Object(40, 15, 610, 440, objects_color)
+obj18 = Object(40, 15, 600, 440, objects_color)
 obj19 = Object(80, 15, 480, 350, objects_color)
 obj20 = Object(600, 15, 600, 280, objects_color)
 obj21 = Object(250, 15, 840, 200, objects_color)
 obj22 = Object(300, 15, 595, 90, objects_color)
-obj23 = Object(40, 15, 440, 200, objects_color)
+obj23 = Object(40, 15, 435, 200, objects_color)
 obj24 = Object(40, 15, 515, 150, objects_color)
 obj25 = Object(23, 55, 308, 500, objects_color)
 obj26 = Object(25, 55, 665, 500, objects_color)
@@ -234,7 +234,7 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
         b1 = Magic_Button("Images/BBlue.PNG","blue",(26,240))
         b2 = Magic_Button("Images/‏‏BGreenOP.PNG","green", (953, 225))
         magic_buttons = [b1, b2]
-        w1 = Wall("Images/WBlue.PNG", "blue", 100, 20, (695, 295))
+        w1 = Wall("Images/WBlue.PNG", "blue", 100, 20, (693, 295))
         w2 = Wall("Images/WGreen.PNG", "green", 66, 20, (100, 24))
         walls = [w1, w2]
         doors = [boy_door, girl_door]
@@ -262,9 +262,10 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                 else:
                     if not b.press(boy) and not b.press(girl):
                         if savewall:
-                            walls.append(savewall)
-                            b.pressed = False
-                        savewall = None
+                            if savewall.able_to_display(boy,girl):
+                                walls.append(savewall)
+                                b.pressed = False
+                                savewall = None
 
             for diamond in diamonds:
                 gem = diamond.collect(boy) and diamond.collect(girl)
@@ -285,6 +286,7 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
+                    print(mouse_pos)
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RIGHT:
                         boy.move_right()
