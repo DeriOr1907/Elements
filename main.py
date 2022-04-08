@@ -118,8 +118,8 @@ o10 = Object(300, 100, 250, 420, objects_color)
 o11 = Object(60, 100, 718, 450, objects_color)
 o12 = Object(80, 15, 590, 410, objects_color)
 
-o13 = Object(50, 20, 400, 210, objects_color)
-o14 = Object(50, 20, 535, 210, objects_color)
+o13 = Object(50, 30, 400, 200, objects_color)
+o14 = Object(50, 30, 535, 200, objects_color)
 
 objects1 = [o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12, o13, o14]
 
@@ -356,7 +356,6 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
 
 # set clock
 def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
-    walls = []
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -367,7 +366,8 @@ def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
     boy_door = None
     girl_door = None
     home_button = None
-    green_lava1 = Lava("Images/green lava.PNG", "green", (400, 250))
+    savewall = None
+    green_lava1 = Lava("Images/green lava.PNG", "green", (450, 205))
     green_lava2 = Lava("Images/green lava.PNG", "green", (550, 485))
     green_lava3 = Lava("Images/green lava.PNG", "green", (634, 485))
     B = False
@@ -442,6 +442,13 @@ def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                 boy_diamond2 = Diamond("Images/DPurple.png", "purple", (110, 295))
                 boy_diamond3 = Diamond("Images/DPurple.png", "purple", (900, 470))
 
+            w1 = Wall("Images/WRed.PNG","red",70,20,(250,350))
+            walls = [w1]
+
+            b1 = Magic_Button("Images/‏‏BRedOP.PNG", "red", (230, 450))
+            b2 = Magic_Button("Images/‏‏BRedOP.PNG", "red", (960, 450))
+            magic_buttons = [b1,b2]
+
             doors = [boy_door, girl_door]
             lavas = [green_lava1, green_lava2, green_lava3]
             diamonds = [boy_diamond1, boy_diamond2, boy_diamond3, girl_diamond1, girl_diamond2, girl_diamond3]
@@ -453,6 +460,24 @@ def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                     obstacle.display_obstacle()
                 for door in doors:
                     door.display_door()
+                for wall in walls:
+                    wall.display_wall()
+                for b in magic_buttons:
+                    b.display_magic_button()
+                    if not b.pressed:
+                        if b.press(boy) or b.press(girl):
+                            for w in walls:
+                                if w.color == b.color:
+                                    savewall = w
+                                    walls.remove(w)
+                    else:
+                        if not b.press(boy) and not b.press(girl):
+                            if savewall:
+                                if savewall.able_to_display(boy, girl):
+                                    walls.append(savewall)
+                                    magic_buttons[0].pressed = False
+                                    magic_buttons[1].pressed = False
+                                    savewall = None
                 for diamond in diamonds:
                     gem = diamond.collect(boy) and diamond.collect(girl)
                     if gem:
