@@ -117,6 +117,7 @@ o9 = Object(300, 25, 700, 325, objects_color)
 o10 = Object(300, 100, 250, 420, objects_color)
 o11 = Object(60, 100, 718, 450, objects_color)
 o12 = Object(80, 15, 590, 410, objects_color)
+
 o13 = Object(50, 30, 400, 200, objects_color)
 o14 = Object(50, 30, 535, 200, objects_color)
 
@@ -132,7 +133,8 @@ ob7 = Object(80, 15, 800, 400, objects_color)
 
 
 objects1 = [o1, o2, o3, o4, ob1, ob2, ob3, ob4, ob5, ob6, ob7]
-level = 1
+
+level = [1]
 
 
 def level3(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
@@ -288,8 +290,8 @@ def level3(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                     diamond.display_diamond()
                 else:
                     diamonds.remove(diamond)
-            girl.display_character(objects3, lavas,walls)
-            boy.display_character(objects3, lavas,walls)
+            girl.display_character(objects3, lavas, walls)
+            boy.display_character(objects3, lavas, walls)
             if boy.door(doors) and girl.door(doors):
                 run = False
             for lava in lavas:
@@ -353,15 +355,16 @@ def level3(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                         retry = True
                     if mouse_in_button(home_button,mouse_pos):
                         run = False
-                        home(2)
+                        home()
                 if event.type == pygame.QUIT:
                     run = False
                     pygame.quit()
                     quit()
     pygame.mixer.stop()
     win_sound()
-    print(time.time() - t0)
-    return 1
+    t = time.time() - t0
+    print(t)
+    level[0] = level[0] + 1
 
 # set clock
 def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
@@ -493,8 +496,8 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                         diamond.display_diamond()
                     else:
                         diamonds.remove(diamond)
-                girl.display_character(objects2, lavas,walls)
-                boy.display_character(objects2, lavas,walls)
+                girl.display_character(objects2, lavas, walls)
+                boy.display_character(objects2, lavas, walls)
                 if boy.door(doors) and girl.door(doors):
                     run = False
                 for lava in lavas:
@@ -557,19 +560,19 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                         retry = True
                     if mouse_in_button(home_button,mouse_pos):
                         run = False
-                        home(1)
+                        home()
                 if event.type == pygame.QUIT:
                     run = False
                     pygame.quit()
                     quit()
     pygame.mixer.stop()
     win_sound()
-    print(time.time() - t0)
-    return 1
+    t = time.time() - t0
+    print(t)
+    level[0] = level[0] + 1
 
 
 def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
-
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -707,12 +710,13 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 boy_diamond3 = Diamond("Images/DPurple.png", "purple", (579, 465))
                 boy_diamond4 = Diamond("Images/DPurple.png", "purple", (105, 250))
 
-
         magic_buttons = []
         walls = []
         doors = [boy_door, girl_door]
-        lavas = [girl_lava1, girl_lava2, girl_lava3, girl_lava4, girl_lava5, boy_lava1, boy_lava2, boy_lava3, boy_lava4, boy_lava5]
-        diamonds = [girl_diamond1, girl_diamond2, girl_diamond3, girl_diamond4, boy_diamond1, boy_diamond2, boy_diamond3, boy_diamond4]
+        lavas = [girl_lava1, girl_lava2, girl_lava3, girl_lava4, girl_lava5, boy_lava1, boy_lava2, boy_lava3, boy_lava4,
+                 boy_lava5]
+        diamonds = [girl_diamond1, girl_diamond2, girl_diamond3, girl_diamond4, boy_diamond1, boy_diamond2,
+                    boy_diamond3, boy_diamond4]
         t0 = time.time()
         savewall = None
         while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
@@ -735,7 +739,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 else:
                     if not b.press(boy) and not b.press(girl):
                         if savewall:
-                            if savewall.able_to_display(boy,girl):
+                            if savewall.able_to_display(boy, girl):
                                 walls.append(savewall)
                                 b.pressed = False
                                 savewall = None
@@ -746,8 +750,8 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                     diamond.display_diamond()
                 else:
                     diamonds.remove(diamond)
-            girl.display_character(objects1, lavas,walls)
-            boy.display_character(objects1, lavas,walls)
+            girl.display_character(objects1, lavas, walls)
+            boy.display_character(objects1, lavas, walls)
             if boy.door(doors) and girl.door(doors):
                 run = False
             for lava in lavas:
@@ -791,9 +795,9 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             B = True
         if run:
             retry_button = pygame.transform.scale(pygame.image.load("Images/retry-icon-9.jpg"), (100, 100))
-            retry_button = Button(retry_button,(450,200),100,100)
-            home_button = pygame.transform.scale(pygame.image.load("Images/home.png"),(65,65))
-            home_button = Button(home_button,(468,310),65,65)
+            retry_button = Button(retry_button, (450, 200), 100, 100)
+            home_button = pygame.transform.scale(pygame.image.load("Images/home.png"), (65, 65))
+            home_button = Button(home_button, (468, 310), 65, 65)
             screen.blit(background, (0, 0))
             retry_button.display_button()
             home_button.display_button()
@@ -809,23 +813,21 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                     mouse_pos = event.pos
                     if mouse_in_button(retry_button, mouse_pos):
                         retry = True
-                    if mouse_in_button(home_button,mouse_pos):
+                    if mouse_in_button(home_button, mouse_pos):
                         run = False
-                        home(2)
+                        home()
                 if event.type == pygame.QUIT:
                     run = False
                     pygame.quit()
                     quit()
-    pygame.mixer.stop()
-    win_sound()
-    print(time.time() - t0)
-    return 1
-
-
-
+        pygame.mixer.stop()
+        win_sound()
+        t = time.time() - t0
+        print(t)
+        level[0] = level[0] + 1
 
 # sending the results to whatsapp
-def home(level):
+def home():
     start_run = True
     play_music("Sounds/startSoundTrack.mp3")
     blue = False
@@ -935,14 +937,14 @@ def home(level):
                 pygame.quit()
                 quit()
     pygame.mixer.stop()
-    if level == 1:
-        level = level + level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
-    if level == 2:
-        level = level + level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
-    if level == 3:
-        level = level + level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
+    if level[0] == 1:
+        level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
+    if level[0] == 2:
+        level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
+    if level[0] == 3:
+        level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
 
-home(level)
+home()
 
 print("gever retzah ata")
 quit()

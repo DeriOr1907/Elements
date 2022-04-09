@@ -3,7 +3,7 @@ from Classes.Object import *
 from Classes.Lava import *
 from Classes.Diamond import *
 
-gravity = 2.5
+gravity = 0
 
 
 class Character:
@@ -22,7 +22,7 @@ class Character:
         self.lava(lavas)
         if self.gravity != 0:
             self.jumping = True
-        if self.gravity <= 15:
+        if self.gravity <= 10:
             self.gravity = self.gravity+0.1
         if self.moving_right:
             self.direction = 1
@@ -155,13 +155,13 @@ class Character:
             if obj.top_left()[1] <= down_loc[1] <= obj.left_bottom()[1]:
                 if obj.top_left()[0] <= down_loc[0] <= obj.top_right()[0]:
                     self.jumping = False
-                    self.gravity = 2.5
+                    self.gravity = 0.5
                     self.Location = (self.Location[0], obj.top_left()[1]-45)
                     return False
             if obj.top_left()[1] <= down_loc[1] <= obj.left_bottom()[1]:
                 if obj.top_left()[0] <= down_loc[0]+32 <= obj.top_right()[0]:
                     self.jumping = False
-                    self.gravity = 2.5
+                    self.gravity = 0.5
                     self.Location = (self.Location[0], obj.top_left()[1]-45)
                     return False
         return True
