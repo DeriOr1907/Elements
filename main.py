@@ -152,7 +152,7 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
 
     start_run = True
     star = pygame.transform.scale(pygame.image.load("Images/Star.png"), (120, 120))
-    big_star = pygame.transform.scale(pygame.image.load("Images/Star.png"), (155, 155))
+    big_star = pygame.transform.scale(pygame.image.load("Images/Star.png"), (160, 160))
 
     Background = pygame.transform.scale(pygame.image.load("Images/winbackground.png"), screen_size)
     play_button = pygame.transform.scale(pygame.image.load("Images/PlayButton!!!.png"), (75, 75))
@@ -186,10 +186,10 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
             screen.blit(star, (300, 120))
         if s == 2:
             screen.blit(star, (290, 120))
-            screen.blit(big_star, (420,100))
+            screen.blit(big_star, (420,95))
         if s == 3:
             screen.blit(star, (290, 120))
-            screen.blit(big_star, (420,100))
+            screen.blit(big_star, (420,95))
             screen.blit(star, (590, 120))
 
         pygame.display.flip()
