@@ -107,7 +107,7 @@ obj29 = Object(50, 50, 925, 160, objects_color)
 obj30 = Object(15, 15, 725, 265, objects_color)
 obj31 = Object(15, 15, 625, 265, objects_color)
 
-objects2 = [obj1, obj2, obj3, o4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj14, obj15, obj16, obj17, obj18, obj19, obj20, obj21, obj22, obj23, obj24, obj25, obj26, obj27, obj28, obj29, obj30, obj31]
+objects3 = [obj1, obj2, obj3, o4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj14, obj15, obj16, obj17, obj18, obj19, obj20, obj21, obj22, obj23, obj24, obj25, obj26, obj27, obj28, obj29, obj30, obj31]
 
 o5 = Object(220, 15, 0, 100, objects_color)
 o6 = Object(200, 15, 780, 100, objects_color)
@@ -117,16 +117,25 @@ o9 = Object(300, 25, 700, 325, objects_color)
 o10 = Object(300, 100, 250, 420, objects_color)
 o11 = Object(60, 100, 718, 450, objects_color)
 o12 = Object(80, 15, 590, 410, objects_color)
-
 o13 = Object(50, 30, 400, 200, objects_color)
 o14 = Object(50, 30, 535, 200, objects_color)
 
-objects1 = [o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12, o13, o14]
+objects2 = [o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12, o13, o14]
 
+ob1 = Object(590, 40, 210, 180, objects_color)
+ob2 = Object(410, 40, 300, 350, objects_color)
+ob3 = Object(118, 100, 441, 450, objects_color)
+ob4 = Object(80, 15, 80, 280, objects_color)
+ob5 = Object(80, 15, 130, 400, objects_color)
+ob6 = Object(80, 15, 850, 280, objects_color)
+ob7 = Object(80, 15, 800, 400, objects_color)
+
+
+objects1 = [o1, o2, o3, o4, ob1, ob2, ob3, ob4, ob5, ob6, ob7]
 level = 1
 
 
-def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
+def level3(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -251,7 +260,7 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
         while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
             retry = False
             screen.blit(background, (0, 0))
-            for obstacle in objects2:
+            for obstacle in objects3:
                 obstacle.display_obstacle()
             for door in doors:
                 door.display_door()
@@ -279,8 +288,8 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                     diamond.display_diamond()
                 else:
                     diamonds.remove(diamond)
-            girl.display_character(objects2, lavas,walls)
-            boy.display_character(objects2, lavas,walls)
+            girl.display_character(objects3, lavas,walls)
+            boy.display_character(objects3, lavas,walls)
             if boy.door(doors) and girl.door(doors):
                 run = False
             for lava in lavas:
@@ -355,7 +364,7 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
     return 1
 
 # set clock
-def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
+def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -456,7 +465,7 @@ def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
             while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
                 retry = False
                 screen.blit(background, (0, 0))
-                for obstacle in objects1:
+                for obstacle in objects2:
                     obstacle.display_obstacle()
                 for door in doors:
                     door.display_door()
@@ -484,8 +493,8 @@ def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                         diamond.display_diamond()
                     else:
                         diamonds.remove(diamond)
-                girl.display_character(objects1, lavas,walls)
-                boy.display_character(objects1, lavas,walls)
+                girl.display_character(objects2, lavas,walls)
+                boy.display_character(objects2, lavas,walls)
                 if boy.door(doors) and girl.door(doors):
                     run = False
                 for lava in lavas:
@@ -557,6 +566,261 @@ def level1(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
     win_sound()
     print(time.time() - t0)
     return 1
+
+
+def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
+
+    background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
+    run = True
+    girl_lava1 = None
+    boy_lava1 = None
+    girl = None
+    boy = None
+    lavas = None
+    boy_door = None
+    girl_door = None
+    home_button = None
+
+    B = False
+    retry = True
+    while run:
+        if retry:
+            play_music("Sounds/backgroundSoundtrack2.ogg")
+            if not red:
+                y = create_images_list("Images/Redgirl.png", "Images/RedGRun.PNG", "Images/RedGRunLeft.PNG")
+                girl = Character((540, 340), "red", y)
+                girl_lava1 = Lava("Images/red lava.PNG", "red", (20, 485))
+                girl_lava2 = Lava("Images/red lava.PNG", "red", (104, 485))
+                girl_lava3 = Lava("Images/red lava.PNG", "red", (188, 485))
+                girl_lava4 = Lava("Images/red lava.PNG", "red", (272, 485))
+                girl_lava5 = Lava("Images/red lava.PNG", "red", (356, 485))
+
+                girl_door = Door("Images/DoorGirlRed.png", "red", (300, 120))
+
+                girl_diamond1 = Diamond("Images/DRed!.png", "red", (40, 465))
+                girl_diamond2 = Diamond("Images/DRed!.png", "red", (208, 465))
+                girl_diamond3 = Diamond("Images/DRed!.png", "red", (376, 465))
+                girl_diamond4 = Diamond("Images/DRed!.png", "red", (875, 250))
+            if not blue:
+                y = create_images_list("Images/Bluegirl.png", "Images/BlueGRun.PNG", "Images/BlueGRunLeft.PNG")
+                girl = Character((540, 340), "blue", y)
+                girl_lava1 = Lava("Images/blue lava.PNG", "blue", (20, 485))
+                girl_lava2 = Lava("Images/blue lava.PNG", "blue", (104, 485))
+                girl_lava3 = Lava("Images/blue lava.PNG", "blue", (188, 485))
+                girl_lava4 = Lava("Images/blue lava.PNG", "blue", (272, 485))
+                girl_lava5 = Lava("Images/blue lava.PNG", "blue", (356, 485))
+
+                girl_door = Door("Images/DoorGirlBlue.png", "blue", (300, 120))
+
+                girl_diamond1 = Diamond("Images/DBlue.png", "blue", (40, 465))
+                girl_diamond2 = Diamond("Images/DBlue.png", "blue", (208, 465))
+                girl_diamond3 = Diamond("Images/DBlue.png", "blue", (376, 465))
+                girl_diamond4 = Diamond("Images/DBlue.png", "blue", (875, 250))
+            if not pink:
+                y = create_images_list("Images/Pinkgirl.png", "Images/PinkGRun.PNG", "Images/PinkGRunLeft.PNG")
+                girl = Character((540, 340), "pink", y)
+                girl_lava1 = Lava("Images/pink lava.PNG", "pink", (20, 485))
+                girl_lava2 = Lava("Images/pink lava.PNG", "pink", (104, 485))
+                girl_lava3 = Lava("Images/pink lava.PNG", "pink", (188, 485))
+                girl_lava4 = Lava("Images/pink lava.PNG", "pink", (272, 485))
+                girl_lava5 = Lava("Images/pink lava.PNG", "pink", (356, 485))
+
+                girl_door = Door("Images/DoorGirlPink.png", "pink", (300, 120))
+
+                girl_diamond1 = Diamond("Images/DPink.png", "pink", (40, 465))
+                girl_diamond2 = Diamond("Images/DPink.png", "pink", (208, 465))
+                girl_diamond3 = Diamond("Images/DPink.png", "pink", (376, 465))
+                girl_diamond4 = Diamond("Images/DPink.png", "pink", (875, 250))
+            if not purple:
+                y = create_images_list("Images/Purplegirl.png", "Images/PurpleGRun.PNG", "Images/PurpleGRunLeft.PNG")
+                girl = Character((540, 340), "purple", y)
+                girl_lava1 = Lava("Images/purple lava.PNG", "purple", (20, 485))
+                girl_lava2 = Lava("Images/purple lava.PNG", "purple", (104, 485))
+                girl_lava3 = Lava("Images/purple lava.PNG", "purple", (188, 485))
+                girl_lava4 = Lava("Images/purple lava.PNG", "purple", (272, 485))
+                girl_lava5 = Lava("Images/purple lava.PNG", "purple", (356, 485))
+
+                girl_door = Door("Images/DoorGirlPurple.png", "purple", (300, 120))
+
+                girl_diamond1 = Diamond("Images/DPurple.png", "purple", (40, 465))
+                girl_diamond2 = Diamond("Images/DPurple.png", "purple", (208, 465))
+                girl_diamond3 = Diamond("Images/DPurple.png", "purple", (376, 465))
+                girl_diamond4 = Diamond("Images/DPurple.png", "purple", (875, 250))
+            if not RED:
+                x = create_images_list("Images/Redboy.png", "Images/RedBRun.PNG", "Images/RedBRunLeft.PNG")
+                boy = Character((441, 340), "red", x)
+                boy_lava1 = Lava("Images/red lava.PNG", "red", (895, 485))
+                boy_lava2 = Lava("Images/red lava.PNG", "red", (811, 485))
+                boy_lava3 = Lava("Images/red lava.PNG", "red", (727, 485))
+                boy_lava4 = Lava("Images/red lava.PNG", "red", (643, 485))
+                boy_lava5 = Lava("Images/red lava.PNG", "red", (559, 485))
+
+                boy_door = Door("Images/DoorBoyRed.png", "red", (655, 120))
+
+                boy_diamond1 = Diamond("Images/DRed!.png", "red", (915, 465))
+                boy_diamond2 = Diamond("Images/DRed!.png", "red", (747, 465))
+                boy_diamond3 = Diamond("Images/DRed!.png", "red", (579, 465))
+                boy_diamond4 = Diamond("Images/DRed!.png", "red", (105, 250))
+            if not BLUE:
+                x = create_images_list("Images/Blueboy.png", "Images/BlueBRun.PNG", "Images/BlueBRunLeft.PNG")
+                boy = Character((441, 340), "blue", x)
+                boy_lava1 = Lava("Images/blue lava.PNG", "blue", (895, 485))
+                boy_lava2 = Lava("Images/blue lava.PNG", "blue", (811, 485))
+                boy_lava3 = Lava("Images/blue lava.PNG", "blue", (727, 485))
+                boy_lava4 = Lava("Images/blue lava.PNG", "blue", (643, 485))
+                boy_lava5 = Lava("Images/blue lava.PNG", "blue", (559, 485))
+
+                boy_door = Door("Images/DoorBoyBlue.png", "blue", (655, 120))
+
+                boy_diamond1 = Diamond("Images/DBlue.png", "blue", (915, 465))
+                boy_diamond2 = Diamond("Images/DBlue.png", "blue", (747, 465))
+                boy_diamond3 = Diamond("Images/DBlue.png", "blue", (579, 465))
+                boy_diamond4 = Diamond("Images/DBlue.png", "blue", (105, 250))
+            if not PINK:
+                x = create_images_list("Images/Pinkboy.png", "Images/PinkBRun.PNG", "Images/PinkBRunLeft.PNG")
+                boy = Character((441, 340), "pink", x)
+                boy_lava1 = Lava("Images/pink lava.PNG", "pink", (895, 485))
+                boy_lava2 = Lava("Images/pink lava.PNG", "pink", (811, 485))
+                boy_lava3 = Lava("Images/pink lava.PNG", "pink", (727, 485))
+                boy_lava4 = Lava("Images/pink lava.PNG", "pink", (643, 485))
+                boy_lava5 = Lava("Images/pink lava.PNG", "pink", (559, 485))
+
+                boy_door = Door("Images/DoorBoyPink.png", "pink", (655, 120))
+
+                boy_diamond1 = Diamond("Images/DPink.png", "pink", (915, 465))
+                boy_diamond2 = Diamond("Images/DPink.png", "pink", (747, 465))
+                boy_diamond3 = Diamond("Images/DPink.png", "pink", (579, 465))
+                boy_diamond4 = Diamond("Images/DPink.png", "pink", (105, 250))
+            if not PURPLE:
+                x = create_images_list("Images/Purpleboy.png", "Images/PurpleBRun.PNG", "Images/PurpleBRunLeft.PNG")
+                boy = Character((441, 340), "purple", x)
+                boy_lava1 = Lava("Images/purple lava.PNG", "purple", (895, 485))
+                boy_lava2 = Lava("Images/purple lava.PNG", "purple", (811, 485))
+                boy_lava3 = Lava("Images/purple lava.PNG", "purple", (727, 485))
+                boy_lava4 = Lava("Images/purple lava.PNG", "purple", (643, 485))
+                boy_lava5 = Lava("Images/purple lava.PNG", "purple", (559, 485))
+
+                boy_door = Door("Images/DoorBoyPurple.png", "purple", (655, 120))
+
+                boy_diamond1 = Diamond("Images/DPurple.png", "purple", (915, 465))
+                boy_diamond2 = Diamond("Images/DPurple.png", "purple", (747, 465))
+                boy_diamond3 = Diamond("Images/DPurple.png", "purple", (579, 465))
+                boy_diamond4 = Diamond("Images/DPurple.png", "purple", (105, 250))
+
+
+        magic_buttons = []
+        walls = []
+        doors = [boy_door, girl_door]
+        lavas = [girl_lava1, girl_lava2, girl_lava3, girl_lava4, girl_lava5, boy_lava1, boy_lava2, boy_lava3, boy_lava4, boy_lava5]
+        diamonds = [girl_diamond1, girl_diamond2, girl_diamond3, girl_diamond4, boy_diamond1, boy_diamond2, boy_diamond3, boy_diamond4]
+        t0 = time.time()
+        savewall = None
+        while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
+            retry = False
+            screen.blit(background, (0, 0))
+            for obstacle in objects1:
+                obstacle.display_obstacle()
+            for door in doors:
+                door.display_door()
+            for wall in walls:
+                wall.display_wall()
+            for b in magic_buttons:
+                b.display_magic_button()
+                if not b.pressed:
+                    if b.press(boy) or b.press(girl):
+                        for w in walls:
+                            if w.color == b.color:
+                                savewall = w
+                                walls.remove(w)
+                else:
+                    if not b.press(boy) and not b.press(girl):
+                        if savewall:
+                            if savewall.able_to_display(boy,girl):
+                                walls.append(savewall)
+                                b.pressed = False
+                                savewall = None
+
+            for diamond in diamonds:
+                gem = diamond.collect(boy) and diamond.collect(girl)
+                if gem:
+                    diamond.display_diamond()
+                else:
+                    diamonds.remove(diamond)
+            girl.display_character(objects1, lavas,walls)
+            boy.display_character(objects1, lavas,walls)
+            if boy.door(doors) and girl.door(doors):
+                run = False
+            for lava in lavas:
+                lava.display_lava()
+            # refreshing screen:
+            pygame.display.flip()
+            pygame.display.update()
+            clock.tick(150)
+            for event in pygame.event.get():
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_pos = event.pos
+                    print(mouse_pos)
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RIGHT:
+                        boy.move_right()
+                    if event.key == pygame.K_LEFT:
+                        boy.move_left()
+                    if event.key == pygame.K_UP:
+                        boy.start_jump()
+
+                    if event.key == pygame.K_d:
+                        girl.move_right()
+                    if event.key == pygame.K_a:
+                        girl.move_left()
+                    if event.key == pygame.K_w:
+                        girl.start_jump()
+
+                if event.type == pygame.KEYUP:
+                    if event.key == pygame.K_RIGHT:
+                        boy.stop_moving_right()
+                    if event.key == pygame.K_LEFT:
+                        boy.stop_moving_left()
+
+                    if event.key == pygame.K_d:
+                        girl.stop_moving_right()
+                    if event.key == pygame.K_a:
+                        girl.stop_moving_left()
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+            B = True
+        if run:
+            retry_button = pygame.transform.scale(pygame.image.load("Images/retry-icon-9.jpg"), (100, 100))
+            retry_button = Button(retry_button,(450,200),100,100)
+            home_button = pygame.transform.scale(pygame.image.load("Images/home.png"),(65,65))
+            home_button = Button(home_button,(468,310),65,65)
+            screen.blit(background, (0, 0))
+            retry_button.display_button()
+            home_button.display_button()
+            pygame.display.flip()
+            pygame.display.update()
+            if B:
+                pygame.mixer.stop()
+                loser()
+                lose_sound()
+                B = False
+            for event in pygame.event.get():
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_pos = event.pos
+                    if mouse_in_button(retry_button, mouse_pos):
+                        retry = True
+                    if mouse_in_button(home_button,mouse_pos):
+                        run = False
+                        home(2)
+                if event.type == pygame.QUIT:
+                    run = False
+                    pygame.quit()
+                    quit()
+    pygame.mixer.stop()
+    win_sound()
+    print(time.time() - t0)
+    return 1
+
 
 
 
@@ -675,6 +939,8 @@ def home(level):
         level = level + level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
     if level == 2:
         level = level + level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
+    if level == 3:
+        level = level + level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
 
 home(level)
 
