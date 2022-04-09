@@ -104,8 +104,8 @@ obj26 = Object(25, 55, 665, 500, objects_color)
 obj27 = Object(15, 55, 904, 500, objects_color)
 obj28 = Object(15, 55, 80, 500, objects_color)
 obj29 = Object(50, 50, 925, 160, objects_color)
-obj30 = Object(15, 15, 725, 265, objects_color)
-obj31 = Object(15, 15, 625, 265, objects_color)
+obj30 = Object(15, 15, 780, 265, objects_color)
+obj31 = Object(15, 30, 595, 265, objects_color)
 
 objects3 = [obj1, obj2, obj3, o4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj14, obj15, obj16, obj17, obj18, obj19, obj20, obj21, obj22, obj23, obj24, obj25, obj26, obj27, obj28, obj29, obj30, obj31]
 
@@ -124,12 +124,13 @@ o14 = Object(50, 30, 535, 200, objects_color)
 objects2 = [o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12, o13, o14]
 
 ob1 = Object(590, 40, 210, 180, objects_color)
-ob2 = Object(410, 40, 300, 350, objects_color)
+ob2 = Object(410, 40, 300, 360, objects_color)
 ob3 = Object(118, 100, 441, 450, objects_color)
 ob4 = Object(80, 15, 80, 280, objects_color)
-ob5 = Object(80, 15, 130, 400, objects_color)
+ob5 = Object(80, 15, 140, 400, objects_color)
 ob6 = Object(80, 15, 850, 280, objects_color)
-ob7 = Object(80, 15, 800, 400, objects_color)
+ob7 = Object(80, 15, 790, 400, objects_color)
+
 
 objects1 = [o1, o2, o3, o4, ob1, ob2, ob3, ob4, ob5, ob6, ob7]
 
@@ -151,7 +152,8 @@ def level3(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
     green_lava2 = Lava("Images/green lava.PNG", "green", (497, 500))
     green_lava3 = Lava("Images/green lava.PNG", "green", (414, 500))
     green_lava4 = Lava("Images/green lava.PNG", "green", (331, 500))
-    green_lava5 = Lava("Images/green lava.PNG", "green", (640, 265))
+    green_lava5 = Lava("Images/green lava.PNG", "green", (610, 265))
+    green_lava6 = Lava("Images/green lava.PNG", "green", (695, 265))
     B = False
     retry = True
     while run:
@@ -254,7 +256,7 @@ def level3(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
         w2 = Wall("Images/WGreen.PNG", "green", 66, 20, (100, 24))
         walls = [w1, w2]
         doors = [boy_door, girl_door]
-        lavas = [green_lava1, green_lava2, green_lava3, green_lava4, green_lava5, boy_lava1, girl_lava1, green_lava1]
+        lavas = [green_lava1, green_lava2, green_lava3, green_lava4, green_lava5, boy_lava1, girl_lava1, green_lava1,green_lava6]
         diamonds = [girl_diamond1, girl_diamond2, girl_diamond3, girl_diamond4, girl_diamond5, boy_diamond1, boy_diamond2, boy_diamond3, boy_diamond4, boy_diamond5]
         t0 = time.time()
         savewall = None
@@ -717,7 +719,6 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
         diamonds = [girl_diamond1, girl_diamond2, girl_diamond3, girl_diamond4, boy_diamond1, boy_diamond2,
                     boy_diamond3, boy_diamond4]
         t0 = time.time()
-
         savewall = None
         while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
             retry = False
@@ -820,12 +821,11 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                     run = False
                     pygame.quit()
                     quit()
-        pygame.mixer.stop()
-        win_sound()
-        t = time.time() - t0
-        print(t)
-
-        level[0] = level[0] + 1
+    pygame.mixer.stop()
+    win_sound()
+    t = time.time() - t0
+    print(t)
+    level[0] = level[0] + 1
 
 # sending the results to whatsapp
 def home():
