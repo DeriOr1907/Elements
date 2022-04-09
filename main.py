@@ -131,7 +131,6 @@ ob5 = Object(80, 15, 130, 400, objects_color)
 ob6 = Object(80, 15, 850, 280, objects_color)
 ob7 = Object(80, 15, 800, 400, objects_color)
 
-
 objects1 = [o1, o2, o3, o4, ob1, ob2, ob3, ob4, ob5, ob6, ob7]
 
 level = [1]
@@ -718,6 +717,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
         diamonds = [girl_diamond1, girl_diamond2, girl_diamond3, girl_diamond4, boy_diamond1, boy_diamond2,
                     boy_diamond3, boy_diamond4]
         t0 = time.time()
+
         savewall = None
         while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
             retry = False
@@ -824,6 +824,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
         win_sound()
         t = time.time() - t0
         print(t)
+
         level[0] = level[0] + 1
 
 # sending the results to whatsapp
