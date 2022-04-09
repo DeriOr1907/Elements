@@ -135,9 +135,71 @@ ob7 = Object(80, 15, 790, 400, objects_color)
 objects1 = [o1, o2, o3, o4, ob1, ob2, ob3, ob4, ob5, ob6, ob7]
 
 level = [1]
+stars = [0]
+
+def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
+    big_boy = None
+    big_girl = None
+    if not red: big_girl = pygame.transform.scale(pygame.image.load("Images/Redgirl.png"), (140, 220))
+    if not blue: big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (140, 220))
+    if not pink:big_girl = pygame.transform.scale(pygame.image.load("Images/Pinkgirl.png"), (140, 220))
+    if not purple: big_girl = pygame.transform.scale(pygame.image.load("Images/Purplegirl.png"), (140, 220))
+
+    if not RED: big_boy = pygame.transform.scale(pygame.image.load("Images/Redboy.png"), (135, 225))
+    if not BLUE: big_boy = pygame.transform.scale(pygame.image.load("Images/Blueboy.png"), (135, 225))
+    if not PINK: big_boy = pygame.transform.scale(pygame.image.load("Images/Pinkboy.png"), (135, 225))
+    if not PURPLE: big_boy = pygame.transform.scale(pygame.image.load("Images/Purpleboy.png"), (135, 225))
+
+    start_run = True
+    star = pygame.transform.scale(pygame.image.load("Images/Star.png"), (120, 120))
+    big_star = pygame.transform.scale(pygame.image.load("Images/Star.png"), (155, 155))
+
+    Background = pygame.transform.scale(pygame.image.load("Images/winbackground.png"), screen_size)
+    play_button = pygame.transform.scale(pygame.image.load("Images/PlayButton!!!.png"), (75, 75))
+    play_button = Button(play_button, (460, 300), 75, 75)
+    home_button = pygame.transform.scale(pygame.image.load("Images/home.png"), (55, 55))
+    home_button = Button(home_button, (473, 380), 55, 55)
+    s = 1
+    if len(diamonds) == 0:
+        s += 1
+    if t <= tmax:
+        s += 1
+    stars[0] = stars[0] + s
+    while start_run:
+        screen.blit(Background, (0, 0))
+        screen.blit(big_girl, (135, 270))
+        screen.blit(big_boy, (700, 270))
+        play_button.display_button()
+        home_button.display_button()
+
+        if s == 1:
+            screen.blit(star, (300, 120))
+        if s == 2:
+            screen.blit(star, (290, 120))
+            screen.blit(big_star, (420,100))
+        if s == 3:
+            screen.blit(star, (290, 120))
+            screen.blit(big_star, (420,100))
+            screen.blit(star, (590, 120))
+
+        pygame.display.flip()
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if mouse_in_button(play_button, event.pos):
+                    start_run = False
+                if mouse_in_button(home_button, event.pos):
+                    run = False
+                    home()
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+    pygame.mixer.stop()
 
 
 def level3(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
+    tmax = 120
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -285,6 +347,10 @@ def level3(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                                 b.pressed = False
                                 savewall = None
 
+            black = (0, 0, 0)
+            font = pygame.font.SysFont("ttf.Calibri", 35)
+            screen.blit(font.render(str(int(time.time() - t0)) , True, black),(480,30))
+
             for diamond in diamonds:
                 gem = diamond.collect(boy) and diamond.collect(girl)
                 if gem:
@@ -366,9 +432,11 @@ def level3(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
     t = time.time() - t0
     print(t)
     level[0] = level[0] + 1
+    middle(red,blue,pink,purple,RED,BLUE,PINK,PURPLE,t,tmax,diamonds)
 
-# set clock
+
 def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
+    tmax = 60
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -503,6 +571,10 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                     run = False
                 for lava in lavas:
                     lava.display_lava()
+
+                black = (0, 0, 0)
+                font = pygame.font.SysFont("ttf.Calibri", 35)
+                screen.blit(font.render(str(int(time.time() - t0)), True, black), (480, 30))
                 # refreshing screen:
                 pygame.display.flip()
                 pygame.display.update()
@@ -571,9 +643,11 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
     t = time.time() - t0
     print(t)
     level[0] = level[0] + 1
+    middle(red,blue,pink,purple,RED,BLUE,PINK,PURPLE,t,tmax,diamonds)
 
 
 def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
+    tmax = 60
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -757,6 +831,11 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 run = False
             for lava in lavas:
                 lava.display_lava()
+
+            black = (0, 0, 0)
+            font = pygame.font.SysFont("Calibri Regular.ttf", 35)
+            screen.blit(font.render(str(int(time.time() - t0)), True, black),(480,30))
+
             # refreshing screen:
             pygame.display.flip()
             pygame.display.update()
@@ -826,6 +905,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     t = time.time() - t0
     print(t)
     level[0] = level[0] + 1
+    middle(red,blue,pink,purple,RED,BLUE,PINK,PURPLE,t,tmax,diamonds)
 
 # sending the results to whatsapp
 def home():
@@ -840,8 +920,6 @@ def home():
     RED = False
     PINK = True
     PURPLE = True
-    start_pic = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
-    background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
 
     big_boy = pygame.transform.scale(pygame.image.load("Images/Redboy.png"), (170, 280))
     big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170, 285))
@@ -851,6 +929,12 @@ def home():
         screen.blit(big_girl, (105, 225))
         screen.blit(big_boy, (730, 230))
         Play_BUTTON.display_button()
+
+        star = pygame.transform.scale(pygame.image.load("Images/Star.png"), (60, 60))
+        screen.blit(star, (30, 20))
+        black = (0, 0, 0)
+        font = pygame.font.SysFont("ttf.Calibri", 50)
+        screen.blit(font.render("X " + str(stars[0]), True, black), (100, 40))
 
         if red: one_Button.display_button()
         if blue: two_Button.display_button()
