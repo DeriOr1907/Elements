@@ -159,16 +159,26 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
     play_button = Button(play_button, (460, 300), 75, 75)
     home_button = pygame.transform.scale(pygame.image.load("Images/home.png"), (55, 55))
     home_button = Button(home_button, (473, 380), 55, 55)
+    gem = pygame.transform.scale(pygame.image.load("Images/diamond-icon.jpg"), (58, 58))
+    stoper = pygame.transform.scale(pygame.image.load("Images/clock.png"), (55, 55))
+    didgem = pygame.transform.scale(pygame.image.load("Images/X.png"), (50, 50))
+    didstoper = pygame.transform.scale(pygame.image.load("Images/X.png"), (50, 50))
     s = 1
     if len(diamonds) == 0:
         s += 1
+        didgem = pygame.transform.scale(pygame.image.load("Images/V.png.crdownload"), (60, 55))
     if t <= tmax:
         s += 1
+        didstoper = pygame.transform.scale(pygame.image.load("Images/V.png.crdownload"), (60, 55))
     stars[0] = stars[0] + s
     while start_run:
         screen.blit(Background, (0, 0))
         screen.blit(big_girl, (135, 270))
         screen.blit(big_boy, (700, 270))
+        screen.blit(gem, (60, 100))
+        screen.blit(stoper, (60, 165))
+        screen.blit(didgem, (130, 100))
+        screen.blit(didstoper, (130, 165))
         play_button.display_button()
         home_button.display_button()
 
