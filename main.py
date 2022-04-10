@@ -156,13 +156,15 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
 
     Background = pygame.transform.scale(pygame.image.load("Images/winbackground.png"), screen_size)
     play_button = pygame.transform.scale(pygame.image.load("Images/PlayButton!!!.png"), (75, 75))
-    play_button = Button(play_button, (460, 300), 75, 75)
+    play_button = Button(play_button, (460, 290), 75, 75)
     home_button = pygame.transform.scale(pygame.image.load("Images/home.png"), (55, 55))
-    home_button = Button(home_button, (473, 380), 55, 55)
+    home_button = Button(home_button, (473, 370), 55, 55)
     gem = pygame.transform.scale(pygame.image.load("Images/diamond-icon.jpg"), (58, 58))
     stoper = pygame.transform.scale(pygame.image.load("Images/clock.png"), (55, 55))
     didgem = pygame.transform.scale(pygame.image.load("Images/X.png"), (50, 50))
     didstoper = pygame.transform.scale(pygame.image.load("Images/X.png"), (50, 50))
+    retry_button = pygame.transform.scale(pygame.image.load("Images/retry-icon-9.jpg"), (50, 50))
+    retry_button = Button(retry_button, (475, 435), 50, 50)
     s = 1
     if len(diamonds) == 0:
         s += 1
@@ -173,7 +175,7 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
     stars[0] = stars[0] + s
     while start_run:
         screen.blit(Background, (0, 0))
-        screen.blit(big_girl, (135, 270))
+        screen.blit(big_girl, (150, 270))
         screen.blit(big_boy, (700, 270))
         screen.blit(gem, (60, 100))
         screen.blit(stoper, (60, 165))
@@ -181,7 +183,7 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
         screen.blit(didstoper, (130, 165))
         play_button.display_button()
         home_button.display_button()
-
+        retry_button.display_button()
         if s == 1:
             screen.blit(star, (300, 120))
         if s == 2:
@@ -200,12 +202,15 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
                 if mouse_in_button(play_button, event.pos):
                     start_run = False
                 if mouse_in_button(home_button, event.pos):
-                    run = False
+                    start_run = False
                     home()
+                if mouse_in_button(retry_button, event.pos):
+                    start_run = False
+                    level[0] = level[0] - 1
+                    stars[0] = stars[0] - s
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-    pygame.mixer.stop()
 
 
 def level3(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
@@ -1032,12 +1037,14 @@ def home():
                 pygame.quit()
                 quit()
     pygame.mixer.stop()
-    if level[0] == 1:
-        level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
-    if level[0] == 2:
-        level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
-    if level[0] == 3:
-        level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
+    while level[0] <= 10:
+        if level[0] == 1:
+            level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
+        if level[0] == 2:
+            level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
+        if level[0] == 3:
+            level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
+    #ending
 
 home()
 
