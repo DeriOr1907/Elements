@@ -10,10 +10,12 @@ class Star:
         self.grow = gr
         self.image = pygame.transform.scale(pygame.image.load(self.root), (self.size, self.size))
 
-    def display_star(self):
-        if self.size < self.maxsize:
+    def display_star(self,b):
+        if self.size < self.maxsize and b:
             self.image = pygame.transform.scale(pygame.image.load(self.root), (self.size, self.size))
             screen.blit(self.image, self.location)
             self.size += self.grow
+            return False
         else:
             screen.blit(self.image, self.location)
+            return True

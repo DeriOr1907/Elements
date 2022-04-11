@@ -48,6 +48,37 @@ def create_images_list(imgpath1, imgpath2, imgpath3):
              pygame.transform.scale(pygame.image.load(imgpath3), (41, 45))]
     return imags
 
+def phone():
+    pressed_enter = False
+    phoneNum = ""
+    pygame.draw.rect(screen, (50, 50, 50), pygame.Rect(420,380, 150, 15))
+    pygame.display.flip()
+    pygame.draw.rect(screen, (255, 255, 255),
+                     pygame.Rect(420 , 380 , 148, 13))
+    pygame.display.flip()
+    while not pressed_enter:
+        # get the string for comment
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                pygame.draw.rect(screen, (50, 50, 50),
+                                 pygame.Rect(420,380, 150, 15))
+                pygame.display.flip()
+                pygame.draw.rect(screen, (255, 255, 255),
+                                 pygame.Rect(420,380, 148, 13))
+                pygame.display.flip()
+                if event.key == pygame.K_RETURN:
+                    pressed_enter = True
+                elif event.key == pygame.K_BACKSPACE \
+                        and not (len(phoneNum) == 0):
+                    phoneNum = phoneNum[:-1]
+                else:
+                    phoneNum += event.unicode
+                font2 = pygame.font.SysFont('chalkduster.ttf', 15, bold=False)
+                img2 = font2.render(phoneNum, True, (50, 50, 50))
+                screen.blit(img2,
+                            (420, 380))
+                pygame.display.update()
+    return phoneNum
 
 start_background = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
 Play_BUTTON = pygame.transform.scale(pygame.image.load("Images/PlayButton!!!.png"), (90, 90))
@@ -137,6 +168,7 @@ objects1 = [o1, o2, o3, o4, ob1, ob2, ob3, ob4, ob5, ob6, ob7]
 
 level = [1]
 stars = [0]
+phNum = []
 
 def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
     big_boy = None
@@ -200,14 +232,13 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
         #     screen.blit(star, (590, 120))
 
         if s == 1:
-            star1.display_star()
+            star1.display_star(True)
         if s == 2:
-            star1.display_star()
-            star2.display_star()
+            star2.display_star(star1.display_star(True))
         if s == 3:
-            star1.display_star()
-            star2.display_star()
-            star3.display_star()
+            a = star1.display_star(True)
+            b = star2.display_star(a)
+            star3.display_star(b and a)
 
         pygame.display.flip()
         pygame.display.update()
@@ -951,6 +982,9 @@ def home():
     PINK = True
     PURPLE = True
 
+    whatsapp_button = pygame.transform.scale(pygame.image.load("Images/Whatsapp_logo.png"), (60, 60))
+    whatsapp_button = Button(whatsapp_button,(465, 300),60,60)
+
     big_boy = pygame.transform.scale(pygame.image.load("Images/Redboy.png"), (170, 280))
     big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170, 285))
 
@@ -959,7 +993,7 @@ def home():
         screen.blit(big_girl, (105, 225))
         screen.blit(big_boy, (730, 230))
         Play_BUTTON.display_button()
-
+        whatsapp_button.display_button()
         star = pygame.transform.scale(pygame.image.load("Images/Star.png"), (60, 60))
         screen.blit(star, (30, 20))
         black = (0, 0, 0)
@@ -983,6 +1017,8 @@ def home():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if mouse_in_button(Play_BUTTON, event.pos):
                     start_run = False
+                if mouse_in_button(whatsapp_button, event.pos):
+                    phNum.append(phone())
                 if RED:
                     if mouse_in_button(oneButton,event.pos):
                         big_girl = pygame.transform.scale(pygame.image.load("Images/Redgirl.png"), (170, 280))
