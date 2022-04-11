@@ -8,6 +8,7 @@ pygame.display.set_caption('Elements')
 clock = pygame.time.Clock()
 from Classes.Door import *
 import time
+from Classes.Star import *
 
 def mouse_in_button(button, mouse_pos):
     if button.Location[0] + button.width > mouse_pos[0] > button.Location[0] and button.Location[1] < mouse_pos[1] < button.Location[1] + button.height:
@@ -154,6 +155,10 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
     star = pygame.transform.scale(pygame.image.load("Images/Star.png"), (120, 120))
     big_star = pygame.transform.scale(pygame.image.load("Images/Star.png"), (160, 160))
 
+    star1 = Star("Images/Star.png", 120, (300, 120),2)
+    star2 = Star("Images/Star.png", 160, (420,95),2.5)
+    star3 = Star("Images/Star.png", 120, (590, 120),2)
+
     Background = pygame.transform.scale(pygame.image.load("Images/winbackground.png"), screen_size)
     play_button = pygame.transform.scale(pygame.image.load("Images/PlayButton!!!.png"), (75, 75))
     play_button = Button(play_button, (460, 290), 75, 75)
@@ -168,10 +173,10 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
     s = 1
     if len(diamonds) == 0:
         s += 1
-        didgem = pygame.transform.scale(pygame.image.load("Images/V.png.crdownload"), (60, 55))
+        didgem = pygame.transform.scale(pygame.image.load("Images/V.png"), (60, 55))
     if t <= tmax:
         s += 1
-        didstoper = pygame.transform.scale(pygame.image.load("Images/V.png.crdownload"), (60, 55))
+        didstoper = pygame.transform.scale(pygame.image.load("Images/V.png"), (60, 55))
     stars[0] = stars[0] + s
     while start_run:
         screen.blit(Background, (0, 0))
@@ -184,15 +189,25 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
         play_button.display_button()
         home_button.display_button()
         retry_button.display_button()
+        # if s == 1:
+        #     screen.blit(star, (300, 120))
+        # if s == 2:
+        #     screen.blit(star, (290, 120))
+        #     screen.blit(big_star, (420,95))
+        # if s == 3:
+        #     screen.blit(star, (290, 120))
+        #     screen.blit(big_star, (420,95))
+        #     screen.blit(star, (590, 120))
+
         if s == 1:
-            screen.blit(star, (300, 120))
+            star1.display_star()
         if s == 2:
-            screen.blit(star, (290, 120))
-            screen.blit(big_star, (420,95))
+            star1.display_star()
+            star2.display_star()
         if s == 3:
-            screen.blit(star, (290, 120))
-            screen.blit(big_star, (420,95))
-            screen.blit(star, (590, 120))
+            star1.display_star()
+            star2.display_star()
+            star3.display_star()
 
         pygame.display.flip()
         pygame.display.update()
