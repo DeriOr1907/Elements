@@ -48,23 +48,23 @@ def create_images_list(imgpath1, imgpath2, imgpath3):
              pygame.transform.scale(pygame.image.load(imgpath3), (41, 45))]
     return imags
 
-def phone():
+def get_str(x,y):
     pressed_enter = False
     phoneNum = ""
-    pygame.draw.rect(screen, (50, 50, 50), pygame.Rect(420,380, 150, 15))
+    pygame.draw.rect(screen, (50, 50, 50), pygame.Rect(x,y, 150, 20))
     pygame.display.flip()
     pygame.draw.rect(screen, (255, 255, 255),
-                     pygame.Rect(420 , 380 , 148, 13))
+                     pygame.Rect(x , y , 148, 18))
     pygame.display.flip()
     while not pressed_enter:
         # get the string for comment
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 pygame.draw.rect(screen, (50, 50, 50),
-                                 pygame.Rect(420,380, 150, 15))
+                                 pygame.Rect(x,y, 150, 20))
                 pygame.display.flip()
                 pygame.draw.rect(screen, (255, 255, 255),
-                                 pygame.Rect(420,380, 148, 13))
+                                 pygame.Rect(x,y, 148, 18))
                 pygame.display.flip()
                 if event.key == pygame.K_RETURN:
                     pressed_enter = True
@@ -73,11 +73,14 @@ def phone():
                     phoneNum = phoneNum[:-1]
                 else:
                     phoneNum += event.unicode
-                font2 = pygame.font.SysFont('chalkduster.ttf', 15, bold=False)
+                font2 = pygame.font.SysFont('chalkduster.ttf', 25, bold=False)
                 img2 = font2.render(phoneNum, True, (50, 50, 50))
-                screen.blit(img2,
-                            (420, 380))
+                screen.blit(img2,(x, y))
                 pygame.display.update()
+
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
     return phoneNum
 
 start_background = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
@@ -165,10 +168,11 @@ ob7 = Object(80, 15, 790, 400, objects_color)
 
 
 objects1 = [o1, o2, o3, o4, ob1, ob2, ob3, ob4, ob5, ob6, ob7]
-
+name = ""
 level = [1]
 stars = [0]
-phNum = []
+phNum = ""
+
 
 def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
     big_boy = None
@@ -210,6 +214,9 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
         s += 1
         didstoper = pygame.transform.scale(pygame.image.load("Images/V.png"), (60, 55))
     stars[0] = stars[0] + s
+    with open(name + ".txt", 'w', encoding='utf-8') as f:
+        f.write(str(level[0]) + "\n")
+        f.write(str(stars[0]) + "\n")
     while start_run:
         screen.blit(Background, (0, 0))
         screen.blit(big_girl, (150, 270))
@@ -221,15 +228,6 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
         play_button.display_button()
         home_button.display_button()
         retry_button.display_button()
-        # if s == 1:
-        #     screen.blit(star, (300, 120))
-        # if s == 2:
-        #     screen.blit(star, (290, 120))
-        #     screen.blit(big_star, (420,95))
-        # if s == 3:
-        #     screen.blit(star, (290, 120))
-        #     screen.blit(big_star, (420,95))
-        #     screen.blit(star, (590, 120))
 
         if s == 1:
             star1.display_star(True)
@@ -982,9 +980,6 @@ def home():
     PINK = True
     PURPLE = True
 
-    whatsapp_button = pygame.transform.scale(pygame.image.load("Images/Whatsapp_logo.png"), (60, 60))
-    whatsapp_button = Button(whatsapp_button,(465, 300),60,60)
-
     big_boy = pygame.transform.scale(pygame.image.load("Images/Redboy.png"), (170, 280))
     big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170, 285))
 
@@ -993,7 +988,6 @@ def home():
         screen.blit(big_girl, (105, 225))
         screen.blit(big_boy, (730, 230))
         Play_BUTTON.display_button()
-        whatsapp_button.display_button()
         star = pygame.transform.scale(pygame.image.load("Images/Star.png"), (60, 60))
         screen.blit(star, (30, 20))
         black = (0, 0, 0)
@@ -1017,8 +1011,6 @@ def home():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if mouse_in_button(Play_BUTTON, event.pos):
                     start_run = False
-                if mouse_in_button(whatsapp_button, event.pos):
-                    phNum.append(phone())
                 if RED:
                     if mouse_in_button(oneButton,event.pos):
                         big_girl = pygame.transform.scale(pygame.image.load("Images/Redgirl.png"), (170, 280))
@@ -1088,16 +1080,67 @@ def home():
                 pygame.quit()
                 quit()
     pygame.mixer.stop()
-    while level[0] <= 10:
+    while level[0] <= 3:
         if level[0] == 1:
             level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
         if level[0] == 2:
             level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
         if level[0] == 3:
             level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
-    #ending
+    # the end
 
-home()
+def start():
+    global phNum
+    global name
+    run = True
+    whatsapp_button = pygame.transform.scale(pygame.image.load("Images/Whatsapp_logo.png"), (90, 90))
+    whatsapp_button = Button(whatsapp_button,(455, 250),90,90)
+    start_BUTTON = pygame.transform.scale(pygame.image.load("Images/start_button.png.crdownload"), (140, 85))
+    start_BUTTON = Button(start_BUTTON, (430, 150), 85,140)
+    n_button = pygame.transform.scale(pygame.image.load("Images/name.png"), (250, 90))
+    n_button = Button(n_button,(380, 350),90,250)
+    while run:
+        screen.blit(start_background, (0, 0))
+        whatsapp_button.display_button()
+        start_BUTTON.display_button()
+        n_button.display_button()
+        font = pygame.font.SysFont('chalkduster.ttf', 45, bold=False)
+        img = font.render(name, True, (50, 50, 50))
+        screen.blit(img, (400, 380))
 
+        pygame.display.flip()
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if mouse_in_button(whatsapp_button, event.pos):
+                    button_click()
+                    phNum = (get_str(425,400))
+                if mouse_in_button(n_button, event.pos):
+                    button_click()
+                    name = get_str(425,390)
+                if mouse_in_button(start_BUTTON, event.pos):
+                    button_click()
+                    run = False
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+    with open(name+".txt", 'a', encoding='utf-8') as f:
+        f.write(str(level[0])+"\n")
+        f.write(str(stars[0])+"\n")
+
+
+    with open(name+".txt", "r") as f:  # read from file
+        level[0] = int(f.readline())
+        stars[0] = int(f.readline())
+
+        print(f"first: {level[0]}\n"
+              f"Second: {stars[0]}")
+
+    home()
+
+
+start()
 print("gever retzah ata")
 quit()
