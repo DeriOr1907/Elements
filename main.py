@@ -1094,8 +1094,8 @@ def start():
     global name
     run = True
     whatsapp_button = pygame.transform.scale(pygame.image.load("Images/Whatsapp_logo.png"), (90, 90))
-    whatsapp_button = Button(whatsapp_button,(455, 250),90,90)
-    start_BUTTON = pygame.transform.scale(pygame.image.load("Images/start_button.png.crdownload"), (140, 85))
+    whatsapp_button = Button(whatsapp_button,(455, 240),90,90)
+    start_BUTTON = pygame.transform.scale(pygame.image.load("Images/start_button.png"), (140, 85))
     start_BUTTON = Button(start_BUTTON, (430, 150), 85,140)
     n_button = pygame.transform.scale(pygame.image.load("Images/name.png"), (250, 90))
     n_button = Button(n_button,(380, 350),90,250)
@@ -1115,7 +1115,7 @@ def start():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if mouse_in_button(whatsapp_button, event.pos):
                     button_click()
-                    phNum = (get_str(425,400))
+                    phNum = (get_str(425,328))
                 if mouse_in_button(n_button, event.pos):
                     button_click()
                     name = get_str(425,390)
@@ -1129,7 +1129,6 @@ def start():
     with open(name+".txt", 'a', encoding='utf-8') as f:
         f.write(str(level[0])+"\n")
         f.write(str(stars[0])+"\n")
-
 
     with open(name+".txt", "r") as f:  # read from file
         level[0] = int(f.readline())
