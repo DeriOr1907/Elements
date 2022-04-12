@@ -1525,6 +1525,21 @@ def home():
             level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
         if level[0] == 4:
             level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
+    runend = True
+    t = time.localtime()
+    current_h = time.strftime("%H", t)
+    current_m = time.strftime("%M", t)
+    pywhatkit.sendwhatmsg(phNum, "msg", current_h, current_m)
+    end_b = pygame.transform.scale(pygame.image.load("Images/EndGame.png"), screen_size)
+    while runend:
+        screen.blit(end_b, (0, 0))
+        pygame.display.flip()
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                runend = False
+                pygame.quit()
+                quit()
     # the end
 
 
@@ -1576,21 +1591,9 @@ def start():
     phNum = "+972" + phNum
 
     home()
-end_b = pygame.transform.scale(pygame.image.load("Images/EndGame.png"), screen_size)
-run = True
-while run:
-    screen.blit(end_b, (0, 0))
-    pygame.display.flip()
-    pygame.display.update()
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
-            pygame.quit()
-            quit()
+
+
 start()
-t = time.localtime()
-current_h = time.strftime("%H", t)
-current_m = time.strftime("%M", t)
-pywhatkit.sendwhatmsg(phNum, "msg", current_h, current_m)
+
 print("gever retzah ata")
 quit()
