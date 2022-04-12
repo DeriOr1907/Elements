@@ -18,6 +18,10 @@ def mouse_in_button(button, mouse_pos):
     if button.Location[0] + button.width > mouse_pos[0] > button.Location[0] and button.Location[1] < mouse_pos[1] < button.Location[1] + button.height:
         return True
 
+
+pygame.mixer.init()
+
+
 def play_music(str):
     sound = pygame.mixer.Sound(str)
     pygame.mixer.Sound.play(sound)
@@ -112,6 +116,11 @@ three_Button = Button(three_Button,(880-70, 150),70,70)
 four_Button = pygame.transform.scale(pygame.image.load("Images/4button.png"), (70,70))
 four_Button = Button(four_Button,(960-70, 150),70,70)
 
+sound_button = pygame.transform.scale(pygame.image.load("Images/sound.png"), (30,30))
+sound_button = Button(sound_button,(950, 10),30,30)
+no_sound_button = pygame.transform.scale(pygame.image.load("Images/no sound.png"), (30,30))
+no_sound_button = Button(no_sound_button,(950, 10),30,30)
+sound_on = True
 
 objects_color = (95, 80, 45)
 o1 = Object(1050, 30, 0, 500, objects_color)
@@ -337,9 +346,11 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
     print(win_quotes[x])
     win_quotes.remove(win_quotes[x])
 
+
 def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     tmax = 120
     black = (0, 0, 0)
+    sound_on = True
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -487,7 +498,6 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                                 b.pressed = False
                                 savewall = None
 
-            black = (0, 0, 0)
             font = pygame.font.SysFont("ttf.Calibri", 35)
             screen.blit(font.render(str(int(time.time() - t0)) , True, black),(480,30))
 
@@ -503,6 +513,11 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 run = False
             for lava in lavas:
                 lava.display_lava()
+            if sound_on:
+                sound_button.display_button()
+            else:
+                no_sound_button.display_button()
+
             # refreshing screen:
             pygame.display.flip()
             pygame.display.update()
@@ -510,6 +525,14 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
+                    if sound_on:
+                        if mouse_in_button(sound_button, event.pos):
+                            pygame.mixer.stop()
+                            sound_on = False
+                    else:
+                        if mouse_in_button(no_sound_button, event.pos):
+                            play_music("Sounds/backgroundSoundtrack2.ogg")
+                            sound_on = True
                     print(mouse_pos)
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RIGHT:
@@ -578,6 +601,7 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     tmax = 60
     black = (0, 0, 0)
+    sound_on = True
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -712,8 +736,10 @@ def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                     run = False
                 for lava in lavas:
                     lava.display_lava()
-
-                black = (0, 0, 0)
+                if sound_on:
+                    sound_button.display_button()
+                else:
+                    no_sound_button.display_button()
                 font = pygame.font.SysFont("ttf.Calibri", 35)
                 screen.blit(font.render(str(int(time.time() - t0)), True, black), (480, 30))
                 # refreshing screen:
@@ -723,6 +749,15 @@ def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 for event in pygame.event.get():
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         mouse_pos = event.pos
+                        if sound_on:
+                            if mouse_in_button(sound_button, event.pos):
+                                pygame.mixer.stop()
+                                sound_on = False
+                        else:
+                            if mouse_in_button(no_sound_button, event.pos):
+                                play_music("Sounds/backgroundSoundtrack2.ogg")
+                                sound_on = True
+                        print(mouse_pos)
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_RIGHT:
                             boy.move_right()
@@ -790,6 +825,7 @@ def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     tmax = 60
     black = (0, 0, 0)
+    sound_on = True
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -962,11 +998,13 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 run = False
             for lava in lavas:
                 lava.display_lava()
-
+            if sound_on:
+                sound_button.display_button()
+            else:
+                no_sound_button.display_button()
             por1.display_portal(boy,girl,(690,40))
             por2.display_portal(boy,girl,(560,40))
 
-            black = (0, 0, 0)
             font = pygame.font.SysFont("Calibri Regular.ttf", 35)
             screen.blit(font.render(str(int(time.time() - t0)), True, black),(480,30))
 
@@ -977,6 +1015,14 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
+                    if sound_on:
+                        if mouse_in_button(sound_button, event.pos):
+                            pygame.mixer.stop()
+                            sound_on = False
+                    else:
+                        if mouse_in_button(no_sound_button, event.pos):
+                            play_music("Sounds/backgroundSoundtrack2.ogg")
+                            sound_on = True
                     print(mouse_pos)
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RIGHT:
@@ -1046,6 +1092,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     tmax = 60
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
+    sound_on = True
     girl_lava1 = None
     boy_lava1 = None
     girl = None
@@ -1232,7 +1279,10 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             black = (0, 0, 0)
             font = pygame.font.SysFont("Calibri Regular.ttf", 35)
             screen.blit(font.render(str(int(time.time() - t0)), True, black),(480,30))
-
+            if sound_on:
+                sound_button.display_button()
+            else:
+                no_sound_button.display_button()
             # refreshing screen:
             pygame.display.flip()
             pygame.display.update()
@@ -1240,6 +1290,14 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
+                    if sound_on:
+                        if mouse_in_button(sound_button, event.pos):
+                            pygame.mixer.stop()
+                            sound_on = False
+                    else:
+                        if mouse_in_button(no_sound_button, event.pos):
+                            play_music("Sounds/backgroundSoundtrack2.ogg")
+                            sound_on = True
                     print(mouse_pos)
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RIGHT:
@@ -1282,7 +1340,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             home_button.display_button()
 
             if len(lose_quotes) != 0:
-                screen.blit(lose_quotes[x], (100, 80))
+                screen.blit(lose_quotes[x], (150, 0))
 
             pygame.display.flip()
             pygame.display.update()
@@ -1313,6 +1371,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 
 # sending the results to whatsapp
 def home():
+    global sound_on
     start_run = True
     play_music("Sounds/startSoundTrack.mp3")
     blue = False
@@ -1332,6 +1391,10 @@ def home():
         screen.blit(start_background, (0, 0))
         screen.blit(big_girl, (105, 225))
         screen.blit(big_boy, (730, 230))
+        if sound_on:
+            sound_button.display_button()
+        else:
+            no_sound_button.display_button()
         Play_BUTTON.display_button()
         star = pygame.transform.scale(pygame.image.load("Images/Star.png"), (60, 60))
         screen.blit(star, (30, 20))
@@ -1356,6 +1419,14 @@ def home():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if mouse_in_button(Play_BUTTON, event.pos):
                     start_run = False
+                if sound_on:
+                    if mouse_in_button(sound_button, event.pos):
+                        pygame.mixer.stop()
+                        sound_on = False
+                else:
+                    if mouse_in_button(no_sound_button, event.pos):
+                        play_music("Sounds/startSoundTrack.mp3")
+                        sound_on = True
                 if RED:
                     if mouse_in_button(oneButton,event.pos):
                         big_girl = pygame.transform.scale(pygame.image.load("Images/Redgirl.png"), (170, 280))
