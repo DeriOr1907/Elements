@@ -350,9 +350,9 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
 
 
 def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
+    global sound_on
     tmax = 120
     black = (0, 0, 0)
-    sound_on = True
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -373,7 +373,8 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     retry = True
     while run:
         if retry:
-            play_music("Sounds/backgroundSoundtrack2.ogg")
+            if sound_on:
+                play_music("Sounds/backgroundSoundtrack2.ogg")
             if not red:
                 y = create_images_list("Images/Redgirl.png", "Images/RedGRun.PNG", "Images/RedGRunLeft.PNG")
                 girl = Character((35, 450), "red", y)
@@ -606,9 +607,9 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 
 
 def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
+    global sound_on
     tmax = 60
     black = (0, 0, 0)
-    sound_on = True
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -627,7 +628,8 @@ def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     retry = True
     while run:
         if retry:
-            play_music("Sounds/backgroundSoundtrack2.ogg")
+            if sound_on:
+                play_music("Sounds/backgroundSoundtrack2.ogg")
             if not red:
                 y = create_images_list("Images/Redgirl.png", "Images/RedGRun.PNG", "Images/RedGRunLeft.PNG")
                 girl = Character((30, 60), "red", y)
@@ -835,9 +837,9 @@ def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 
 
 def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
+    global sound_on
     tmax = 60
     black = (0, 0, 0)
-    sound_on = True
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -853,7 +855,8 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     retry = True
     while run:
         if retry:
-            play_music("Sounds/backgroundSoundtrack2.ogg")
+            if sound_on:
+                play_music("Sounds/backgroundSoundtrack2.ogg")
             if not red:
                 y = create_images_list("Images/Redgirl.png", "Images/RedGRun.PNG", "Images/RedGRunLeft.PNG")
                 girl = Character((540, 340), "red", y)
@@ -1105,10 +1108,10 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 
 
 def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
+    global sound_on
     tmax = 60
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
-    sound_on = True
     girl_lava1 = None
     boy_lava1 = None
     girl = None
@@ -1123,7 +1126,8 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     retry = True
     while run:
         if retry:
-            play_music("Sounds/backgroundSoundtrack2.ogg")
+            if sound_on:
+                play_music("Sounds/backgroundSoundtrack2.ogg")
             if not red:
                 y = create_images_list("Images/Redgirl.png", "Images/RedGRun.PNG", "Images/RedGRunLeft.PNG")
                 girl = Character((540, 340), "red", y)
