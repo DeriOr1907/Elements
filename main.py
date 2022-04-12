@@ -231,35 +231,34 @@ wq14 = pygame.transform.scale(pygame.image.load("Images/wq14.png"), size)
 wq15 = pygame.transform.scale(pygame.image.load("Images/wq15.png"), size)
 
 
-
-lq1 = "מי שלא מוכן לטעות, לעולם לא יגיע למשהו מקורי - קן רובינסון"
-lq2 = "אנשים אומרים שמוטיבציה לא מחזיקה הרבה זמן. גם מקלחת לא, לכן אנו ממליצים אותה על בסיס יומי - זיג זיגלר"
-lq3 = "כשהם אומרים לך שאתה לא יכול, הם מראים לך את הגבולות שלהם, לא שלך - קווין קינו"
-lq4 = "הדבר היחיד שהוא יותר גרוע מלהתחיל ולהיכשל, הוא לא להתחיל בכלל - סת' גודין"
-lq5 = "ראשית הם מתעלמים ממך, אחר כך מגחכים עליך אחר כך תוקפים אותך ובסוף בונים פסל בדמותך - מיוחס לגנדי"
-lq6 = "לו היו לי 6 שעות לכרות עץ, הייתי מבלה את ה-4 הראשונות בלהשחיז את הגרזן - אברהם לינקולן"
-lq7 = "כשנדמה שהכול פועל נגדכם – תזכרו שמטוס ממריא נגד הרוח, ולא לצדה"
-lq8 = "ההגנה החזקה ביותר מפני הסחות דעת ופיתויים היא מטרה ברורה - שחר כהן"
-lq9 = "החיים הם 10 אחוז מה שקורה לך ו90 אחוז איך שאתה מגיב לאירועים - צ'רלס סוידול"
-lq10 = "תמיד יש דרך, עבור מי שמחויב - טוני רובינס"
-lq11 = "אם אתה רוצה להיות הטוב ביותר, אתה צריך להיות מוכן לעשות דברים שאנשים אחרים לא מוכנים לעשות - מייקל פלפס"
-lq12 = "רק מי שלוקח סיכון והולך רחוק, מגלה עד כמה רחוק הוא יכול להגיע - אלברט איינשטיין"
-lq13 = "כשהכל חשוך שקול את האפשרות שאת/ה האור"
-lq14 = "לא נכשלתי, הצלחתי למצוא 10,000 דרכים איך זה לא עובד - תומס אלווה אדיסון"
-lq15 = "הצלחה היא היכולת לעבור מכישלון לכישלון מבלי לאבד את ההתלהבות"
-lq16 = "החלומות שלך לא צריכים להיות גדולים, הם צריכים להיות שלך - גרי וי"
-lq17 = "האמיצים אולי לא יחיו לנצח, אבל הזהירים לא חיים בכלל - ריצ'רד ברנדסון"
-lq18 = "זה לא משנה כמה לאט אתה הולך, כל עוד אתה לא עוצר - קונפציוס"
-lq19 = "מכשולים הם הדברים המפחידים שאתה רואה כשאתה מוריד את העיניים מהמטרה שלך - הנרי פורד"
-lq20 = "התהילה הגדולה ביותר שלנו אינה בלעולם לא ליפול, אלא בלקום בכל פעם שאנו נופלים - קונפציוס"
-lq21 = "אין הצלחתי או נכשלתי - יש שיחקתי - יובל אברמוביץ"
-lq22 = "אני לא מפחד מאדם שהתאמן על 10,000 בעיטות פעם אחת, אני מפחד ממי שהתאמן על בעיטה אחת 10,000 פעמים - ברוס לי"
-lq23 = "הצלחה היא מתכון, אם יש לך את כל הרכיבים, אתה תצליח, מאוד פשוט - בראין טרייסי"
-lq24 = "החיים הם כמו רכיבה על אופניים, כדי לשמור על איזון, חייבים להמשיך לנוע - אלבקט איינשטיין"
-lq25 = "אף פעם אל תוותרו על חלום בגלל שייקח זמן להגשים אותו. הזמן בכל מקרה יעבור - ארל נייטינגייל"
-lq26 = "אני לא מתמקדת במה שניצב נגדי. אני מתמקדת במטרות שלי, ואני מנסה להתעלם מהשאר - ונוס וויליאמס"
-win_quotes = [wq1,wq2,wq3,wq4,wq5,wq6,wq7,wq8,wq9,wq10,wq11,wq12,wq13,wq14,wq15]
-lose_quotes = []
+lq1 = pygame.transform.scale(pygame.image.load("Images/lq1.png"), size)
+lq2 = pygame.transform.scale(pygame.image.load("Images/lq2.png"), size)
+lq3 = pygame.transform.scale(pygame.image.load("Images/lq3.png"), size)
+lq4 = pygame.transform.scale(pygame.image.load("Images/lq4.png"), size)
+lq5 = pygame.transform.scale(pygame.image.load("Images/lq5.png"), size)
+lq6 = pygame.transform.scale(pygame.image.load("Images/lq6.png"), size)
+lq7 = pygame.transform.scale(pygame.image.load("Images/lq7.png"), size)
+lq8 = pygame.transform.scale(pygame.image.load("Images/lq8.png"), size)
+lq9 = pygame.transform.scale(pygame.image.load("Images/lq9.png"), size)
+lq10 = pygame.transform.scale(pygame.image.load("Images/lq10.png"), size)
+lq11 = pygame.transform.scale(pygame.image.load("Images/lq11.png"), size)
+lq12 = pygame.transform.scale(pygame.image.load("Images/lq12.png"), size)
+lq13 = pygame.transform.scale(pygame.image.load("Images/lq13.png"), size)
+lq14 = pygame.transform.scale(pygame.image.load("Images/lq14.png"), size)
+lq15 = pygame.transform.scale(pygame.image.load("Images/lq15.png"), size)
+lq16 = pygame.transform.scale(pygame.image.load("Images/lq16.png"), size)
+lq17 = pygame.transform.scale(pygame.image.load("Images/lq17.png"), size)
+lq18 = pygame.transform.scale(pygame.image.load("Images/lq18.png"), size)
+lq19 = pygame.transform.scale(pygame.image.load("Images/lq19.png"), size)
+lq20 = pygame.transform.scale(pygame.image.load("Images/lq20.png"), size)
+lq21 = pygame.transform.scale(pygame.image.load("Images/lq21.png"), size)
+lq22 = pygame.transform.scale(pygame.image.load("Images/lq22.png"), size)
+lq23 = pygame.transform.scale(pygame.image.load("Images/lq23.png"), size)
+lq24 = pygame.transform.scale(pygame.image.load("Images/lq24.png"), size)
+lq25 = pygame.transform.scale(pygame.image.load("Images/lq25.png"), size)
+lq26 = pygame.transform.scale(pygame.image.load("Images/lq26.png"), size)
+win_quotes = [wq1, wq2, wq3, wq4, wq5, wq6, wq7, wq8, wq9, wq10, wq11, wq12, wq13, wq14, wq15]
+lose_quotes = [lq1, lq2, lq3, lq4, lq5, lq6, lq7, lq8, lq9, lq10, lq11, lq12, lq13, lq14, lq15, lq16, lq17, lq18, lq19, lq20, lq21, lq22, lq23, lq24, lq25, lq26]
 
 
 def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
