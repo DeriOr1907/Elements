@@ -54,6 +54,10 @@ class Character:
     def set_location(self,loc):
         self.Location = loc
 
+    def loc(self):
+        x = (self.Location[0]+20,self.Location[1]+22)
+        return x
+
     def move_right(self):
         self.moving_right = True
 

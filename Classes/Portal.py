@@ -31,7 +31,7 @@ class Portal:
         x = (self.location[0], self.location[1] + self.height)
         return x
 
-    def display_portal(self,ch1,ch2):
+    def display_portal(self,ch1,ch2,new_loc):
         if self.index > 4:
             self.index = 0
         screen.blit(self.images[self.index], self.location)
@@ -40,3 +40,9 @@ class Portal:
         self.delay += 1
         if self.delay > 15:
             self.delay = 0
+        loc = (self.location[0] + 20,self.location[1] + 35)
+        charactes = [ch1, ch2]
+        for ch in charactes:
+            if ch.top_right()[1] <= loc[1] <= ch.right_bottom()[1]:
+                if ch.top_right()[0] >= loc[0] >= ch.left_bottom()[0]:
+                        ch.set_location(new_loc)

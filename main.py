@@ -167,7 +167,7 @@ OBJ5 = Object(200, 100, 400, 400, objects_color)
 OBJ6 = Object(2000, 15, 600, 300, objects_color)
 OBJ7 = Object(400, 15, 0, 300, objects_color)
 OBJ8 = Object(300, 15, 350, 220, objects_color)
-OBJ9 = Object(15, 145, 350, 90, objects_color)
+OBJ9 = Object(15, 145, 350, 95, objects_color)
 OBJ10 = Object(15, 235, 635, 0, objects_color)
 OBJ11 = Object(300, 15, 150, 90, objects_color)
 OBJ12 = Object(315, 15, 550, 90, objects_color)
@@ -875,8 +875,10 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 obstacle.display_obstacle()
             for door in doors:
                 door.display_door()
-            for wall in walls:
-                wall.display_wall()
+            if len(walls) != 0:
+                for wall in walls:
+                    wall.display_wall()
+
             for b in magic_buttons:
                 b.display_magic_button()
                 if not b.pressed:
@@ -888,7 +890,7 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 else:
                     if not b.press(boy) and not b.press(girl):
                         if savewall:
-                            if savewall.able_to_display(boy, girl):
+                            if savewall.able_to_display(boy,girl):
                                 walls.append(savewall)
                                 b.pressed = False
                                 savewall = None
@@ -906,8 +908,8 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             for lava in lavas:
                 lava.display_lava()
 
-            por1.display_portal(boy,girl)
-            por2.display_portal(boy,girl)
+            por1.display_portal(boy,girl,(690,40))
+            por2.display_portal(boy,girl,(560,40))
 
             black = (0, 0, 0)
             font = pygame.font.SysFont("Calibri Regular.ttf", 35)
