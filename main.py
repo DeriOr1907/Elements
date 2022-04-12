@@ -1579,7 +1579,7 @@ def start():
 end_b = pygame.transform.scale(pygame.image.load("Images/EndGame.png"), screen_size)
 run = True
 while run:
-    screen.blit(end_b, (0,0))
+    screen.blit(end_b, (0, 0))
     pygame.display.flip()
     pygame.display.update()
     for event in pygame.event.get():
