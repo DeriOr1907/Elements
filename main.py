@@ -203,21 +203,24 @@ name = ""
 level = [1]
 stars = [0]
 phNum = ""
-wq1 = "אני מאמין גדול במזל, ושמתי לב שככל שאני עובד קשה יותר, יש לי יותר מזל - תומס ג'פרסון"
-wq2 = "אם תמיד תנסו להיות נורמלים, לעולם לא תדעו כמה מדהימים אתם יכולים להיות - מאיה אנג'לו"
-wq3 = "אדם פסימי רואה את הקושי בכל הזדמנות, אדם אופטימי רואה הזדמנות בכל קושי - ווינסטון צ'רצ'יל"
-wq4 = "ראשית הם מתעלמים ממך, אחר כך מגחכים עליך אחר כך תוקפים אותך ובסוף בונים פסל בדמותך - מיוחס לגנדי"
-wq5 = "לו היו לי 6 שעות לכרות עץ, הייתי מבלה את ה-4 הראשונות בלהשחיז את הגרזן - אברהם לינקולן"
-wq6 = "הבעיה של רובינו היא לא שאנחנו מכוונים גבוה מידי ונכשלים, אלא שאנחנו מכוונים נמוך מידי ומצליחים - קן רובינס"
-wq7 = "מזל הוא הזדמנות שפוגשת מוכנות - סנקה"
-wq8 = "החיים הם 10 אחוז מה שקורה לך ו90 אחוז איך שאתה מגיב לאירועים - צ'רלס סוידול"
-wq9 = "אם אתה רוצה להיות הטוב ביותר, אתה צריך להיות מוכן לעשות דברים שאנשים אחרים לא מוכנים לעשות - מייקל פלפס"
-wq10 = "אל תפחד לקפוץ; אי אפשר לחצות תהום בשני צעדים - דייוויד לויד גורג"
-wq11 = "עדיף לגמגם בקול רם, מאשר לדבר רהוט במחשבות - שחר כהן"
-wq12 = "אני לא מפחד מאדם שהתאמן על 10,000 בעיטות פעם אחת, אני מפחד ממי שהתאמן על בעיטה אחת 10,000 פעמים - ברוס לי"
-wq13 = "הצלחה היא מתכון, אם יש לך את כל הרכיבים, אתה תצליח, מאוד פשוט - בראין טרייסי"
-wq14 = "אם אתם חושבים שאתם קטנים מדי בשביל לשנות משהו, נסו להירדם כשיש יתוש בחדר - אניטה רודיק"
-wq15 = "תכוונו לירח. גם אם תפספסו, תנחתו בין הכוכבים - לס בראון"
+size = (700,200)
+
+wq1 = pygame.transform.scale(pygame.image.load("Images/wq1.png"), size)
+wq2 = pygame.transform.scale(pygame.image.load("Images/wq2.png"), size)
+wq3 = pygame.transform.scale(pygame.image.load("Images/wq3.png"), size)
+wq4 = pygame.transform.scale(pygame.image.load("Images/wq4.png"), size)
+wq5 = pygame.transform.scale(pygame.image.load("Images/wq5.png"), size)
+wq6 = pygame.transform.scale(pygame.image.load("Images/wq6.png"), size)
+wq7 = pygame.transform.scale(pygame.image.load("Images/wq7.png"), size)
+wq8 = pygame.transform.scale(pygame.image.load("Images/wq8.png"), size)
+wq9 = pygame.transform.scale(pygame.image.load("Images/wq9.png"), size)
+wq10 = pygame.transform.scale(pygame.image.load("Images/wq10.png"), size)
+wq11 = pygame.transform.scale(pygame.image.load("Images/wq11.png"), size)
+wq12 = pygame.transform.scale(pygame.image.load("Images/wq12.png"), size)
+wq13 = pygame.transform.scale(pygame.image.load("Images/wq13.png"), size)
+wq14 = pygame.transform.scale(pygame.image.load("Images/wq14.png"), size)
+wq15 = pygame.transform.scale(pygame.image.load("Images/wq15.png"), size)
+
 
 
 lq1 = "מי שלא מוכן לטעות, לעולם לא יגיע למשהו מקורי - קן רובינסון"
@@ -246,11 +249,9 @@ lq23 = "הצלחה היא מתכון, אם יש לך את כל הרכיבים, �
 lq24 = "החיים הם כמו רכיבה על אופניים, כדי לשמור על איזון, חייבים להמשיך לנוע - אלבקט איינשטיין"
 lq25 = "אף פעם אל תוותרו על חלום בגלל שייקח זמן להגשים אותו. הזמן בכל מקרה יעבור - ארל נייטינגייל"
 lq26 = "אני לא מתמקדת במה שניצב נגדי. אני מתמקדת במטרות שלי, ואני מנסה להתעלם מהשאר - ונוס וויליאמס"
-win_quotes = []
-lose_quotes = [lq26,lq25,lq24,lq23]
+win_quotes = [wq1,wq2,wq3,wq4,wq5,wq6,wq7,wq8,wq9,wq10,wq11,wq12,wq13,wq14,wq15]
+lose_quotes = []
 
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
     big_boy = None
@@ -293,6 +294,7 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
     with open(name + ".txt", 'w', encoding='utf-8') as f:
         f.write(str(level[0]) + "\n")
         f.write(str(stars[0]) + "\n")
+    x = random.randint(0, len(win_quotes) - 1)
     while start_run:
         screen.blit(Background, (0, 0))
         screen.blit(big_girl, (150, 270))
@@ -301,6 +303,7 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
         screen.blit(stoper, (60, 185))
         screen.blit(didgem, (130, 120))
         screen.blit(didstoper, (130, 185))
+        screen.blit(win_quotes[x], (200, 10))
         play_button.display_button()
         home_button.display_button()
         retry_button.display_button()
@@ -331,7 +334,8 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-
+    print(win_quotes[x])
+    win_quotes.remove(win_quotes[x])
 
 def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     tmax = 120
@@ -1266,7 +1270,8 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                     pygame.quit()
                     quit()
             B = True
-            x = random.randint(0, len(lose_quotes) - 1)
+            if len(lose_quotes) > 0:
+                x = random.randint(0, len(lose_quotes) - 1)
         if run:
             retry_button = pygame.transform.scale(pygame.image.load("Images/retry-icon-9.jpg"), (100, 100))
             retry_button = Button(retry_button, (450, 200), 100, 100)
