@@ -14,26 +14,25 @@ import random
 # coding: [yourCoding]
 # coding: utf-8
 
-
 def mouse_in_button(button, mouse_pos):
     if button.Location[0] + button.width > mouse_pos[0] > button.Location[0] and button.Location[1] < mouse_pos[1] < button.Location[1] + button.height:
         return True
+
+
+pygame.mixer.init()
 
 
 def play_music(str):
     sound = pygame.mixer.Sound(str)
     pygame.mixer.Sound.play(sound)
 
-
 def gem():
     sound = pygame.mixer.Sound("Sounds/loser.ogg")
     pygame.mixer.Sound.play(sound)
 
-
 def loser():
     sound = pygame.mixer.Sound("Sounds/loser.ogg")
     pygame.mixer.Sound.play(sound)
-
 
 def lose_sound():
     sound = pygame.mixer.Sound("Sounds/death sound.mp3")
@@ -59,8 +58,7 @@ def create_images_list(imgpath1, imgpath2, imgpath3):
 # def hebrew(text):
 #     return unicode(text,  "Windows-1255")
 
-
-def get_str(x, y):
+def get_str(x,y):
     pressed_enter = False
     phoneNum = ""
     pygame.draw.rect(screen, (50, 50, 50), pygame.Rect(x,y, 150, 20))
@@ -118,6 +116,11 @@ three_Button = Button(three_Button,(880-70, 150),70,70)
 four_Button = pygame.transform.scale(pygame.image.load("Images/4button.png"), (70,70))
 four_Button = Button(four_Button,(960-70, 150),70,70)
 
+sound_button = pygame.transform.scale(pygame.image.load("Images/sound.png"), (30,30))
+sound_button = Button(sound_button,(950, 10),30,30)
+no_sound_button = pygame.transform.scale(pygame.image.load("Images/no sound.png"), (30,30))
+no_sound_button = Button(no_sound_button,(950, 10),30,30)
+sound_on = True
 
 objects_color = (95, 80, 45)
 o1 = Object(1050, 30, 0, 500, objects_color)
@@ -155,6 +158,7 @@ obj28 = Object(15, 55, 80, 500, objects_color)
 obj29 = Object(50, 50, 925, 160, objects_color)
 obj30 = Object(15, 15, 780, 265, objects_color)
 obj31 = Object(15, 30, 595, 265, objects_color)
+
 objects4 = [obj1, obj2, obj3, o4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj14, obj15, obj16, obj17, obj18, obj19, obj20, obj21, obj22, obj23, obj24, obj25, obj26, obj27, obj28, obj29, obj30, obj31]
 
 o5 = Object(220, 15, 0, 100, objects_color)
@@ -165,8 +169,10 @@ o9 = Object(300, 25, 700, 325, objects_color)
 o10 = Object(300, 100, 250, 420, objects_color)
 o11 = Object(60, 100, 718, 450, objects_color)
 o12 = Object(80, 15, 590, 410, objects_color)
+
 o13 = Object(50, 30, 400, 200, objects_color)
 o14 = Object(50, 30, 535, 200, objects_color)
+
 objects3 = [o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12, o13, o14]
 
 OBJ5 = Object(200, 100, 400, 400, objects_color)
@@ -189,6 +195,7 @@ OBJ21 = Object(15, 30, 701, 480, objects_color)
 OBJ22 = Object(15, 30, 885, 480, objects_color)
 OBJ23 = Object(105, 15, 145, 420, objects_color)
 OBJ24 = Object(109, 15, 745, 420, objects_color)
+
 objects2 = [o1, o2, o3, o4, OBJ5, OBJ6, OBJ7, OBJ8, OBJ9, OBJ10, OBJ11, OBJ12, OBJ13, OBJ14, OBJ15, OBJ16, OBJ17, OBJ18, OBJ19, OBJ20, OBJ21, OBJ22, OBJ23, OBJ24]
 
 ob1 = Object(590, 40, 210, 180, objects_color)
@@ -198,6 +205,7 @@ ob4 = Object(80, 15, 80, 280, objects_color)
 ob5 = Object(80, 15, 140, 400, objects_color)
 ob6 = Object(80, 15, 850, 280, objects_color)
 ob7 = Object(80, 15, 790, 400, objects_color)
+
 objects1 = [o1, o2, o3, o4, ob1, ob2, ob3, ob4, ob5, ob6, ob7]
 
 name = ""
@@ -223,37 +231,38 @@ wq14 = pygame.transform.scale(pygame.image.load("Images/wq14.png"), size)
 wq15 = pygame.transform.scale(pygame.image.load("Images/wq15.png"), size)
 
 
-lq1 = pygame.transform.scale(pygame.image.load("Images/lq1.png"), size)
-lq2 = pygame.transform.scale(pygame.image.load("Images/lq2.png"), size)
-lq3 = pygame.transform.scale(pygame.image.load("Images/lq3.png"), size)
-lq4 = pygame.transform.scale(pygame.image.load("Images/lq4.png"), size)
-lq5 = pygame.transform.scale(pygame.image.load("Images/lq5.png"), size)
-lq6 = pygame.transform.scale(pygame.image.load("Images/lq6.png"), size)
-lq7 = pygame.transform.scale(pygame.image.load("Images/lq7.png"), size)
-lq8 = pygame.transform.scale(pygame.image.load("Images/lq8.png"), size)
-lq9 = pygame.transform.scale(pygame.image.load(""), size)
-lq10 = pygame.transform.scale(pygame.image.load(""), size)
-lq11 = pygame.transform.scale(pygame.image.load(""), size)
-lq12 = pygame.transform.scale(pygame.image.load(""), size)
-lq13 = pygame.transform.scale(pygame.image.load("Images/lq13.png"), size)
-lq14 = pygame.transform.scale(pygame.image.load(""), size)
-lq15 = pygame.transform.scale(pygame.image.load("Images/lq15.png"), size)
-lq16 = pygame.transform.scale(pygame.image.load(""), size)
-lq17 = pygame.transform.scale(pygame.image.load(""), size)
-lq18 = pygame.transform.scale(pygame.image.load(""), size)
-lq19 = pygame.transform.scale(pygame.image.load(""), size)
-lq20 = pygame.transform.scale(pygame.image.load(""), size)
-lq21 = pygame.transform.scale(pygame.image.load(""), size)
-lq22 = pygame.transform.scale(pygame.image.load(""), size)
-lq23 = pygame.transform.scale(pygame.image.load(""), size)
-lq24 = pygame.transform.scale(pygame.image.load(""), size)
-lq25 = pygame.transform.scale(pygame.image.load(""), size)
-lq26 = pygame.transform.scale(pygame.image.load(""), size)
-win_quotes = [wq1, wq2, wq3, wq4, wq5, wq6, wq7, wq8, wq9, wq10, wq11, wq12, wq13, wq14, wq15]
-lose_quotes = [lq1, lq2, lq3, lq4, lq5, lq6, lq7, lq8, lq9, lq10, lq11, lq12, lq13, lq14, lq15, lq16, lq17, lq18, lq19, lq20, lq21, lq22, lq23, lq24, lq25, lq26]
+
+lq1 = "מי שלא מוכן לטעות, לעולם לא יגיע למשהו מקורי - קן רובינסון"
+lq2 = "אנשים אומרים שמוטיבציה לא מחזיקה הרבה זמן. גם מקלחת לא, לכן אנו ממליצים אותה על בסיס יומי - זיג זיגלר"
+lq3 = "כשהם אומרים לך שאתה לא יכול, הם מראים לך את הגבולות שלהם, לא שלך - קווין קינו"
+lq4 = "הדבר היחיד שהוא יותר גרוע מלהתחיל ולהיכשל, הוא לא להתחיל בכלל - סת' גודין"
+lq5 = "ראשית הם מתעלמים ממך, אחר כך מגחכים עליך אחר כך תוקפים אותך ובסוף בונים פסל בדמותך - מיוחס לגנדי"
+lq6 = "לו היו לי 6 שעות לכרות עץ, הייתי מבלה את ה-4 הראשונות בלהשחיז את הגרזן - אברהם לינקולן"
+lq7 = "כשנדמה שהכול פועל נגדכם – תזכרו שמטוס ממריא נגד הרוח, ולא לצדה"
+lq8 = "ההגנה החזקה ביותר מפני הסחות דעת ופיתויים היא מטרה ברורה - שחר כהן"
+lq9 = "החיים הם 10 אחוז מה שקורה לך ו90 אחוז איך שאתה מגיב לאירועים - צ'רלס סוידול"
+lq10 = "תמיד יש דרך, עבור מי שמחויב - טוני רובינס"
+lq11 = "אם אתה רוצה להיות הטוב ביותר, אתה צריך להיות מוכן לעשות דברים שאנשים אחרים לא מוכנים לעשות - מייקל פלפס"
+lq12 = "רק מי שלוקח סיכון והולך רחוק, מגלה עד כמה רחוק הוא יכול להגיע - אלברט איינשטיין"
+lq13 = "כשהכל חשוך שקול את האפשרות שאת/ה האור"
+lq14 = "לא נכשלתי, הצלחתי למצוא 10,000 דרכים איך זה לא עובד - תומס אלווה אדיסון"
+lq15 = "הצלחה היא היכולת לעבור מכישלון לכישלון מבלי לאבד את ההתלהבות"
+lq16 = "החלומות שלך לא צריכים להיות גדולים, הם צריכים להיות שלך - גרי וי"
+lq17 = "האמיצים אולי לא יחיו לנצח, אבל הזהירים לא חיים בכלל - ריצ'רד ברנדסון"
+lq18 = "זה לא משנה כמה לאט אתה הולך, כל עוד אתה לא עוצר - קונפציוס"
+lq19 = "מכשולים הם הדברים המפחידים שאתה רואה כשאתה מוריד את העיניים מהמטרה שלך - הנרי פורד"
+lq20 = "התהילה הגדולה ביותר שלנו אינה בלעולם לא ליפול, אלא בלקום בכל פעם שאנו נופלים - קונפציוס"
+lq21 = "אין הצלחתי או נכשלתי - יש שיחקתי - יובל אברמוביץ"
+lq22 = "אני לא מפחד מאדם שהתאמן על 10,000 בעיטות פעם אחת, אני מפחד ממי שהתאמן על בעיטה אחת 10,000 פעמים - ברוס לי"
+lq23 = "הצלחה היא מתכון, אם יש לך את כל הרכיבים, אתה תצליח, מאוד פשוט - בראין טרייסי"
+lq24 = "החיים הם כמו רכיבה על אופניים, כדי לשמור על איזון, חייבים להמשיך לנוע - אלבקט איינשטיין"
+lq25 = "אף פעם אל תוותרו על חלום בגלל שייקח זמן להגשים אותו. הזמן בכל מקרה יעבור - ארל נייטינגייל"
+lq26 = "אני לא מתמקדת במה שניצב נגדי. אני מתמקדת במטרות שלי, ואני מנסה להתעלם מהשאר - ונוס וויליאמס"
+win_quotes = [wq1,wq2,wq3,wq4,wq5,wq6,wq7,wq8,wq9,wq10,wq11,wq12,wq13,wq14,wq15]
+lose_quotes = []
 
 
-def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE, t, tmax, diamonds):
+def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
     big_boy = None
     big_girl = None
     if not red: big_girl = pygame.transform.scale(pygame.image.load("Images/Redgirl.png"), (140, 220))
@@ -295,8 +304,6 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE, t, tmax, diamonds):
         f.write(str(level[0]) + "\n")
         f.write(str(stars[0]) + "\n")
     x = random.randint(0, len(win_quotes) - 1)
-
-
     while start_run:
         screen.blit(Background, (0, 0))
         screen.blit(big_girl, (150, 270))
@@ -339,9 +346,11 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE, t, tmax, diamonds):
     print(win_quotes[x])
     win_quotes.remove(win_quotes[x])
 
+
 def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     tmax = 120
     black = (0, 0, 0)
+    sound_on = True
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -489,7 +498,6 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                                 b.pressed = False
                                 savewall = None
 
-            black = (0, 0, 0)
             font = pygame.font.SysFont("ttf.Calibri", 35)
             screen.blit(font.render(str(int(time.time() - t0)) , True, black),(480,30))
 
@@ -505,6 +513,11 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 run = False
             for lava in lavas:
                 lava.display_lava()
+            if sound_on:
+                sound_button.display_button()
+            else:
+                no_sound_button.display_button()
+
             # refreshing screen:
             pygame.display.flip()
             pygame.display.update()
@@ -512,6 +525,14 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
+                    if sound_on:
+                        if mouse_in_button(sound_button, event.pos):
+                            pygame.mixer.stop()
+                            sound_on = False
+                    else:
+                        if mouse_in_button(no_sound_button, event.pos):
+                            play_music("Sounds/backgroundSoundtrack2.ogg")
+                            sound_on = True
                     print(mouse_pos)
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RIGHT:
@@ -580,6 +601,7 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     tmax = 60
     black = (0, 0, 0)
+    sound_on = True
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -714,8 +736,10 @@ def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                     run = False
                 for lava in lavas:
                     lava.display_lava()
-
-                black = (0, 0, 0)
+                if sound_on:
+                    sound_button.display_button()
+                else:
+                    no_sound_button.display_button()
                 font = pygame.font.SysFont("ttf.Calibri", 35)
                 screen.blit(font.render(str(int(time.time() - t0)), True, black), (480, 30))
                 # refreshing screen:
@@ -725,6 +749,15 @@ def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 for event in pygame.event.get():
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         mouse_pos = event.pos
+                        if sound_on:
+                            if mouse_in_button(sound_button, event.pos):
+                                pygame.mixer.stop()
+                                sound_on = False
+                        else:
+                            if mouse_in_button(no_sound_button, event.pos):
+                                play_music("Sounds/backgroundSoundtrack2.ogg")
+                                sound_on = True
+                        print(mouse_pos)
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_RIGHT:
                             boy.move_right()
@@ -792,6 +825,7 @@ def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     tmax = 60
     black = (0, 0, 0)
+    sound_on = True
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -964,11 +998,13 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 run = False
             for lava in lavas:
                 lava.display_lava()
-
+            if sound_on:
+                sound_button.display_button()
+            else:
+                no_sound_button.display_button()
             por1.display_portal(boy,girl,(690,40))
             por2.display_portal(boy,girl,(560,40))
 
-            black = (0, 0, 0)
             font = pygame.font.SysFont("Calibri Regular.ttf", 35)
             screen.blit(font.render(str(int(time.time() - t0)), True, black),(480,30))
 
@@ -979,6 +1015,14 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
+                    if sound_on:
+                        if mouse_in_button(sound_button, event.pos):
+                            pygame.mixer.stop()
+                            sound_on = False
+                    else:
+                        if mouse_in_button(no_sound_button, event.pos):
+                            play_music("Sounds/backgroundSoundtrack2.ogg")
+                            sound_on = True
                     print(mouse_pos)
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RIGHT:
@@ -1048,6 +1092,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     tmax = 60
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
+    sound_on = True
     girl_lava1 = None
     boy_lava1 = None
     girl = None
@@ -1234,7 +1279,10 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             black = (0, 0, 0)
             font = pygame.font.SysFont("Calibri Regular.ttf", 35)
             screen.blit(font.render(str(int(time.time() - t0)), True, black),(480,30))
-
+            if sound_on:
+                sound_button.display_button()
+            else:
+                no_sound_button.display_button()
             # refreshing screen:
             pygame.display.flip()
             pygame.display.update()
@@ -1242,6 +1290,14 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
+                    if sound_on:
+                        if mouse_in_button(sound_button, event.pos):
+                            pygame.mixer.stop()
+                            sound_on = False
+                    else:
+                        if mouse_in_button(no_sound_button, event.pos):
+                            play_music("Sounds/backgroundSoundtrack2.ogg")
+                            sound_on = True
                     print(mouse_pos)
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RIGHT:
@@ -1273,9 +1329,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                     quit()
             B = True
             if len(lose_quotes) > 0:
-                x = (random.randint(0, len(lose_quotes) - 1))
-
-
+                x = random.randint(0, len(lose_quotes) - 1)
         if run:
             retry_button = pygame.transform.scale(pygame.image.load("Images/retry-icon-9.jpg"), (100, 100))
             retry_button = Button(retry_button, (450, 200), 100, 100)
@@ -1317,6 +1371,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 
 # sending the results to whatsapp
 def home():
+    global sound_on
     start_run = True
     play_music("Sounds/startSoundTrack.mp3")
     blue = False
@@ -1336,6 +1391,10 @@ def home():
         screen.blit(start_background, (0, 0))
         screen.blit(big_girl, (105, 225))
         screen.blit(big_boy, (730, 230))
+        if sound_on:
+            sound_button.display_button()
+        else:
+            no_sound_button.display_button()
         Play_BUTTON.display_button()
         star = pygame.transform.scale(pygame.image.load("Images/Star.png"), (60, 60))
         screen.blit(star, (30, 20))
@@ -1360,6 +1419,14 @@ def home():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if mouse_in_button(Play_BUTTON, event.pos):
                     start_run = False
+                if sound_on:
+                    if mouse_in_button(sound_button, event.pos):
+                        pygame.mixer.stop()
+                        sound_on = False
+                else:
+                    if mouse_in_button(no_sound_button, event.pos):
+                        play_music("Sounds/startSoundTrack.mp3")
+                        sound_on = True
                 if RED:
                     if mouse_in_button(oneButton,event.pos):
                         big_girl = pygame.transform.scale(pygame.image.load("Images/Redgirl.png"), (170, 280))
