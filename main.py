@@ -1,18 +1,19 @@
-from Classes.Character import *
-from Classes.Object import *
 from Classes.Button import *
-from Classes.Lava import *
 from Classes.Wall import *
 from Classes.Star import *
 from Classes.Portal import *
 from Classes.Door import *
 from Classes.Magic_Button import *
-pygame.display.set_caption('Elements')
-clock = pygame.time.Clock()
 import time
 import random
+import pywhatkit
+
+pygame.display.set_caption('Elements')
+clock = pygame.time.Clock()
+
 # coding: [yourCoding]
 # coding: utf-8
+
 
 def mouse_in_button(button, mouse_pos):
     if button.Location[0] + button.width > mouse_pos[0] > button.Location[0] and button.Location[1] < mouse_pos[1] < button.Location[1] + button.height:
@@ -26,13 +27,16 @@ def play_music(str):
     sound = pygame.mixer.Sound(str)
     pygame.mixer.Sound.play(sound)
 
+
 def gem():
     sound = pygame.mixer.Sound("Sounds/loser.ogg")
     pygame.mixer.Sound.play(sound)
 
+
 def loser():
     sound = pygame.mixer.Sound("Sounds/loser.ogg")
     pygame.mixer.Sound.play(sound)
+
 
 def lose_sound():
     sound = pygame.mixer.Sound("Sounds/death sound.mp3")
@@ -85,7 +89,7 @@ def get_str(x,y):
                     phoneNum += event.unicode
                 font2 = pygame.font.SysFont('chalkduster.ttf', 25, bold=False)
                 img2 = font2.render(phoneNum, True, (50, 50, 50))
-                screen.blit(img2,(x, y))
+                screen.blit(img2, (x, y))
                 pygame.display.update()
 
             if event.type == pygame.QUIT:
@@ -93,6 +97,7 @@ def get_str(x,y):
                 quit()
     return phoneNum
 
+# pywhatkit.sendwhatmsg()
 
 start_background = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
 Play_BUTTON = pygame.transform.scale(pygame.image.load("Images/PlayButton!!!.png"), (90, 90))
