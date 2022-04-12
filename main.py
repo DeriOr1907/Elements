@@ -6,13 +6,11 @@ from Classes.Door import *
 from Classes.Magic_Button import *
 import time
 import random
-import pywhatkit
+from datetime import datetime
+#import pywhatkit
 
 pygame.display.set_caption('Elements')
 clock = pygame.time.Clock()
-
-# coding: [yourCoding]
-# coding: utf-8
 
 
 def mouse_in_button(button, mouse_pos):
@@ -218,7 +216,7 @@ level = [1]
 stars = [0]
 phNum = ""
 size = (700,150)
-
+sizel = (700,160)
 wq1 = pygame.transform.scale(pygame.image.load("Images/wq1.png"), size)
 wq2 = pygame.transform.scale(pygame.image.load("Images/wq2.png"), size)
 wq3 = pygame.transform.scale(pygame.image.load("Images/wq3.png"), size)
@@ -236,32 +234,32 @@ wq14 = pygame.transform.scale(pygame.image.load("Images/wq14.png"), size)
 wq15 = pygame.transform.scale(pygame.image.load("Images/wq15.png"), size)
 
 
-lq1 = pygame.transform.scale(pygame.image.load("Images/lq1.png"), size)
-lq2 = pygame.transform.scale(pygame.image.load("Images/lq2.png"), size)
-lq3 = pygame.transform.scale(pygame.image.load("Images/lq3.png"), size)
-lq4 = pygame.transform.scale(pygame.image.load("Images/lq4.png"), size)
-lq5 = pygame.transform.scale(pygame.image.load("Images/lq5.png"), size)
-lq6 = pygame.transform.scale(pygame.image.load("Images/lq6.png"), size)
-lq7 = pygame.transform.scale(pygame.image.load("Images/lq7.png"), size)
-lq8 = pygame.transform.scale(pygame.image.load("Images/lq8.png"), size)
-lq9 = pygame.transform.scale(pygame.image.load("Images/lq9.png"), size)
-lq10 = pygame.transform.scale(pygame.image.load("Images/lq10.png"), size)
-lq11 = pygame.transform.scale(pygame.image.load("Images/lq11.png"), size)
-lq12 = pygame.transform.scale(pygame.image.load("Images/lq12.png"), size)
-lq13 = pygame.transform.scale(pygame.image.load("Images/lq13.png"), size)
-lq14 = pygame.transform.scale(pygame.image.load("Images/lq14.png"), size)
-lq15 = pygame.transform.scale(pygame.image.load("Images/lq15.png"), size)
-lq16 = pygame.transform.scale(pygame.image.load("Images/lq16.png"), size)
-lq17 = pygame.transform.scale(pygame.image.load("Images/lq17.png"), size)
-lq18 = pygame.transform.scale(pygame.image.load("Images/lq18.png"), size)
-lq19 = pygame.transform.scale(pygame.image.load("Images/lq19.png"), size)
-lq20 = pygame.transform.scale(pygame.image.load("Images/lq20.png"), size)
-lq21 = pygame.transform.scale(pygame.image.load("Images/lq21.png"), size)
-lq22 = pygame.transform.scale(pygame.image.load("Images/lq22.png"), size)
-lq23 = pygame.transform.scale(pygame.image.load("Images/lq23.png"), size)
-lq24 = pygame.transform.scale(pygame.image.load("Images/lq24.png"), size)
-lq25 = pygame.transform.scale(pygame.image.load("Images/lq25.png"), size)
-lq26 = pygame.transform.scale(pygame.image.load("Images/lq26.png"), size)
+lq1 = pygame.transform.scale(pygame.image.load("Images/lq1.png"), sizel)
+lq2 = pygame.transform.scale(pygame.image.load("Images/lq2.png"), sizel)
+lq3 = pygame.transform.scale(pygame.image.load("Images/lq3.png"), sizel)
+lq4 = pygame.transform.scale(pygame.image.load("Images/lq4.png"), sizel)
+lq5 = pygame.transform.scale(pygame.image.load("Images/lq5.png"), sizel)
+lq6 = pygame.transform.scale(pygame.image.load("Images/lq6.png"), sizel)
+lq7 = pygame.transform.scale(pygame.image.load("Images/lq7.png"), sizel)
+lq8 = pygame.transform.scale(pygame.image.load("Images/lq8.png"), sizel)
+lq9 = pygame.transform.scale(pygame.image.load("Images/lq9.png"), sizel)
+lq10 = pygame.transform.scale(pygame.image.load("Images/lq10.png"), sizel)
+lq11 = pygame.transform.scale(pygame.image.load("Images/lq11.png"), sizel)
+lq12 = pygame.transform.scale(pygame.image.load("Images/lq12.png"), sizel)
+lq13 = pygame.transform.scale(pygame.image.load("Images/lq13.png"), sizel)
+lq14 = pygame.transform.scale(pygame.image.load("Images/lq14.png"), sizel)
+lq15 = pygame.transform.scale(pygame.image.load("Images/lq15.png"), sizel)
+lq16 = pygame.transform.scale(pygame.image.load("Images/lq16.png"), sizel)
+lq17 = pygame.transform.scale(pygame.image.load("Images/lq17.png"), sizel)
+lq18 = pygame.transform.scale(pygame.image.load("Images/lq18.png"), sizel)
+lq19 = pygame.transform.scale(pygame.image.load("Images/lq19.png"), sizel)
+lq20 = pygame.transform.scale(pygame.image.load("Images/lq20.png"), sizel)
+lq21 = pygame.transform.scale(pygame.image.load("Images/lq21.png"), sizel)
+lq22 = pygame.transform.scale(pygame.image.load("Images/lq22.png"), sizel)
+lq23 = pygame.transform.scale(pygame.image.load("Images/lq23.png"), sizel)
+lq24 = pygame.transform.scale(pygame.image.load("Images/lq24.png"), sizel)
+lq25 = pygame.transform.scale(pygame.image.load("Images/lq25.png"), sizel)
+lq26 = pygame.transform.scale(pygame.image.load("Images/lq26.png"), sizel)
 win_quotes = [wq1, wq2, wq3, wq4, wq5, wq6, wq7, wq8, wq9, wq10, wq11, wq12, wq13, wq14, wq15]
 lose_quotes = [lq1, lq2, lq3, lq4, lq5, lq6, lq7, lq8, lq9, lq10, lq11, lq12, lq13, lq14, lq15, lq16, lq17, lq18, lq19, lq20, lq21, lq22, lq23, lq24, lq25, lq26]
 
@@ -567,6 +565,8 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                     pygame.quit()
                     quit()
             B = True
+            if len(lose_quotes) > 0:
+                x = random.randint(0, len(lose_quotes) - 1)
         if run:
             retry_button = pygame.transform.scale(pygame.image.load("Images/retry-icon-9.jpg"), (100, 100))
             retry_button = Button(retry_button,(450,200),100,100)
@@ -575,6 +575,9 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             screen.blit(background, (0, 0))
             retry_button.display_button()
             home_button.display_button()
+            if len(lose_quotes) != 0:
+                screen.blit(lose_quotes[x], (150, 20))
+
             pygame.display.flip()
             pygame.display.update()
             if B:
@@ -791,6 +794,8 @@ def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                         pygame.quit()
                         quit()
             B = True
+            if len(lose_quotes) > 0:
+                x = random.randint(0, len(lose_quotes) - 1)
         if run:
             retry_button = pygame.transform.scale(pygame.image.load("Images/retry-icon-9.jpg"), (100, 100))
             retry_button = Button(retry_button,(450,200),100,100)
@@ -799,6 +804,9 @@ def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             screen.blit(background, (0, 0))
             retry_button.display_button()
             home_button.display_button()
+            if len(lose_quotes) != 0:
+                screen.blit(lose_quotes[x], (150, 20))
+
             pygame.display.flip()
             pygame.display.update()
             if B:
@@ -1057,6 +1065,8 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                     pygame.quit()
                     quit()
             B = True
+            if len(lose_quotes) > 0:
+                x = random.randint(0, len(lose_quotes) - 1)
         if run:
             retry_button = pygame.transform.scale(pygame.image.load("Images/retry-icon-9.jpg"), (100, 100))
             retry_button = Button(retry_button, (450, 200), 100, 100)
@@ -1065,6 +1075,8 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             screen.blit(background, (0, 0))
             retry_button.display_button()
             home_button.display_button()
+            if len(lose_quotes) != 0:
+                screen.blit(lose_quotes[x], (150, 20))
             pygame.display.flip()
             pygame.display.update()
             if B:
@@ -1344,7 +1356,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             home_button.display_button()
 
             if len(lose_quotes) != 0:
-                screen.blit(lose_quotes[x], (150, 0))
+                screen.blit(lose_quotes[x], (150, 20))
 
             pygame.display.flip()
             pygame.display.update()
@@ -1373,7 +1385,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     level[0] = level[0] + 1
     middle(red,blue,pink,purple,RED,BLUE,PINK,PURPLE,t,tmax,diamonds)
 
-# sending the results to whatsapp
+
 def home():
     global sound_on
     start_run = True
@@ -1511,6 +1523,7 @@ def home():
             level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
     # the end
 
+
 def start():
     global phNum
     global name
@@ -1555,10 +1568,16 @@ def start():
     with open(name+".txt", "r") as f:  # read from file
         level[0] = int(f.readline())
         stars[0] = int(f.readline())
+    phNum = phNum[1:]
+    phNum = "+972" + phNum
 
     home()
 
 
 start()
+t = time.localtime()
+current_h = time.strftime("%H", t)
+current_m = time.strftime("%M", t)
+pywhatkit.sendwhatmsg(phNum, "msg", current_h, current_m)
 print("gever retzah ata")
 quit()
