@@ -10,7 +10,8 @@ from Classes.Door import *
 import time
 from Classes.Star import *
 from Classes.Portal import *
-import sys
+
+
 
 
 def mouse_in_button(button, mouse_pos):
@@ -202,7 +203,7 @@ stars = [0]
 phNum = ""
 
 
-def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
+def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE, t, tmax, diamonds):
     big_boy = None
     big_girl = None
     if not red: big_girl = pygame.transform.scale(pygame.image.load("Images/Redgirl.png"), (140, 220))
