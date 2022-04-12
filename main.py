@@ -3,11 +3,16 @@ from Classes.Object import *
 from Classes.Button import *
 from Classes.Lava import *
 from Classes.Wall import *
+from Classes.Time import *
 from Classes.Magic_Button import *
-pygame.display.set_caption('Elements')
-clock = pygame.time.Clock()
 from Classes.Door import *
 import time
+
+
+
+pygame.display.set_caption('Elements')
+clock = pygame.time.Clock()
+
 
 def mouse_in_button(button, mouse_pos):
     if button.Location[0] + button.width > mouse_pos[0] > button.Location[0] and button.Location[1] < mouse_pos[1] < button.Location[1] + button.height:
@@ -117,7 +122,6 @@ o9 = Object(300, 25, 700, 325, objects_color)
 o10 = Object(300, 100, 250, 420, objects_color)
 o11 = Object(60, 100, 718, 450, objects_color)
 o12 = Object(80, 15, 590, 410, objects_color)
-
 o13 = Object(50, 30, 400, 200, objects_color)
 o14 = Object(50, 30, 535, 200, objects_color)
 
@@ -258,11 +262,12 @@ def level3(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
         doors = [boy_door, girl_door]
         lavas = [green_lava1, green_lava2, green_lava3, green_lava4, green_lava5, boy_lava1, girl_lava1, green_lava1,green_lava6]
         diamonds = [girl_diamond1, girl_diamond2, girl_diamond3, girl_diamond4, girl_diamond5, boy_diamond1, boy_diamond2, boy_diamond3, boy_diamond4, boy_diamond5]
-        t0 = time.time()
-        savewall = None
-        while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
+        start_time = time.time()
+        while boy.alive and girl.alive and run:  # Character1 is alive and Character2 is alive and Bool:
             retry = False
             screen.blit(background, (0, 0))
+            running_time = (time.time() - start_time)
+            print(running_time)
             for obstacle in objects3:
                 obstacle.display_obstacle()
             for door in doors:
@@ -363,9 +368,10 @@ def level3(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                     quit()
     pygame.mixer.stop()
     win_sound()
-    t = time.time() - t0
-    print(t)
+    end_time = time.time() - start_time
+    print(end_time)
     level[0] = level[0] + 1
+
 
 # set clock
 def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
@@ -465,10 +471,12 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
             doors = [boy_door, girl_door]
             lavas = [green_lava1, green_lava2, green_lava3]
             diamonds = [boy_diamond1, boy_diamond2, boy_diamond3, girl_diamond1, girl_diamond2, girl_diamond3]
-            t0 = time.time()
-            while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
+            start_time = time.time()
+            while boy.alive and girl.alive and run:  # Character1 is alive and Character2 is alive and Bool:
                 retry = False
                 screen.blit(background, (0, 0))
+                running_time = (time.time() - start_time)
+                print(running_time)
                 for obstacle in objects2:
                     obstacle.display_obstacle()
                 for door in doors:
@@ -568,8 +576,8 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                     quit()
     pygame.mixer.stop()
     win_sound()
-    t = time.time() - t0
-    print(t)
+    end_time = time.time() - start_time
+    print(end_time)
     level[0] = level[0] + 1
 
 
@@ -718,11 +726,14 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                  boy_lava5]
         diamonds = [girl_diamond1, girl_diamond2, girl_diamond3, girl_diamond4, boy_diamond1, boy_diamond2,
                     boy_diamond3, boy_diamond4]
-        t0 = time.time()
+
+        start_time = time.time()
         savewall = None
-        while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
+        while boy.alive and girl.alive and run:  # Character1 is alive and Character2 is alive and Bool:
             retry = False
             screen.blit(background, (0, 0))
+            running_time = (time.time() - start_time)
+            print(running_time)
             for obstacle in objects1:
                 obstacle.display_obstacle()
             for door in doors:
@@ -762,6 +773,9 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             pygame.display.update()
             clock.tick(150)
             for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        run = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
                     print(mouse_pos)
@@ -823,9 +837,10 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                     quit()
     pygame.mixer.stop()
     win_sound()
-    t = time.time() - t0
-    print(t)
+    end_time = time.time() - start_time
+    print(end_time)
     level[0] = level[0] + 1
+
 
 # sending the results to whatsapp
 def home():
