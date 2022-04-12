@@ -3,16 +3,12 @@ from Classes.Object import *
 from Classes.Button import *
 from Classes.Lava import *
 from Classes.Wall import *
-from Classes.Time import *
 from Classes.Magic_Button import *
-from Classes.Door import *
-import time
-
-
-
 pygame.display.set_caption('Elements')
 clock = pygame.time.Clock()
-
+from Classes.Door import *
+import time
+from Classes.Star import *
 
 def mouse_in_button(button, mouse_pos):
     if button.Location[0] + button.width > mouse_pos[0] > button.Location[0] and button.Location[1] < mouse_pos[1] < button.Location[1] + button.height:
@@ -52,6 +48,40 @@ def create_images_list(imgpath1, imgpath2, imgpath3):
              pygame.transform.scale(pygame.image.load(imgpath3), (41, 45))]
     return imags
 
+def get_str(x,y):
+    pressed_enter = False
+    phoneNum = ""
+    pygame.draw.rect(screen, (50, 50, 50), pygame.Rect(x,y, 150, 20))
+    pygame.display.flip()
+    pygame.draw.rect(screen, (255, 255, 255),
+                     pygame.Rect(x , y , 148, 18))
+    pygame.display.flip()
+    while not pressed_enter:
+        # get the string for comment
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                pygame.draw.rect(screen, (50, 50, 50),
+                                 pygame.Rect(x,y, 150, 20))
+                pygame.display.flip()
+                pygame.draw.rect(screen, (255, 255, 255),
+                                 pygame.Rect(x,y, 148, 18))
+                pygame.display.flip()
+                if event.key == pygame.K_RETURN:
+                    pressed_enter = True
+                elif event.key == pygame.K_BACKSPACE \
+                        and not (len(phoneNum) == 0):
+                    phoneNum = phoneNum[:-1]
+                else:
+                    phoneNum += event.unicode
+                font2 = pygame.font.SysFont('chalkduster.ttf', 25, bold=False)
+                img2 = font2.render(phoneNum, True, (50, 50, 50))
+                screen.blit(img2,(x, y))
+                pygame.display.update()
+
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+    return phoneNum
 
 start_background = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
 Play_BUTTON = pygame.transform.scale(pygame.image.load("Images/PlayButton!!!.png"), (90, 90))
@@ -122,6 +152,7 @@ o9 = Object(300, 25, 700, 325, objects_color)
 o10 = Object(300, 100, 250, 420, objects_color)
 o11 = Object(60, 100, 718, 450, objects_color)
 o12 = Object(80, 15, 590, 410, objects_color)
+
 o13 = Object(50, 30, 400, 200, objects_color)
 o14 = Object(50, 30, 535, 200, objects_color)
 
@@ -137,11 +168,97 @@ ob7 = Object(80, 15, 790, 400, objects_color)
 
 
 objects1 = [o1, o2, o3, o4, ob1, ob2, ob3, ob4, ob5, ob6, ob7]
-
+name = ""
 level = [1]
+stars = [0]
+phNum = ""
+
+
+def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
+    big_boy = None
+    big_girl = None
+    if not red: big_girl = pygame.transform.scale(pygame.image.load("Images/Redgirl.png"), (140, 220))
+    if not blue: big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (140, 220))
+    if not pink:big_girl = pygame.transform.scale(pygame.image.load("Images/Pinkgirl.png"), (140, 220))
+    if not purple: big_girl = pygame.transform.scale(pygame.image.load("Images/Purplegirl.png"), (140, 220))
+
+    if not RED: big_boy = pygame.transform.scale(pygame.image.load("Images/Redboy.png"), (135, 225))
+    if not BLUE: big_boy = pygame.transform.scale(pygame.image.load("Images/Blueboy.png"), (135, 225))
+    if not PINK: big_boy = pygame.transform.scale(pygame.image.load("Images/Pinkboy.png"), (135, 225))
+    if not PURPLE: big_boy = pygame.transform.scale(pygame.image.load("Images/Purpleboy.png"), (135, 225))
+
+    start_run = True
+    star = pygame.transform.scale(pygame.image.load("Images/Star.png"), (120, 120))
+    big_star = pygame.transform.scale(pygame.image.load("Images/Star.png"), (160, 160))
+
+    star1 = Star("Images/Star.png", 120, (300, 120),2)
+    star2 = Star("Images/Star.png", 160, (420,95),2.5)
+    star3 = Star("Images/Star.png", 120, (590, 120),2)
+
+    Background = pygame.transform.scale(pygame.image.load("Images/winbackground.png"), screen_size)
+    play_button = pygame.transform.scale(pygame.image.load("Images/PlayButton!!!.png"), (75, 75))
+    play_button = Button(play_button, (460, 290), 75, 75)
+    home_button = pygame.transform.scale(pygame.image.load("Images/home.png"), (55, 55))
+    home_button = Button(home_button, (473, 370), 55, 55)
+    gem = pygame.transform.scale(pygame.image.load("Images/diamond-icon.jpg"), (58, 58))
+    stoper = pygame.transform.scale(pygame.image.load("Images/clock.png"), (55, 55))
+    didgem = pygame.transform.scale(pygame.image.load("Images/X.png"), (50, 50))
+    didstoper = pygame.transform.scale(pygame.image.load("Images/X.png"), (50, 50))
+    retry_button = pygame.transform.scale(pygame.image.load("Images/retry-icon-9.jpg"), (50, 50))
+    retry_button = Button(retry_button, (475, 435), 50, 50)
+    s = 1
+    if len(diamonds) == 0:
+        s += 1
+        didgem = pygame.transform.scale(pygame.image.load("Images/V.png"), (60, 55))
+    if t <= tmax:
+        s += 1
+        didstoper = pygame.transform.scale(pygame.image.load("Images/V.png"), (60, 55))
+    stars[0] = stars[0] + s
+    with open(name + ".txt", 'w', encoding='utf-8') as f:
+        f.write(str(level[0]) + "\n")
+        f.write(str(stars[0]) + "\n")
+    while start_run:
+        screen.blit(Background, (0, 0))
+        screen.blit(big_girl, (150, 270))
+        screen.blit(big_boy, (700, 270))
+        screen.blit(gem, (60, 100))
+        screen.blit(stoper, (60, 165))
+        screen.blit(didgem, (130, 100))
+        screen.blit(didstoper, (130, 165))
+        play_button.display_button()
+        home_button.display_button()
+        retry_button.display_button()
+
+        if s == 1:
+            star1.display_star(True)
+        if s == 2:
+            star2.display_star(star1.display_star(True))
+        if s == 3:
+            a = star1.display_star(True)
+            b = star2.display_star(a)
+            star3.display_star(b and a)
+
+        pygame.display.flip()
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if mouse_in_button(play_button, event.pos):
+                    start_run = False
+                if mouse_in_button(home_button, event.pos):
+                    start_run = False
+                    home()
+                if mouse_in_button(retry_button, event.pos):
+                    start_run = False
+                    level[0] = level[0] - 1
+                    stars[0] = stars[0] - s
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
 
 
 def level3(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
+    tmax = 120
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -262,12 +379,11 @@ def level3(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
         doors = [boy_door, girl_door]
         lavas = [green_lava1, green_lava2, green_lava3, green_lava4, green_lava5, boy_lava1, girl_lava1, green_lava1,green_lava6]
         diamonds = [girl_diamond1, girl_diamond2, girl_diamond3, girl_diamond4, girl_diamond5, boy_diamond1, boy_diamond2, boy_diamond3, boy_diamond4, boy_diamond5]
-        start_time = time.time()
-        while boy.alive and girl.alive and run:  # Character1 is alive and Character2 is alive and Bool:
+        t0 = time.time()
+        savewall = None
+        while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
             retry = False
             screen.blit(background, (0, 0))
-            running_time = (time.time() - start_time)
-            print(running_time)
             for obstacle in objects3:
                 obstacle.display_obstacle()
             for door in doors:
@@ -289,6 +405,10 @@ def level3(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                                 walls.append(savewall)
                                 b.pressed = False
                                 savewall = None
+
+            black = (0, 0, 0)
+            font = pygame.font.SysFont("ttf.Calibri", 35)
+            screen.blit(font.render(str(int(time.time() - t0)) , True, black),(480,30))
 
             for diamond in diamonds:
                 gem = diamond.collect(boy) and diamond.collect(girl)
@@ -368,13 +488,14 @@ def level3(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                     quit()
     pygame.mixer.stop()
     win_sound()
-    end_time = time.time() - start_time
-    print(end_time)
+    t = time.time() - t0
+    print(t)
     level[0] = level[0] + 1
+    middle(red,blue,pink,purple,RED,BLUE,PINK,PURPLE,t,tmax,diamonds)
 
 
-# set clock
 def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
+    tmax = 60
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -471,12 +592,10 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
             doors = [boy_door, girl_door]
             lavas = [green_lava1, green_lava2, green_lava3]
             diamonds = [boy_diamond1, boy_diamond2, boy_diamond3, girl_diamond1, girl_diamond2, girl_diamond3]
-            start_time = time.time()
-            while boy.alive and girl.alive and run:  # Character1 is alive and Character2 is alive and Bool:
+            t0 = time.time()
+            while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
                 retry = False
                 screen.blit(background, (0, 0))
-                running_time = (time.time() - start_time)
-                print(running_time)
                 for obstacle in objects2:
                     obstacle.display_obstacle()
                 for door in doors:
@@ -511,6 +630,10 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                     run = False
                 for lava in lavas:
                     lava.display_lava()
+
+                black = (0, 0, 0)
+                font = pygame.font.SysFont("ttf.Calibri", 35)
+                screen.blit(font.render(str(int(time.time() - t0)), True, black), (480, 30))
                 # refreshing screen:
                 pygame.display.flip()
                 pygame.display.update()
@@ -576,12 +699,14 @@ def level2(red,blue,pink,purple,RED,BLUE,PINK,PURPLE):
                     quit()
     pygame.mixer.stop()
     win_sound()
-    end_time = time.time() - start_time
-    print(end_time)
+    t = time.time() - t0
+    print(t)
     level[0] = level[0] + 1
+    middle(red,blue,pink,purple,RED,BLUE,PINK,PURPLE,t,tmax,diamonds)
 
 
 def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
+    tmax = 60
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -726,14 +851,11 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                  boy_lava5]
         diamonds = [girl_diamond1, girl_diamond2, girl_diamond3, girl_diamond4, boy_diamond1, boy_diamond2,
                     boy_diamond3, boy_diamond4]
-
-        start_time = time.time()
+        t0 = time.time()
         savewall = None
-        while boy.alive and girl.alive and run:  # Character1 is alive and Character2 is alive and Bool:
+        while boy.alive and girl.alive and run:  # Caharater1 is alive and Caracter2 is alive and Bool:
             retry = False
             screen.blit(background, (0, 0))
-            running_time = (time.time() - start_time)
-            print(running_time)
             for obstacle in objects1:
                 obstacle.display_obstacle()
             for door in doors:
@@ -768,14 +890,16 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 run = False
             for lava in lavas:
                 lava.display_lava()
+
+            black = (0, 0, 0)
+            font = pygame.font.SysFont("Calibri Regular.ttf", 35)
+            screen.blit(font.render(str(int(time.time() - t0)), True, black),(480,30))
+
             # refreshing screen:
             pygame.display.flip()
             pygame.display.update()
             clock.tick(150)
             for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        run = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
                     print(mouse_pos)
@@ -837,10 +961,10 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                     quit()
     pygame.mixer.stop()
     win_sound()
-    end_time = time.time() - start_time
-    print(end_time)
+    t = time.time() - t0
+    print(t)
     level[0] = level[0] + 1
-
+    middle(red,blue,pink,purple,RED,BLUE,PINK,PURPLE,t,tmax,diamonds)
 
 # sending the results to whatsapp
 def home():
@@ -855,8 +979,6 @@ def home():
     RED = False
     PINK = True
     PURPLE = True
-    start_pic = pygame.transform.scale(pygame.image.load("Images/StartPic!!!.png"), screen_size)
-    background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
 
     big_boy = pygame.transform.scale(pygame.image.load("Images/Redboy.png"), (170, 280))
     big_girl = pygame.transform.scale(pygame.image.load("Images/Bluegirl.png"), (170, 285))
@@ -866,6 +988,11 @@ def home():
         screen.blit(big_girl, (105, 225))
         screen.blit(big_boy, (730, 230))
         Play_BUTTON.display_button()
+        star = pygame.transform.scale(pygame.image.load("Images/Star.png"), (60, 60))
+        screen.blit(star, (30, 20))
+        black = (0, 0, 0)
+        font = pygame.font.SysFont("ttf.Calibri", 50)
+        screen.blit(font.render("X " + str(stars[0]), True, black), (100, 40))
 
         if red: one_Button.display_button()
         if blue: two_Button.display_button()
@@ -953,14 +1080,66 @@ def home():
                 pygame.quit()
                 quit()
     pygame.mixer.stop()
-    if level[0] == 1:
-        level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
-    if level[0] == 2:
-        level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
-    if level[0] == 3:
-        level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
+    while level[0] <= 3:
+        if level[0] == 1:
+            level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
+        if level[0] == 2:
+            level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
+        if level[0] == 3:
+            level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
+    # the end
 
-home()
+def start():
+    global phNum
+    global name
+    run = True
+    whatsapp_button = pygame.transform.scale(pygame.image.load("Images/Whatsapp_logo.png"), (90, 90))
+    whatsapp_button = Button(whatsapp_button,(455, 240),90,90)
+    start_BUTTON = pygame.transform.scale(pygame.image.load("Images/start_button.png"), (140, 85))
+    start_BUTTON = Button(start_BUTTON, (430, 150), 85,140)
+    n_button = pygame.transform.scale(pygame.image.load("Images/name.png"), (250, 90))
+    n_button = Button(n_button,(380, 350),90,250)
+    while run:
+        screen.blit(start_background, (0, 0))
+        whatsapp_button.display_button()
+        start_BUTTON.display_button()
+        n_button.display_button()
+        font = pygame.font.SysFont('chalkduster.ttf', 45, bold=False)
+        img = font.render(name, True, (50, 50, 50))
+        screen.blit(img, (400, 380))
 
+        pygame.display.flip()
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if mouse_in_button(whatsapp_button, event.pos):
+                    button_click()
+                    phNum = (get_str(425,328))
+                if mouse_in_button(n_button, event.pos):
+                    button_click()
+                    name = get_str(425,390)
+                if mouse_in_button(start_BUTTON, event.pos):
+                    button_click()
+                    run = False
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+    with open(name+".txt", 'a', encoding='utf-8') as f:
+        f.write(str(level[0])+"\n")
+        f.write(str(stars[0])+"\n")
+
+    with open(name+".txt", "r") as f:  # read from file
+        level[0] = int(f.readline())
+        stars[0] = int(f.readline())
+
+        print(f"first: {level[0]}\n"
+              f"Second: {stars[0]}")
+
+    home()
+
+
+start()
 print("gever retzah ata")
 quit()
