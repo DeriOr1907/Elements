@@ -3,16 +3,16 @@ from Classes.Object import *
 from Classes.Button import *
 from Classes.Lava import *
 from Classes.Wall import *
+from Classes.Star import *
+from Classes.Portal import *
+from Classes.Door import *
 from Classes.Magic_Button import *
 pygame.display.set_caption('Elements')
 clock = pygame.time.Clock()
-from Classes.Door import *
 import time
-from Classes.Star import *
-from Classes.Portal import *
-
-
-
+import random
+# coding: [yourCoding]
+# coding: utf-8
 
 def mouse_in_button(button, mouse_pos):
     if button.Location[0] + button.width > mouse_pos[0] > button.Location[0] and button.Location[1] < mouse_pos[1] < button.Location[1] + button.height:
@@ -51,6 +51,8 @@ def create_images_list(imgpath1, imgpath2, imgpath3):
              pygame.transform.scale(pygame.image.load(imgpath3), (41, 45))]
     return imags
 
+# def hebrew(text):
+#     return unicode(text,  "Windows-1255")
 
 def get_str(x,y):
     pressed_enter = False
@@ -201,9 +203,56 @@ name = ""
 level = [1]
 stars = [0]
 phNum = ""
+wq1 = "אני מאמין גדול במזל, ושמתי לב שככל שאני עובד קשה יותר, יש לי יותר מזל - תומס ג'פרסון"
+wq2 = "אם תמיד תנסו להיות נורמלים, לעולם לא תדעו כמה מדהימים אתם יכולים להיות - מאיה אנג'לו"
+wq3 = "אדם פסימי רואה את הקושי בכל הזדמנות, אדם אופטימי רואה הזדמנות בכל קושי - ווינסטון צ'רצ'יל"
+wq4 = "ראשית הם מתעלמים ממך, אחר כך מגחכים עליך אחר כך תוקפים אותך ובסוף בונים פסל בדמותך - מיוחס לגנדי"
+wq5 = "לו היו לי 6 שעות לכרות עץ, הייתי מבלה את ה-4 הראשונות בלהשחיז את הגרזן - אברהם לינקולן"
+wq6 = "הבעיה של רובינו היא לא שאנחנו מכוונים גבוה מידי ונכשלים, אלא שאנחנו מכוונים נמוך מידי ומצליחים - קן רובינס"
+wq7 = "מזל הוא הזדמנות שפוגשת מוכנות - סנקה"
+wq8 = "החיים הם 10 אחוז מה שקורה לך ו90 אחוז איך שאתה מגיב לאירועים - צ'רלס סוידול"
+wq9 = "אם אתה רוצה להיות הטוב ביותר, אתה צריך להיות מוכן לעשות דברים שאנשים אחרים לא מוכנים לעשות - מייקל פלפס"
+wq10 = "אל תפחד לקפוץ; אי אפשר לחצות תהום בשני צעדים - דייוויד לויד גורג"
+wq11 = "עדיף לגמגם בקול רם, מאשר לדבר רהוט במחשבות - שחר כהן"
+wq12 = "אני לא מפחד מאדם שהתאמן על 10,000 בעיטות פעם אחת, אני מפחד ממי שהתאמן על בעיטה אחת 10,000 פעמים - ברוס לי"
+wq13 = "הצלחה היא מתכון, אם יש לך את כל הרכיבים, אתה תצליח, מאוד פשוט - בראין טרייסי"
+wq14 = "אם אתם חושבים שאתם קטנים מדי בשביל לשנות משהו, נסו להירדם כשיש יתוש בחדר - אניטה רודיק"
+wq15 = "תכוונו לירח. גם אם תפספסו, תנחתו בין הכוכבים - לס בראון"
 
 
-def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE, t, tmax, diamonds):
+lq1 = "מי שלא מוכן לטעות, לעולם לא יגיע למשהו מקורי - קן רובינסון"
+lq2 = "אנשים אומרים שמוטיבציה לא מחזיקה הרבה זמן. גם מקלחת לא, לכן אנו ממליצים אותה על בסיס יומי - זיג זיגלר"
+lq3 = "כשהם אומרים לך שאתה לא יכול, הם מראים לך את הגבולות שלהם, לא שלך - קווין קינו"
+lq4 = "הדבר היחיד שהוא יותר גרוע מלהתחיל ולהיכשל, הוא לא להתחיל בכלל - סת' גודין"
+lq5 = "ראשית הם מתעלמים ממך, אחר כך מגחכים עליך אחר כך תוקפים אותך ובסוף בונים פסל בדמותך - מיוחס לגנדי"
+lq6 = "לו היו לי 6 שעות לכרות עץ, הייתי מבלה את ה-4 הראשונות בלהשחיז את הגרזן - אברהם לינקולן"
+lq7 = "כשנדמה שהכול פועל נגדכם – תזכרו שמטוס ממריא נגד הרוח, ולא לצדה"
+lq8 = "ההגנה החזקה ביותר מפני הסחות דעת ופיתויים היא מטרה ברורה - שחר כהן"
+lq9 = "החיים הם 10 אחוז מה שקורה לך ו90 אחוז איך שאתה מגיב לאירועים - צ'רלס סוידול"
+lq10 = "תמיד יש דרך, עבור מי שמחויב - טוני רובינס"
+lq11 = "אם אתה רוצה להיות הטוב ביותר, אתה צריך להיות מוכן לעשות דברים שאנשים אחרים לא מוכנים לעשות - מייקל פלפס"
+lq12 = "רק מי שלוקח סיכון והולך רחוק, מגלה עד כמה רחוק הוא יכול להגיע - אלברט איינשטיין"
+lq13 = "כשהכל חשוך שקול את האפשרות שאת/ה האור"
+lq14 = "לא נכשלתי, הצלחתי למצוא 10,000 דרכים איך זה לא עובד - תומס אלווה אדיסון"
+lq15 = "הצלחה היא היכולת לעבור מכישלון לכישלון מבלי לאבד את ההתלהבות"
+lq16 = "החלומות שלך לא צריכים להיות גדולים, הם צריכים להיות שלך - גרי וי"
+lq17 = "האמיצים אולי לא יחיו לנצח, אבל הזהירים לא חיים בכלל - ריצ'רד ברנדסון"
+lq18 = "זה לא משנה כמה לאט אתה הולך, כל עוד אתה לא עוצר - קונפציוס"
+lq19 = "מכשולים הם הדברים המפחידים שאתה רואה כשאתה מוריד את העיניים מהמטרה שלך - הנרי פורד"
+lq20 = "התהילה הגדולה ביותר שלנו אינה בלעולם לא ליפול, אלא בלקום בכל פעם שאנו נופלים - קונפציוס"
+lq21 = "אין הצלחתי או נכשלתי - יש שיחקתי - יובל אברמוביץ"
+lq22 = "אני לא מפחד מאדם שהתאמן על 10,000 בעיטות פעם אחת, אני מפחד ממי שהתאמן על בעיטה אחת 10,000 פעמים - ברוס לי"
+lq23 = "הצלחה היא מתכון, אם יש לך את כל הרכיבים, אתה תצליח, מאוד פשוט - בראין טרייסי"
+lq24 = "החיים הם כמו רכיבה על אופניים, כדי לשמור על איזון, חייבים להמשיך לנוע - אלבקט איינשטיין"
+lq25 = "אף פעם אל תוותרו על חלום בגלל שייקח זמן להגשים אותו. הזמן בכל מקרה יעבור - ארל נייטינגייל"
+lq26 = "אני לא מתמקדת במה שניצב נגדי. אני מתמקדת במטרות שלי, ואני מנסה להתעלם מהשאר - ונוס וויליאמס"
+win_quotes = []
+lose_quotes = [lq26,lq25,lq24,lq23]
+
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
     big_boy = None
     big_girl = None
     if not red: big_girl = pygame.transform.scale(pygame.image.load("Images/Redgirl.png"), (140, 220))
@@ -217,12 +266,10 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE, t, tmax, diamonds):
     if not PURPLE: big_boy = pygame.transform.scale(pygame.image.load("Images/Purpleboy.png"), (135, 225))
 
     start_run = True
-    star = pygame.transform.scale(pygame.image.load("Images/Star.png"), (120, 120))
-    big_star = pygame.transform.scale(pygame.image.load("Images/Star.png"), (160, 160))
 
-    star1 = Star("Images/Star.png", 120, (300, 120),2)
-    star2 = Star("Images/Star.png", 160, (420,95),2.5)
-    star3 = Star("Images/Star.png", 120, (590, 120),2)
+    star1 = Star("Images/Star.png", 120, (300, 140),2)
+    star2 = Star("Images/Star.png", 160, (420,115),2.5)
+    star3 = Star("Images/Star.png", 120, (590, 140),2)
 
     Background = pygame.transform.scale(pygame.image.load("Images/winbackground.png"), screen_size)
     play_button = pygame.transform.scale(pygame.image.load("Images/PlayButton!!!.png"), (75, 75))
@@ -250,10 +297,10 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE, t, tmax, diamonds):
         screen.blit(Background, (0, 0))
         screen.blit(big_girl, (150, 270))
         screen.blit(big_boy, (700, 270))
-        screen.blit(gem, (60, 100))
-        screen.blit(stoper, (60, 165))
-        screen.blit(didgem, (130, 100))
-        screen.blit(didstoper, (130, 165))
+        screen.blit(gem, (60, 120))
+        screen.blit(stoper, (60, 185))
+        screen.blit(didgem, (130, 120))
+        screen.blit(didstoper, (130, 185))
         play_button.display_button()
         home_button.display_button()
         retry_button.display_button()
@@ -288,6 +335,7 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE, t, tmax, diamonds):
 
 def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     tmax = 120
+    black = (0, 0, 0)
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -525,6 +573,7 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 
 def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     tmax = 60
+    black = (0, 0, 0)
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -736,6 +785,7 @@ def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 
 def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     tmax = 60
+    black = (0, 0, 0)
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -1000,6 +1050,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     boy_door = None
     girl_door = None
     home_button = None
+    black = (0, 0, 0)
 
     B = False
     retry = True
@@ -1215,6 +1266,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                     pygame.quit()
                     quit()
             B = True
+            x = random.randint(0, len(lose_quotes) - 1)
         if run:
             retry_button = pygame.transform.scale(pygame.image.load("Images/retry-icon-9.jpg"), (100, 100))
             retry_button = Button(retry_button, (450, 200), 100, 100)
@@ -1223,6 +1275,10 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             screen.blit(background, (0, 0))
             retry_button.display_button()
             home_button.display_button()
+
+            if len(lose_quotes) != 0:
+                screen.blit(lose_quotes[x], (100, 80))
+
             pygame.display.flip()
             pygame.display.update()
             if B:
@@ -1242,6 +1298,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                     run = False
                     pygame.quit()
                     quit()
+
     pygame.mixer.stop()
     win_sound()
     t = time.time() - t0
@@ -1418,9 +1475,6 @@ def start():
     with open(name+".txt", "r") as f:  # read from file
         level[0] = int(f.readline())
         stars[0] = int(f.readline())
-
-        print(f"first: {level[0]}\n"
-              f"Second: {stars[0]}")
 
     home()
 
