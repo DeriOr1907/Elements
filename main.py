@@ -203,7 +203,7 @@ name = ""
 level = [1]
 stars = [0]
 phNum = ""
-size = (700,200)
+size = (700,150)
 
 wq1 = pygame.transform.scale(pygame.image.load("Images/wq1.png"), size)
 wq2 = pygame.transform.scale(pygame.image.load("Images/wq2.png"), size)
@@ -303,7 +303,7 @@ def middle(red, blue, pink, purple, RED, BLUE, PINK, PURPLE,t,tmax,diamonds):
         screen.blit(stoper, (60, 185))
         screen.blit(didgem, (130, 120))
         screen.blit(didstoper, (130, 185))
-        screen.blit(win_quotes[x], (200, 10))
+        screen.blit(win_quotes[x], (150, 0))
         play_button.display_button()
         home_button.display_button()
         retry_button.display_button()
