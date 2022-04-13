@@ -866,7 +866,7 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 girl_door = Door("Images/DoorGirlRed.png", "red", (375, 160))
 
                 girl_diamond1 = Diamond("Images/DRed!.png", "red", (355, 465))
-                girl_diamond2 = Diamond("Images/DRed!.png", "red", (300, 55))
+                girl_diamond2 = Diamond("Images/DRed!.png", "red", (200, 55))
                 girl_diamond3 = Diamond("Images/DRed!.png", "red", (550, 55))
                 girl_diamond4 = Diamond("Images/DRed!.png", "red", (175, 190))
                 girl_diamond5 = Diamond("Images/DRed!.png", "red", (45, 465))
@@ -892,7 +892,7 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 girl_door = Door("Images/DoorGirlPink.png", "pink", (375, 160))
 
                 girl_diamond1 = Diamond("Images/DPink.png", "pink", (355, 465))
-                girl_diamond2 = Diamond("Images/DPink.png", "pink", (300, 55))
+                girl_diamond2 = Diamond("Images/DPink.png", "pink", (200, 55))
                 girl_diamond3 = Diamond("Images/DPink.png", "pink", (550, 55))
                 girl_diamond4 = Diamond("Images/DPink.png", "pink", (175, 190))
                 girl_diamond5 = Diamond("Images/DPink.png", "pink", (45, 465))
@@ -905,7 +905,7 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 girl_door = Door("Images/DoorGirlPurple.png", "purple", (375, 160))
 
                 girl_diamond1 = Diamond("Images/DPurple.png", "purple", (355, 465))
-                girl_diamond2 = Diamond("Images/DPurple.png", "purple", (300, 55))
+                girl_diamond2 = Diamond("Images/DPurple.png", "purple", (200, 55))
                 girl_diamond3 = Diamond("Images/DPurple.png", "purple", (550, 55))
                 girl_diamond4 = Diamond("Images/DPurple.png", "purple", (175, 190))
                 girl_diamond5 = Diamond("Images/DPurple.png", "purple", (45, 465))
@@ -932,8 +932,8 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 
                 boy_diamond1 = Diamond("Images/DBlue.png", "blue", (615, 465))
                 boy_diamond2 = Diamond("Images/DBlue.png", "blue", (780, 55))
-                boy_diamond3 = Diamond("Images/DBlue.png", "blue", (579, 465))
-                boy_diamond4 = Diamond("Images/DBlue.png", "blue", (105, 250))
+                boy_diamond3 = Diamond("Images/DBlue.png", "blue", (425, 55))
+                boy_diamond4 = Diamond("Images/DBlue.png", "blue", (810, 190))
                 boy_diamond5 = Diamond("Images/DBlue.png", "blue", (930, 465))
             if not PINK:
                 x = create_images_list("Images/Pinkboy.png", "Images/PinkBRun.PNG", "Images/PinkBRunLeft.PNG")
@@ -945,8 +945,8 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 
                 boy_diamond1 = Diamond("Images/DPink.png", "pink", (615, 465))
                 boy_diamond2 = Diamond("Images/DPink.png", "pink", (780, 55))
-                boy_diamond3 = Diamond("Images/DPink.png", "pink", (579, 465))
-                boy_diamond4 = Diamond("Images/DPink.png", "pink", (105, 250))
+                boy_diamond3 = Diamond("Images/DPink.png", "pink", (425, 55))
+                boy_diamond4 = Diamond("Images/DPink.png", "pink", (810, 190))
                 boy_diamond5 = Diamond("Images/DPink.png", "pink", (930, 465))
             if not PURPLE:
                 x = create_images_list("Images/Purpleboy.png", "Images/PurpleBRun.PNG", "Images/PurpleBRunLeft.PNG")
@@ -958,8 +958,8 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 
                 boy_diamond1 = Diamond("Images/DPurple.png", "purple", (615, 465))
                 boy_diamond2 = Diamond("Images/DPurple.png", "purple", (780, 55))
-                boy_diamond3 = Diamond("Images/DPurple.png", "purple", (579, 465))
-                boy_diamond4 = Diamond("Images/DPurple.png", "purple", (105, 250))
+                boy_diamond3 = Diamond("Images/DPurple.png", "purple", (425, 55))
+                boy_diamond4 = Diamond("Images/DPurple.png", "purple", (810, 190))
                 boy_diamond5 = Diamond("Images/DPurple.png", "purple", (930, 465))
 
         por1 = Portal("Images/p1.png","Images/p2.png","Images/p3.png","Images/p4.png","Images/p5.png",(590,25))
@@ -1529,7 +1529,7 @@ def home():
     t = time.localtime()
     current_h = time.strftime("%H", t)
     current_m = time.strftime("%M", t)
-    pywhatkit.sendwhatmsg(phNum, "msg", current_h, current_m)
+    # pywhatkit.sendwhatmsg(phNum, "msg", current_h, current_m)
     end_b = pygame.transform.scale(pygame.image.load("Images/EndGame.png"), screen_size)
     while runend:
         screen.blit(end_b, (0, 0))
