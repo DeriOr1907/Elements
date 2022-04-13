@@ -1427,7 +1427,7 @@ def send():
     end_b = pygame.transform.scale(pygame.image.load("Images/EndGame.png"), screen_size)
     tziun = (12 - stars[0])*6
     tziun = 100 - tziun
-    msg = "שלום " + name+ "! הגעתם לסוף המשחק, כל הכבוד! הציון שלך במשחק הוא: " + " " + str(tziun) + " שתפו את חברכם וגלו מי השחקן הטוב ביותר!"
+    msg = "שלום " + name+ "! הגעתם לסוף המשחק, כל הכבוד! הציון שלך במשחק הוא: " + " " + str(tziun) + "שתפו את חברכם וגלו מי השחקן הטוב ביותר!"
     while runend:
         screen.blit(end_b, (0, 0))
         pygame.display.flip()
