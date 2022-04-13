@@ -502,8 +502,12 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                                 b.pressed = False
                                 savewall = None
 
-            font = pygame.font.SysFont("ttf.Calibri", 35)
-            screen.blit(font.render(str(int(time.time() - t0)) , True, black),(480,30))
+            screen.blit(timer,(460,10))
+            font = pygame.font.SysFont("Calibri Regular.ttf", 35)
+            if int(time.time() - t0) < 10:
+                screen.blit(font.render(str(int(time.time() - t0)), True, black),(480,30))
+            else:
+                screen.blit(font.render(str(int(time.time() - t0)), True, black), (475, 30))
 
             for diamond in diamonds:
                 gem = diamond.collect(boy) and diamond.collect(girl)
@@ -553,6 +557,8 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                     if event.key == pygame.K_w:
                         girl.start_jump()
 
+                    if event.key == pygame.K_r:
+                        girl.alive = False
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_RIGHT:
                         boy.stop_moving_right()
@@ -749,8 +755,13 @@ def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                     sound_button.display_button()
                 else:
                     no_sound_button.display_button()
-                font = pygame.font.SysFont("ttf.Calibri", 35)
-                screen.blit(font.render(str(int(time.time() - t0)), True, black), (480, 30))
+
+                screen.blit(timer, (460, 10))
+                font = pygame.font.SysFont("Calibri Regular.ttf", 35)
+                if int(time.time() - t0) < 10:
+                    screen.blit(font.render(str(int(time.time() - t0)), True, black), (480, 30))
+                else:
+                    screen.blit(font.render(str(int(time.time() - t0)), True, black), (475, 30))
                 # refreshing screen:
                 pygame.display.flip()
                 pygame.display.update()
@@ -775,13 +786,17 @@ def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                         if event.key == pygame.K_UP:
                             boy.start_jump()
 
+                        if event.key == pygame.K_r:
+                            girl.alive = False
+
                         if event.key == pygame.K_d:
                             girl.move_right()
                         if event.key == pygame.K_a:
                             girl.move_left()
                         if event.key == pygame.K_w:
                             girl.start_jump()
-
+                        if event.key == pygame.K_r:
+                            girl.alive = False
                     if event.type == pygame.KEYUP:
                         if event.key == pygame.K_RIGHT:
                             boy.stop_moving_right()
@@ -1020,9 +1035,12 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             por1.display_portal(boy,girl,(690,40))
             por2.display_portal(boy,girl,(560,40))
 
+            screen.blit(timer,(460,10))
             font = pygame.font.SysFont("Calibri Regular.ttf", 35)
-            screen.blit(font.render(str(int(time.time() - t0)), True, black),(480,30))
-
+            if int(time.time() - t0) < 10:
+                screen.blit(font.render(str(int(time.time() - t0)), True, black),(480,30))
+            else:
+                screen.blit(font.render(str(int(time.time() - t0)), True, black), (475, 30))
             # refreshing screen:
             pygame.display.flip()
             pygame.display.update()
@@ -1046,6 +1064,8 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                         boy.move_left()
                     if event.key == pygame.K_UP:
                         boy.start_jump()
+                    if event.key == pygame.K_r:
+                        girl.alive = False
 
                     if event.key == pygame.K_d:
                         girl.move_right()
@@ -1337,6 +1357,8 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                         girl.move_left()
                     if event.key == pygame.K_w:
                         girl.start_jump()
+                    if event.key == pygame.K_r:
+                        girl.alive = False
 
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_RIGHT:
@@ -1393,6 +1415,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     level[0] = level[0] + 1
     middle(red,blue,pink,purple,RED,BLUE,PINK,PURPLE,t,tmax,diamonds)
 
+
 def send():
     runend = True
     b = False
@@ -1402,12 +1425,14 @@ def send():
         current_m = time.strftime("%M", t)
         b = True
     end_b = pygame.transform.scale(pygame.image.load("Images/EndGame.png"), screen_size)
-    msg = "yuc"
+    tziun = (12 - stars[0])*6
+    tziun = 100 - tziun
+    msg = "שלום " + name+ "! הגעתם לסוף המשחק, כל הכבוד! הציון שלך במשחק הוא: " + " " + str(tziun)
     while runend:
         screen.blit(end_b, (0, 0))
         pygame.display.flip()
         pygame.display.update()
-        time.sleep(7)
+        time.sleep(10)
         if b:
             nisuy.send_sms(msg, phNum)
             b = False
@@ -1416,6 +1441,7 @@ def send():
                 runend = False
                 pygame.quit()
                 quit()
+
 
 def home():
     global phNum
@@ -1558,6 +1584,18 @@ def home():
 
 
 def start():
+    ins = pygame.transform.scale(pygame.image.load("Images/Instructions.png"), screen_size)
+    instructions = True
+    while instructions:
+        screen.blit(ins, (0, 0))
+        pygame.display.flip()
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                instructions = False
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
     global phNum
     global name
     run = True
