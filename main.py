@@ -1549,10 +1549,10 @@ def start():
     run = True
     whatsapp_button = pygame.transform.scale(pygame.image.load("Images/Whatsapp_logo.png"), (90, 90))
     whatsapp_button = Button(whatsapp_button,(455, 240),90,90)
-    start_BUTTON = pygame.transform.scale(pygame.image.load("Images/start_button.png"), (140, 85))
-    start_BUTTON = Button(start_BUTTON, (430, 150), 85,140)
+    start_BUTTON = pygame.transform.scale(pygame.image.load("Images/start_button.png"), (160, 85))
+    start_BUTTON = Button(start_BUTTON, (420, 150), 85,160)
     n_button = pygame.transform.scale(pygame.image.load("Images/name.png"), (250, 90))
-    n_button = Button(n_button,(380, 350),90,250)
+    n_button = Button(n_button,(380, 370),90,250)
     while run:
         screen.blit(start_background, (0, 0))
         whatsapp_button.display_button()
@@ -1569,10 +1569,10 @@ def start():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if mouse_in_button(whatsapp_button, event.pos):
                     button_click()
-                    phNum = (get_str(425,328))
+                    phNum = (get_str(425,348))
                 if mouse_in_button(n_button, event.pos):
                     button_click()
-                    name = get_str(425,390)
+                    name = get_str(425,410)
                 if mouse_in_button(start_BUTTON, event.pos):
                     button_click()
                     run = False
