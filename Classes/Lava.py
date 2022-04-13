@@ -12,7 +12,8 @@ class Lava:
         self.image = pygame.transform.scale(pygame.image.load(root), (self.width, self.height))
 
     def top_left(self):
-        return self.location
+        x = (self.location[0], self.location[1])
+        return x
 
     def top_right(self):
         x = (self.location[0] + self.width, self.location[1])

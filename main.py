@@ -524,7 +524,7 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             # refreshing screen:
             pygame.display.flip()
             pygame.display.update()
-            clock.tick(150)
+            clock.tick(300)
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
@@ -753,7 +753,7 @@ def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 # refreshing screen:
                 pygame.display.flip()
                 pygame.display.update()
-                clock.tick(150)
+                clock.tick(300)
                 for event in pygame.event.get():
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         mouse_pos = event.pos
@@ -1025,7 +1025,7 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             # refreshing screen:
             pygame.display.flip()
             pygame.display.update()
-            clock.tick(150)
+            clock.tick(300)
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
@@ -1305,7 +1305,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             # refreshing screen:
             pygame.display.flip()
             pygame.display.update()
-            clock.tick(150)
+            clock.tick(300)
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
@@ -1594,8 +1594,12 @@ def start():
     with open(name+".txt", "r") as f:  # read from file
         level[0] = int(f.readline())
         stars[0] = int(f.readline())
-    phNum = phNum[1:]
-    phNum = "+972" + phNum
+    if len(phNum) == 10:
+        phNum = phNum[1:]
+        phNum = "+972" + phNum
+    else:
+        phNum = ""
+
 
     home()
 

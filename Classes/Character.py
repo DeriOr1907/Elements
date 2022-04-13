@@ -23,15 +23,15 @@ class Character:
         if self.gravity != 0:
             self.jumping = True
         if self.gravity <= 10:
-            self.gravity = self.gravity+0.1
+            self.gravity = self.gravity+0.025
         if self.moving_right:
             self.direction = 1
             if self.able_to_move_right(objects) and self.able_to_move_right(walls):
-                self.Location = (self.Location[0] + 1, self.Location[1])
+                self.Location = (self.Location[0] + 0.5, self.Location[1])
         if self.moving_left:
             self.direction = 2
             if self.able_to_move_left(objects) and self.able_to_move_left(walls):
-                self.Location = (self.Location[0] - 1, self.Location[1])
+                self.Location = (self.Location[0] - 0.5, self.Location[1])
         if self.alive:
             self.able_to_move_up(objects)
             self.able_to_move_up(walls)
@@ -48,7 +48,7 @@ class Character:
     def start_jump(self):
         self.Location = (self.Location[0],self.Location[1]-5)
         if not self.jumping:
-            self.gravity = -5
+            self.gravity = -2.5
             self.jumping = True
 
     def set_location(self,loc):
