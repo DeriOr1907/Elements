@@ -1541,6 +1541,9 @@ def home():
                 runend = False
                 pygame.quit()
                 quit()
+    with open(name+".txt", 'w', encoding='utf-8') as f:
+        f.write("1"+"\n")
+        f.write("0"+"\n")
     # the end
 
 
