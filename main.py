@@ -1,3 +1,4 @@
+
 from Classes.Button import *
 from Classes.Wall import *
 from Classes.Star import *
@@ -7,7 +8,6 @@ from Classes.Magic_Button import *
 import time
 import random
 from datetime import datetime
-#import pywhatkit
 
 pygame.display.set_caption('Elements')
 clock = pygame.time.Clock()
@@ -124,6 +124,7 @@ sound_button = Button(sound_button,(950, 10),30,30)
 no_sound_button = pygame.transform.scale(pygame.image.load("Images/no sound.png"), (30,30))
 no_sound_button = Button(no_sound_button,(950, 10),30,30)
 sound_on = True
+timer = pygame.transform.scale(pygame.image.load("Images/timer.png"), (53,53))
 
 objects_color = (95, 80, 45)
 o1 = Object(1050, 30, 0, 500, objects_color)
@@ -1296,8 +1297,12 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 lava.display_lava()
 
             black = (0, 0, 0)
+            screen.blit(timer,(460,10))
             font = pygame.font.SysFont("Calibri Regular.ttf", 35)
-            screen.blit(font.render(str(int(time.time() - t0)), True, black),(480,30))
+            if int(time.time() - t0) < 10:
+                screen.blit(font.render(str(int(time.time() - t0)), True, black),(480,30))
+            else:
+                screen.blit(font.render(str(int(time.time() - t0)), True, black), (475, 30))
             if sound_on:
                 sound_button.display_button()
             else:
@@ -1388,6 +1393,29 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     level[0] = level[0] + 1
     middle(red,blue,pink,purple,RED,BLUE,PINK,PURPLE,t,tmax,diamonds)
 
+def send():
+    runend = True
+    b = False
+    if len(phNum) == 13:
+        t = time.localtime()
+        current_h = time.strftime("%H", t)
+        current_m = time.strftime("%M", t)
+        b = True
+    end_b = pygame.transform.scale(pygame.image.load("Images/EndGame.png"), screen_size)
+    msg = "yuc"
+    while runend:
+        screen.blit(end_b, (0, 0))
+        pygame.display.flip()
+        pygame.display.update()
+        time.sleep(7)
+        if b:
+            nisuy.send_sms(msg, phNum)
+            b = False
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                runend = False
+                pygame.quit()
+                quit()
 
 def home():
     global phNum
@@ -1525,25 +1553,7 @@ def home():
             level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
         if level[0] == 4:
             level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
-    runend = True
-    if len(phNum) == 13:
-        t = time.localtime()
-        current_h = time.strftime("%H", t)
-        current_m = time.strftime("%M", t)
-        pywhatkit.sendwhatmsg(phNum, "msg", current_h, current_m)
-    end_b = pygame.transform.scale(pygame.image.load("Images/EndGame.png"), screen_size)
-    while runend:
-        screen.blit(end_b, (0, 0))
-        pygame.display.flip()
-        pygame.display.update()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                runend = False
-                pygame.quit()
-                quit()
-    with open(name+".txt", 'w', encoding='utf-8') as f:
-        f.write("1"+"\n")
-        f.write("0"+"\n")
+        send()
     # the end
 
 
@@ -1603,11 +1613,11 @@ def start():
     else:
         phNum = ""
 
-
     home()
 
 
 start()
-
+import nisuy
+send()
 print("gever retzah ata")
 quit()
