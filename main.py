@@ -148,7 +148,7 @@ obj15 = Object(130, 60, 689, 475, objects_color)
 obj16 = Object(90, 50, 689, 435, objects_color)
 obj17 = Object(50, 50, 689, 395, objects_color)
 obj18 = Object(40, 15, 600, 440, objects_color)
-obj19 = Object(80, 15, 480, 350, objects_color)
+obj19 = Object(120, 15, 430, 350, objects_color)
 obj20 = Object(600, 15, 600, 280, objects_color)
 obj21 = Object(250, 15, 840, 200, objects_color)
 obj22 = Object(300, 15, 595, 90, objects_color)
@@ -171,8 +171,7 @@ o8 = Object(300, 25, 0, 325, objects_color)
 o9 = Object(300, 25, 700, 325, objects_color)
 o10 = Object(300, 100, 250, 420, objects_color)
 o11 = Object(60, 100, 718, 450, objects_color)
-o12 = Object(80, 15, 590, 410, objects_color)
-
+o12 = Object(90, 15, 590, 430, objects_color)
 o13 = Object(50, 30, 400, 200, objects_color)
 o14 = Object(50, 30, 535, 200, objects_color)
 
@@ -182,7 +181,7 @@ OBJ5 = Object(200, 100, 400, 400, objects_color)
 OBJ6 = Object(2000, 15, 600, 300, objects_color)
 OBJ7 = Object(400, 15, 0, 300, objects_color)
 OBJ8 = Object(300, 15, 350, 220, objects_color)
-OBJ9 = Object(15, 145, 350, 95, objects_color)
+OBJ9 = Object(15, 140, 350, 95, objects_color)
 OBJ10 = Object(15, 235, 635, 0, objects_color)
 OBJ11 = Object(300, 15, 150, 90, objects_color)
 OBJ12 = Object(315, 15, 550, 90, objects_color)
@@ -215,6 +214,7 @@ name = ""
 level = [1]
 stars = [0]
 phNum = ""
+
 size = (700,150)
 sizel = (700,160)
 wq1 = pygame.transform.scale(pygame.image.load("Images/wq1.png"), size)
@@ -384,7 +384,7 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 girl_diamond1 = Diamond("Images/DRed!.png", "red", (741, 405))
                 girl_diamond2 = Diamond("Images/DRed!.png", "red", (930, 250))
                 girl_diamond3 = Diamond("Images/DRed!.png", "red", (125, 200))
-                girl_diamond4 = Diamond("Images/DRed!.png", "red", (445, 170))
+                girl_diamond4 = Diamond("Images/DRed!.png", "red", (440, 170))
                 girl_diamond5 = Diamond("Images/DRed!.png", "red", (650, 60))
             if not blue:
                 y = create_images_list("Images/Bluegirl.png", "Images/BlueGRun.PNG", "Images/BlueGRunLeft.PNG")
@@ -395,7 +395,7 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 girl_diamond1 = Diamond("Images/DBlue.png", "blue", (741, 405))
                 girl_diamond2 = Diamond("Images/DBlue.png", "blue", (930, 250))
                 girl_diamond3 = Diamond("Images/DBlue.png", "blue", (125, 200))
-                girl_diamond4 = Diamond("Images/DBlue.png", "blue", (445, 170))
+                girl_diamond4 = Diamond("Images/DBlue.png", "blue", (440, 170))
                 girl_diamond5 = Diamond("Images/DBlue.png", "blue", (650, 60))
             if not pink:
                 y = create_images_list("Images/Pinkgirl.png", "Images/PinkGRun.PNG", "Images/PinkGRunLeft.PNG")
@@ -406,7 +406,7 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 girl_diamond1 = Diamond("Images/DPink.png", "pink", (741, 405))
                 girl_diamond2 = Diamond("Images/DPink.png", "pink", (930, 250))
                 girl_diamond3 = Diamond("Images/DPink.png", "pink", (125, 200))
-                girl_diamond4 = Diamond("Images/DPink.png", "pink", (445, 170))
+                girl_diamond4 = Diamond("Images/DPink.png", "pink", (440, 170))
                 girl_diamond5 = Diamond("Images/DPink.png", "pink", (650, 60))
             if not purple:
                 y = create_images_list("Images/Purplegirl.png", "Images/PurpleGRun.PNG", "Images/PurpleGRunLeft.PNG")
@@ -417,7 +417,7 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 girl_diamond1 = Diamond("Images/DPurple.png", "purple", (741, 405))
                 girl_diamond2 = Diamond("Images/DPurple.png", "purple", (930, 250))
                 girl_diamond3 = Diamond("Images/DPurple.png", "purple", (125, 200))
-                girl_diamond4 = Diamond("Images/DPurple.png", "purple", (445, 170))
+                girl_diamond4 = Diamond("Images/DPurple.png", "purple", (440, 170))
                 girl_diamond5 = Diamond("Images/DPurple.png", "purple", (650, 60))
 
             if not RED:
@@ -427,7 +427,7 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 boy_door = Door("Images/DoorBoyRed.png", "red", (800, 30))
 
                 boy_diamond1 = Diamond("Images/DRed!.png", "red", (225, 405))
-                boy_diamond2 = Diamond("Images/DRed!.png", "red", (485, 320))
+                boy_diamond2 = Diamond("Images/DRed!.png", "red", (475, 320))
                 boy_diamond3 = Diamond("Images/DRed!.png", "red", (160, 200))
                 boy_diamond4 = Diamond("Images/DRed!.png", "red", (895, 250))
                 boy_diamond5 = Diamond("Images/DRed!.png", "red", (150, 60))
@@ -438,7 +438,7 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 boy_door = Door("Images/DoorBoyBlue.png", "blue", (800, 30))
 
                 boy_diamond1 = Diamond("Images/DBlue.png", "blue", (225, 405))
-                boy_diamond2 = Diamond("Images/DBlue.png", "blue", (485, 320))
+                boy_diamond2 = Diamond("Images/DBlue.png", "blue", (475, 320))
                 boy_diamond3 = Diamond("Images/DBlue.png", "blue", (160, 200))
                 boy_diamond4 = Diamond("Images/DBlue.png", "blue", (895, 250))
                 boy_diamond5 = Diamond("Images/DBlue.png", "blue", (150, 60))
@@ -449,7 +449,7 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 boy_door = Door("Images/DoorBoyPink.png", "pink", (800, 30))
 
                 boy_diamond1 = Diamond("Images/DPink.png", "pink", (225, 405))
-                boy_diamond2 = Diamond("Images/DPink.png", "pink", (485, 320))
+                boy_diamond2 = Diamond("Images/DPink.png", "pink", (475, 320))
                 boy_diamond3 = Diamond("Images/DPink.png", "pink", (160, 200))
                 boy_diamond4 = Diamond("Images/DPink.png", "pink", (895, 250))
                 boy_diamond5 = Diamond("Images/DPink.png", "pink", (150, 60))
@@ -460,7 +460,7 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 boy_door = Door("Images/DoorBoyPurple.png", "purple", (800, 30))
 
                 boy_diamond1 = Diamond("Images/DPurple.png", "purple", (225, 405))
-                boy_diamond2 = Diamond("Images/DPurple.png", "purple", (485, 320))
+                boy_diamond2 = Diamond("Images/DPurple.png", "purple", (475, 320))
                 boy_diamond3 = Diamond("Images/DPurple.png", "purple", (160, 200))
                 boy_diamond4 = Diamond("Images/DPurple.png", "purple", (895, 250))
                 boy_diamond5 = Diamond("Images/DPurple.png", "purple", (150, 60))
@@ -578,7 +578,6 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             home_button.display_button()
             if len(lose_quotes) != 0:
                 screen.blit(lose_quotes[x], (150, 20))
-
             pygame.display.flip()
             pygame.display.update()
             if B:
@@ -608,7 +607,7 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 
 def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     global sound_on
-    tmax = 60
+    tmax = 35
     black = (0, 0, 0)
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
@@ -838,7 +837,7 @@ def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 
 def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     global sound_on
-    tmax = 60
+    tmax = 35
     black = (0, 0, 0)
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
@@ -1109,7 +1108,7 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 
 def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
     global sound_on
-    tmax = 60
+    tmax = 35
     background = pygame.transform.scale(pygame.image.load("Images/background2.jpeg"), screen_size)
     run = True
     girl_lava1 = None
@@ -1391,6 +1390,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
 
 
 def home():
+    global phNum
     global sound_on
     start_run = True
     play_music("Sounds/startSoundTrack.mp3")
@@ -1526,10 +1526,11 @@ def home():
         if level[0] == 4:
             level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
     runend = True
-    t = time.localtime()
-    current_h = time.strftime("%H", t)
-    current_m = time.strftime("%M", t)
-    # pywhatkit.sendwhatmsg(phNum, "msg", current_h, current_m)
+    if len(phNum) == 13:
+        t = time.localtime()
+        current_h = time.strftime("%H", t)
+        current_m = time.strftime("%M", t)
+        pywhatkit.sendwhatmsg(phNum, "msg", current_h, current_m)
     end_b = pygame.transform.scale(pygame.image.load("Images/EndGame.png"), screen_size)
     while runend:
         screen.blit(end_b, (0, 0))
@@ -1548,7 +1549,7 @@ def start():
     global name
     run = True
     whatsapp_button = pygame.transform.scale(pygame.image.load("Images/Whatsapp_logo.png"), (90, 90))
-    whatsapp_button = Button(whatsapp_button,(455, 240),90,90)
+    whatsapp_button = Button(whatsapp_button,(455, 260), 90, 90)
     start_BUTTON = pygame.transform.scale(pygame.image.load("Images/start_button.png"), (160, 85))
     start_BUTTON = Button(start_BUTTON, (420, 150), 85,160)
     n_button = pygame.transform.scale(pygame.image.load("Images/name.png"), (250, 90))
@@ -1560,7 +1561,13 @@ def start():
         n_button.display_button()
         font = pygame.font.SysFont('chalkduster.ttf', 45, bold=False)
         img = font.render(name, True, (50, 50, 50))
-        screen.blit(img, (400, 380))
+        screen.blit(img, (400, 400))
+        font2 = pygame.font.SysFont('chalkduster.ttf', 20, bold=False)
+        img = font2.render("ENTER PHONE NUMBER:", True, (50, 50, 50))
+        screen.blit(img, (425, 250))
+        font3 = pygame.font.SysFont('chalkduster.ttf', 25, bold=False)
+        img = font3.render(phNum, True, (50, 50, 50))
+        screen.blit(img, (450, 350))
 
         pygame.display.flip()
         pygame.display.update()
