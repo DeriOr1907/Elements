@@ -1579,7 +1579,7 @@ def home():
             level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
         if level[0] == 4:
             level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE)
-        send()
+    send()
     # the end
 
 
