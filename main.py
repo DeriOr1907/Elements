@@ -1,4 +1,3 @@
-
 from Classes.Button import *
 from Classes.Wall import *
 from Classes.Star import *
@@ -196,7 +195,7 @@ OBJ19 = Object(15, 30, 101, 480, objects_color)
 OBJ20 = Object(15, 30, 285, 480, objects_color)
 OBJ21 = Object(15, 30, 701, 480, objects_color)
 OBJ22 = Object(15, 30, 885, 480, objects_color)
-OBJ23 = Object(105, 15, 145, 420, objects_color)
+OBJ23 = Object(110, 15, 145, 420, objects_color)
 OBJ24 = Object(109, 15, 745, 420, objects_color)
 
 objects2 = [o1, o2, o3, o4, OBJ5, OBJ6, OBJ7, OBJ8, OBJ9, OBJ10, OBJ11, OBJ12, OBJ13, OBJ14, OBJ15, OBJ16, OBJ17, OBJ18, OBJ19, OBJ20, OBJ21, OBJ22, OBJ23, OBJ24]
@@ -529,7 +528,7 @@ def level4(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             # refreshing screen:
             pygame.display.flip()
             pygame.display.update()
-            clock.tick(300)
+            clock.tick(150)
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
@@ -765,7 +764,7 @@ def level3(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
                 # refreshing screen:
                 pygame.display.flip()
                 pygame.display.update()
-                clock.tick(300)
+                clock.tick(150)
                 for event in pygame.event.get():
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         mouse_pos = event.pos
@@ -1044,7 +1043,7 @@ def level2(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             # refreshing screen:
             pygame.display.flip()
             pygame.display.update()
-            clock.tick(300)
+            clock.tick(150)
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
@@ -1330,7 +1329,7 @@ def level1(red, blue, pink, purple, RED, BLUE, PINK, PURPLE):
             # refreshing screen:
             pygame.display.flip()
             pygame.display.update()
-            clock.tick(300)
+            clock.tick(150)
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
